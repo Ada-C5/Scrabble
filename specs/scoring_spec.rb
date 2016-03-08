@@ -2,9 +2,9 @@ require_relative './spec_helper'
 require_relative '../scrabble'
 require_relative '../lib/scoring'
 
-describe Scoring do
+describe Scrabble::Scoring do
 	it "exists" do
-		Scoring.wont_be_nil
+		Scrabble::Scoring.wont_be_nil
 	end
 
 	TEST_CASES = {
@@ -17,7 +17,7 @@ describe Scoring do
 
 	TEST_CASES.each do |word, score|
 		it "returns total score value for the word" do
-			Scoring.score(word).must_equal(score)
+			Scrabble::Scoring.score(word).must_equal(score)
 		end
 	end
 
