@@ -1,4 +1,4 @@
-require '../scrabble'
+require '../Scrabble'
 class Scrabble::Scoring
   # letters and corresponding values for scoring the words
   LETTERS = {
@@ -11,10 +11,14 @@ class Scrabble::Scoring
     10 => ["Q", "Z"]
   }
 
+  def self.test
+    puts "MEOW"
+  end
+
   def self.score(word)
     score = 0
-    word.each |letter| do
-      LETTERS.each |k, v| do
+    word.each do |letter| 
+      LETTERS.each do |k, v|
         if v.include?(letter)
           score += k
         end

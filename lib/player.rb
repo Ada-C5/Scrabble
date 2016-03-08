@@ -1,8 +1,8 @@
-require '../scrabble'
+# require '../Scrabble'
 
-class Scrabble::Player
-  # include Scrabble
-  # def initialize(file)
-  #   @scrabble_file = import(file)
-  # end
-end
+# class Scrabble::Player
+#   # include Scrabble
+#   # def initialize(file)
+#   #   @scrabble_file = import(file)
+#   # end
+# end
