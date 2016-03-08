@@ -1,6 +1,6 @@
 class Scoring
   SCORES = {
-    1 => ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],	
+    1 => ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
     2 => ["D", "G"],
     3 => ["B", "C", "M", "P"],
     4 => ["F", "H", "V", "W", "Y"],
@@ -8,4 +8,9 @@ class Scoring
     8 => ["J", "X"],
     10 => ["Q", "Z"]
   }
+
+  def score_letters
+    SCORES.values[0][0] = "A"
+
+  end
 end
