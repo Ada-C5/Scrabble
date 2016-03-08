@@ -4,6 +4,7 @@ class Scoring
      "q"=>10, "r"=>1, "s"=>1, "t"=>1, "u"=>1, "v"=>4, "w"=>4, "x"=>8, "y"=>4,
      "z"=>10}
 
+
   def self.score(word) #takes a string
     score = 0
     if word.length == 7 #bonus for 7 letter word
@@ -17,10 +18,10 @@ class Scoring
   end
 
   def self.highest_score_from(array_of_words)
-    score_array = array_of_words.collect{ |word| word.score }
+    score_array = array_of_words.collect{ |word| self.score(word) }
     knockout_array = score_array.sort
-    self.compare_things(knockout_array)
-    highest_scoring_words  = array_of_words.max_by(i) { |word| word.score }
+    i = self.compare_things(knockout_array)
+    highest_scoring_words  = array_of_words.max_by(i) { |word| self.score(word) }
     if highest_scoring_words.length == 1
       return highest_scoring_words[0].to_s
     end
@@ -44,7 +45,7 @@ class Scoring
   def self.compare_things(score_array)
     i = 1
     while score_array[0] == score_array[1]
-      knockout_array.shift
+      score_array.shift
       i +=1
     end
     return i
