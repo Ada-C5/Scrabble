@@ -1,6 +1,4 @@
-module Scrabble
 class Scoring
-  #include Scrabble
 
   LETTERS = {
   %w(A E I O U L N R S T) => 1,
@@ -12,5 +10,4 @@ class Scoring
   %w(Q Z) => 10
 }
 
-end
 end
