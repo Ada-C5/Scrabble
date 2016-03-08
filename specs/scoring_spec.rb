@@ -20,7 +20,21 @@ describe Scrabble::Scoring do
     it "should return points for given letter" do
       assert_equal Scrabble::Scoring::SCORE_CHART["A"], Scrabble::Scoring.letter_points("A")
     end
-
   end
 
+  describe "Scoring#word_points" do
+    it "creates an array" do
+      Scrabble::Scoring.word_points("dog").must_be_instance_of Array
+    end
+
+    it "doesn't contain nil values" do
+      Scrabble::Scoring.word_points("dog").wont_be_nil
+    end
+  end
+
+  describe "Scoring#score" do
+    it "should give a total score as fixnum" do
+      Scrabble::Scoring.score("dog").must_be_instance_of Fixnum
+    end
+  end
 end

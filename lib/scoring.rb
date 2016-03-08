@@ -31,24 +31,24 @@ class Scrabble::Scoring
 "Z" => 10
 }
 
-  def self.score(word)
-      puts score
-  end
-
+  # Take a word, upcase it, and return an array of its letters
   def self.word_letters(word)
-     word.split(//)
+     word.upcase.split(//)
   end
 
-  def self.finding_values(word)
-
-      # see what the letter's key is and return all keys in a new array
-      word_letters.map { |letter| letter == SCORE_CHART[] }
-
-  end
-
+  # Finds the point value of each letter given
   def self.letter_points(letter)
     SCORE_CHART.fetch(letter)
   end
 
+  # Finds point value of each letter in a word
+  # Creates an array of points for each letter
+  def self.word_points(word)
+    word_letters(word).map { |i| letter_points(i) }
+  end
 
+  # Sums the points from the word_points array
+  def self.score(word)
+    word_points(word).reduce(:+)
+  end
 end
