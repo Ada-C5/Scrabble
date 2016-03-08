@@ -1,8 +1,6 @@
-require '../scrabble'
-
 class Player
-  include Scrabble
-  def initialize(file)
-    @scrabble_file = import(file)
-  end
+  # include Scrabble
+  # def initialize(file)
+  #   @scrabble_file = import(file)
+  # end
 end
