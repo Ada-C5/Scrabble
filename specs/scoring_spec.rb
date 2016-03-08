@@ -8,8 +8,19 @@ describe Scrabble::Scoring do
   end
 
   describe "Scrabble::Scoring#score" do
-    it "Should generate the score of word being 8" do
+    it "WORD should generate the score of word being 8" do
       Scrabble::Scoring.score("WORD").must_equal(8)
+    end
+
+    it "word should generate the score of word being 8" do
+      Scrabble::Scoring.score("word").must_equal(8)
+    end
+  end
+
+  describe "Scrabble::Scoring#highest_score_from" do
+
+    it "returns the word in array with the highest score" do 
+      Scrabble::Scoring.highest_score_from(["WORD", "CAT", "MEOW", "ZEBRA"]).must_equal("ZEBRA")
     end
   end
 
@@ -19,10 +30,3 @@ describe Scrabble::Scoring do
     end
   end
 end
-
-# end
-
-  # it "Is there a method?" do
-  #   self.highest_score_from(["a", "b", "x"]).wont_be_nil
-  # end
-#end
