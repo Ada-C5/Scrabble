@@ -22,7 +22,31 @@ private # hiding the mess even from ourselves!!
 
 # this will return a value for each letter and add it to the running total
 # ennumerable?!?!
+# we need to downcase the word to ensure it can check against the hash/arrays.
 def self.scoring_math(word)
+	# iterate over the letters in the word
+	total_score = 0
+
+	for index in 0..@word.length - 1
+		if LETTER_POINT_VALUES[:1].include word[index]
+			total_score += 1
+		elsif LETTER_POINT_VALUES[:2].include word[index]
+			total_score += 2
+		elsif LETTER_POINT_VALUES[:3].includ word[index]
+			total_score += 3
+		elsif LETTER_POINT_VALUES[:4].includ word[index]
+			total_score += 4
+		elsif LETTER_POINT_VALUES[:5].includ word[index]
+			total_score += 5			
+		elsif LETTER_POINT_VALUES[:8].includ word[index]
+			total_score += 8
+		elsif LETTER_POINT_VALUES[:10].includ word[index]
+			total_score += 10
+		end        
+
+	# figure out what word[index] is worth 
+	
+	# add to running total
 
 end
 
