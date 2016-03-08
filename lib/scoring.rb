@@ -16,4 +16,23 @@ class Scoring
         word.length == 7 ? total + 50 : total  # Return is implicit
       end
 
+
+
+
+      def self.highest_score_from(array)
+        hash ={}             #this hash will contain words and their values/scores
+
+        array.each do |word|
+          hash[word] = score(word)
+        end
+
+        array_values = hash.values   #this is taking the values of the hash and storing them in an array
+
+        max_value = array_values.max  #this is finding the max value of the values and storing as a variable
+
+        winner = hash.key(max_value)    #this is finding the corresponding key/word to that max value
+
+        return winner
+      
+      end
 end
