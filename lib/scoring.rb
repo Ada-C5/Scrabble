@@ -1,5 +1,5 @@
-class Scoring
-include Scrabble
+class Scrabble::Scoring
+
   LETTERS = {
   %w(A E I O U L N R S T) => 1,
   %w(D G) => 2,

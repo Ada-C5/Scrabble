@@ -2,11 +2,16 @@ require_relative './spec_helper'
 require_relative '../scrabble'
 require_relative '../lib/scoring'
 
-
-describe Scoring do
-  it "is an object we have access to" do
-  Scoring.wont_be_nil
+describe Scrabble::Scoring do
+  it "this does exist" do
+  Scrabble::Scoring.wont_be_nil
   end
+end
+
+  describe Scrabble::Scoring do
+    it "is an object we have access to" do
+    Scrabble::Scoring.wont_be_nil
+    end
 
   describe "LetterValue#convert" do
     TEST_CASES = {
@@ -20,7 +25,7 @@ describe Scoring do
     }
     TEST_CASES.each do |letter, value|
       it "should return #{letter} for #{value}" do
-        Scoring.letter_value(letter).must_equal(value)
+        Scrabble::Scoring.letter_value(letter).must_equal(value)
       end
     end
   end
