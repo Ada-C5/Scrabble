@@ -9,8 +9,10 @@ class Scoring
     score = 0
     if word.length == 7 #bonus for 7 letter word
       score = 50
+    elsif word.empty?
+      return 0
     end
-    split_word = word.split('')
+    split_word = word.downcase.split('')
     split_word.each do |letter|
       score = score + LETTER_SCORES[letter]
     end

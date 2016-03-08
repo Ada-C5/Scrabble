@@ -1,6 +1,8 @@
 require_relative './spec_helper'
 require_relative '../lib/scoring'
 
+
+# ACCOUNT FOR PLAYER ENTERING NON-LETTERS
 describe Scoring do
   it "is an object we have access to" do
     Scoring.wont_be_nil
@@ -16,7 +18,10 @@ describe Scoring do
        5 => "cat", #easier
        4 => "rail",
        12 => "zoo",
-       34 + 50 => "jacuzzi" #should have 50 point bonus for 7 letters
+       34 + 50 => "jacuzzi", #should have 50 point bonus for 7 letters
+       6 => "POOR",
+       7 => "LoVe",
+       0 => ''
     }
     TEST_CASES_SCORE.each do |word_score, word|
      it "should return the score '#{ word_score }' for the word #{ word }" do
@@ -28,8 +33,8 @@ describe Scoring do
 
 
   describe "Scoring#highest_score_from" do
-    it "is an object we have accress to" do
-      Scoring.highest_score_from(["string", "string"]).wont_be_nil
+    it "is an object we have access to" do
+      Scoring.highest_score_from(['']).wont_be_nil
     end
 
     TEST_CASES_ARRAY = {
@@ -47,28 +52,5 @@ describe Scoring do
    end
 
   end
-
-
-
-
-    #  TEST_CASES = {
-    #    1 => "I",
-    #    5 => "V",
-    #    10 => "X",
-    #    2 => "II",
-    #    15 => "XV",
-    #    4 => "IV",
-    #    9 => "IX",
-    #    14 => "XIV",
-    #    30 => "",
-    #    29 => "XXIX",
-    #    34 => "XXXIV",
-    #    49 => "XLIX",
-    #    74 => "LXXIV"
-    #  }
-    #TEST_CASES.each do |arabic, roman|
-    #  it "should return the roman '#{ roman }' for the arabic #{ arabic }" do
-    #    Roman.convert(arabic).must_equal(roman)
-    #  end
 
 end
