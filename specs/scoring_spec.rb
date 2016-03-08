@@ -7,10 +7,15 @@ describe Scoring do
     Scoring.wont_be_nil
   end
 
+
   describe "Scoring#score" do
+    TEST_WORDS = ["cat"]
+
     #creates an array with letters from the word (strings)
-    it "should create an array with the same length than word's length" do
-      Scoring.score(word).letter_array.length.must_equal(word.length)
+    TEST_WORDS.each do |word|
+      it "should create an array with the same length than word's length" do
+      Scoring.score(word).length.must_equal(word.length)
+      end
     end
   end
 end

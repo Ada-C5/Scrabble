@@ -11,9 +11,23 @@ class Scoring
 
   # Method doesnt work yet
   def self.score(word)
-    word = "cat"
-      # letter_array = []
-   letter_array = word.split(//)
+
+   word = word.split(//)
+# take each letter and iterate through values of the hash to find the letter
+points =[]
+SCORES.values.each do |value|
+  return value
+  word.each do |letter|
+    if letter == value
+      points << value.keys
+    end
+
+  end
+end
+
+# once letter is found, assign value of the key to that letter
+
+# store value into variable that is an array and add them together
   end
 
     # word = "A"
