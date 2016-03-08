@@ -1,8 +1,10 @@
 class Scoring
-  LETTER_SCORES =
-  {"a"=>1, "b"=>3, "c"=>3, "d"=>2, "e"=>1, "f"=>4, "g"=>2, "h"=>4, "i"=>1, "j"=>8, "k"=>5, "l"=>1, "m"=>3, "n"=>1, "o"=>1, "p"=>3, "q"=>10, "r"=>1, "s"=>1, "t"=>1, "u"=>1, "v"=>4, "w"=>4, "x"=>8, "y"=>4, "z"=>10}
+  LETTER_SCORES = {"a"=>1, "b"=>3, "c"=>3, "d"=>2, "e"=>1, "f"=>4, "g"=>2,
+     "h"=>4, "i"=>1, "j"=>8, "k"=>5, "l"=>1, "m"=>3, "n"=>1, "o"=>1, "p"=>3,
+     "q"=>10, "r"=>1, "s"=>1, "t"=>1, "u"=>1, "v"=>4, "w"=>4, "x"=>8, "y"=>4,
+     "z"=>10}
 
-  def self.score(word)
+  def self.score(word) #takes a string
     score = 0
     if word.length == 7 #bonus for 7 letter word
       score = 50
@@ -15,10 +17,10 @@ class Scoring
   end
 
   def self.highest_score_from(array_of_words)
-    score_array = array_of_words.collect{|word| word.score}
+    score_array = array_of_words.collect{ |word| word.score }
     knockout_array = score_array.sort
-    compare_things(knockout_array)
-    highest_scoring_words  = array_of_words.max_by(i) { |word| word.score}
+    self.compare_things(knockout_array)
+    highest_scoring_words  = array_of_words.max_by(i) { |word| word.score }
     if highest_scoring_words.length == 1
       return highest_scoring_words[0].to_s
     end
@@ -26,8 +28,8 @@ class Scoring
 
     if words_by_length.last == 7 # come back for multiple 7s
       return words_by_length.last
-    elsif compare_things(words_by_length)> 1
-      number_ties_same_length = compare_things(words_by_length)
+    elsif self.compare_things(words_by_length)> 1
+      number_ties_same_length = self.compare_things(words_by_length)
       potential_winners = words_by_length.first(number_ties_same_length)
       array_of_words.each do |word|
         until potential_winners.include? word
@@ -37,8 +39,9 @@ class Scoring
     else
       words_by_length.first
     end
+  end
 
-  def compare_things(score_array)
+  def self.compare_things(score_array)
     i = 1
     while score_array[0] == score_array[1]
       knockout_array.shift
@@ -47,13 +50,6 @@ class Scoring
     return i
   end
 
-  end
-
-
-
-
-
->>>>>>> adcf6809fbae57bbc49ebf7ab934f836d8b8c14a
 end
 
 
