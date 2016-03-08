@@ -7,15 +7,15 @@ describe Scrabble::Scoring do
     Scrabble::Scoring.wont_be_nil
   end
 
-  TEST_SCORE = {
-  	"zebra" => 16,
-    "xylophone" => 0,
-    "develop" => 63
-  }
+    TEST_SCORE = {
+    	"zebra" => 16,
+      "xylophone" => 0,
+      "develop" => 63
+    }
 
-  TEST_SCORE.each do |word, score|
-  	it "should return #{ score } for '#{ word }'" do
-  	Scoring.score(word).must_equal(score)
-  	end
-  end
+    TEST_SCORE.each do |word, score|
+    	it "should return #{ score } for '#{ word }'" do
+    	Scoring.score(word).must_equal(score)
+    	end
+    end
 end

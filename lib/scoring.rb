@@ -13,7 +13,7 @@ class Scoring
     word_array = word.upcase.split("")
 
     word_score = 0
-    
+
     if word.length <= 7
       word_array.each do |letter|
         word_score += SCORE_CHART[letter]
@@ -26,6 +26,12 @@ class Scoring
   end
 
   def self.highest_score_from(array_of_words)
-    
+    array_of_scores = []
+    array_of_words.each do |word|
+      x = self.score(word)
+      array_of_scores.push(x)
+    end
+    return array_of_scores.max
+
   end
 end
