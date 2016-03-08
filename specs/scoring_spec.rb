@@ -36,5 +36,9 @@ describe Scrabble::Scoring do
     it "should give a total score as fixnum" do
       Scrabble::Scoring.score("dog").must_be_instance_of Fixnum
     end
+
+    it "should add a bonus of 50 points to words with 7 letters" do
+      assert_equal 59, Scrabble::Scoring.score("dragons")
+    end
   end
 end

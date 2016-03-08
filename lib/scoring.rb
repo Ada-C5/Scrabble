@@ -49,6 +49,10 @@ class Scrabble::Scoring
 
   # Sums the points from the word_points array
   def self.score(word)
-    word_points(word).reduce(:+)
+    total = 0
+    # Adds a bonus for 7-letter words.
+    if word_points(word).length == 7 then total = 50 end
+    total += word_points(word).reduce(:+)
+    total
   end
 end
