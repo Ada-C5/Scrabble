@@ -42,7 +42,33 @@ class Scrabble::Scoring
     sorted_array = total_array.sort_by{|score| score[0]}
     highest_score = sorted_array[-1][0]
 
-    return sorted_array.drop_while{|array| array[0] != highest_score}
+    tie_array = sorted_array.delete_if{|array| array[0] != highest_score}
+    if tie_array.length == 1
+      return tie_array[0][1]
+    else
+      tie_array.each do |array|
+        len = array[1].length
+        array[0] = len 
+      end
+    end
+
+    sorted_tie_array = tie_array.sort_by { |array| array[0] }
+    shortest_word = sorted_tie_array[0][0]
+    shortest_word_array = sorted_tie_array.delete_if{|array| array[0] != shortest_word }
+
+    if shortest_word_array.length == 1
+      return shortest_word_array[0][1]
+      # else there are multiple words with the same length
+    else 
+      array_of_words.each do |word|
+        shortest_word_array.each do |array|
+          if word == array[1]
+            return array[1]
+          end
+        end
+      end
+    end
+
 
 
     # temp_array = [0, "word"]
