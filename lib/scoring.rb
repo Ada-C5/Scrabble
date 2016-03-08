@@ -13,13 +13,18 @@ class Scrabble::Scoring
   }
 
   def self.score(word)
-    score = nil
+    score = 0
 
-    LETTER_POINTS.each do |points, letters_array|
-      if letters_array.include? word.upcase
-        score = points
+    word_array = word.upcase.split("")
+
+    word_array.each do |letter|
+      LETTER_POINTS.each do |points, letters_array|
+        if letters_array.include? letter
+          score += points
+        end
       end
     end
+
     score
   end
 end

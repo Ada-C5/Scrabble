@@ -18,6 +18,7 @@ describe "Scrabble::Score.score" do
     10 => ["Q", "Z"]
   }
 
+# tests single letter
   TEST_SCRABBLE_SCORE.each do |points, letters_array|
     it "should return the scrabble score of #{points} for the letter #{letters_array}" do
       letters_array.each do |letter_from_array|
@@ -26,4 +27,8 @@ describe "Scrabble::Score.score" do
     end
   end
 
+# tests 2 characters
+  it "should return the value '2' for the word 'AE' " do
+    Scrabble::Scoring.score("AE").must_equal 2
+  end
 end
