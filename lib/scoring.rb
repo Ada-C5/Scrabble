@@ -17,13 +17,14 @@ class Scrabble::Scoring
 
   def self.score(word)
     score = 0
-    word.each do |letter| #maybe it's not stepping through each letter. Check after lunch
+    word.each_char do |letter| 
       LETTERS.each do |k, v|
         if v.include?(letter)
           score += k
         end
       end
     end
+    return score
   end
 
   # def self.highest_score_from(array_of_words)
