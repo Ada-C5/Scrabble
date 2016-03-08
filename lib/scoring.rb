@@ -9,7 +9,12 @@ def self.score(word)
 end
 
 def self.highest_score_from(array_of_words)
- nil
+highest_score = ""
+array_of_words.each do |word|
+  if self.score(word) > self.score(highest_score)
+    highest_score = word
+  end
+end
 end
 
 private # hiding the mess even from ourselves!!
