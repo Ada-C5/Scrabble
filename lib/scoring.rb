@@ -1,4 +1,4 @@
-require_relative '../scrabble.rb'
+require_relative '../scrabble'
 
 class Scrabble::Scoring
 
@@ -16,18 +16,21 @@ class Scrabble::Scoring
       puts score
   end
 
-  def word_letters(word)
+  def self.word_letters(word)
      word.split(//)
   end
 
-  def finding_values(word)
+  def self.finding_values(word)
 
       # see what the letter's key is and return all keys in a new array
       word_letters.map { |letter| letter == SCORE_CHART[] }
 
   end
 
-  def search_score_chart(word)
+
+  # we want this method to return the key not the key/value pair
+
+  def self.search_score_chart(word)
     SCORE_CHART.select{ |value, letters| letters.include?(word) }
   end
 
