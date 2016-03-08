@@ -6,8 +6,7 @@ class Scrabble::Scoring # declare this as Scrabble::Scoring during cleanup.
 
 def self.score(word)
 	# somehow we need to establish a score and what it is worth.
-	score += bonus
-	return score
+	self.scoring_math(word)
 
 end
 
@@ -32,25 +31,26 @@ def self.scoring_math(word)
 	# iterate over the letters in the word
 	total_score = 0
 
-  word.downcase!
+  word = word.downcase
 
   for index in 0..word.length - 1
-		if LETTER_POINT_VALUES[1].include word[index]
+		if Scrabble::LETTER_POINT_VALUES[1].include? word[index]
 			total_score += 1
-		elsif LETTER_POINT_VALUES[2].include word[index]
+		elsif Scrabble::LETTER_POINT_VALUES[2].include? word[index]
 			total_score += 2
-		elsif LETTER_POINT_VALUES[3].include word[index]
+		elsif Scrabble::LETTER_POINT_VALUES[3].include? word[index]
 			total_score += 3
-		elsif LETTER_POINT_VALUES[4].include word[index]
+		elsif Scrabble::LETTER_POINT_VALUES[4].include? word[index]
 			total_score += 4
-		elsif LETTER_POINT_VALUES[5].include word[index]
+		elsif Scrabble::LETTER_POINT_VALUES[5].include? word[index]
 			total_score += 5
-		elsif LETTER_POINT_VALUES[8].include word[index]
+		elsif Scrabble::LETTER_POINT_VALUES[8].include? word[index]
 			total_score += 8
-		elsif LETTER_POINT_VALUES[10].include word[index]
+		elsif Scrabble::LETTER_POINT_VALUES[10].include? word[index]
 			total_score += 10
 		end
   end
+  self.bonus?(word) ? total_score += 50 : total_score += 0 
 
   return total_score
 
@@ -58,8 +58,8 @@ end
 # this will check if the word gets a bingo bonus!
 # it should be a huh? method
 def self.bonus?(word)
-	word.length >= 7 ? bonus = 50 : bonus = 0
-	return bonus
+	word.length >= 7 
+	return true
 end
 
 end
