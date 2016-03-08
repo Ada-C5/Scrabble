@@ -20,26 +20,34 @@ class Scoring
   def self.highest_score_from(array_of_words)
     score_array = array_of_words.collect{ |word| self.score(word) }
     knockout_array = score_array.sort
-    i = self.compare_things(knockout_array)
+    i = self.compare_things(knockout_array.reverse) #sort gives ascending, reverse for descending
     highest_scoring_words  = array_of_words.max_by(i) { |word| self.score(word) }
     if highest_scoring_words.length == 1
       return highest_scoring_words[0].to_s
     end
     words_by_length = highest_scoring_words.min_by(highest_scoring_words.length) { |word| word.length} #shortest first
 
-    if words_by_length.last == 7 # come back for multiple 7s
+    if words_by_length.last.length == 7 # come back for multiple 7s
       return words_by_length.last
-    elsif self.compare_things(words_by_length)> 1
-      number_ties_same_length = self.compare_things(words_by_length)
+    elsif self.compare_words_by_length(words_by_length)> 1
+      number_ties_same_length = self.compare_words_by_length(words_by_length)
+      # return number_ties_same_length # TESTING RETURN
       potential_winners = words_by_length.first(number_ties_same_length)
-      array_of_words.each do |word|
-        until potential_winners.include? word
-          return word
-        end
-      end
+      winning_word = array_of_words.find {|word| potential_winners.include? word}
+      return winning_word
     else
       words_by_length.first
     end
+  end
+
+  def self.compare_words_by_length(words)
+    i = 1
+    words_x = words.dup
+    while words_x.length > 1 && (words_x[0].length == words_x[1].length)
+      words_x.shift
+      i +=1
+    end
+    return i
   end
 
   def self.compare_things(score_array)
@@ -50,6 +58,7 @@ class Scoring
     end
     return i
   end
+
 
 end
 
