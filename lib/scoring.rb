@@ -1,4 +1,4 @@
-require '../Scrabble'
+# require_relative '../scrabble'
 class Scrabble::Scoring
   # letters and corresponding values for scoring the words
   LETTERS = {
@@ -12,12 +12,12 @@ class Scrabble::Scoring
   }
 
   def self.test
-    puts "MEOW"
+    return "MEOW"
   end
 
   def self.score(word)
     score = 0
-    word.each do |letter| 
+    word.each do |letter| #maybe it's not stepping through each letter. Check after lunch
       LETTERS.each do |k, v|
         if v.include?(letter)
           score += k
