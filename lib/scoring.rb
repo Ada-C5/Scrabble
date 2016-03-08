@@ -9,13 +9,26 @@ class Scoring
     10 => ["Q", "Z"]
   }
 
-# Method doesnt work yet
-def self.score(word)
-  word = word.split(//)
-  SCORES.values.each_with_index do |letter|
-    if word.each.include?(letter)
-      points = letter.keys
-      puts points
-    end
+  # Method doesnt work yet
+  def self.score(word)
+    word = "cat"
+      # letter_array = []
+   letter_array = word.split(//)
   end
+
+    # word = "A"
+  #   word = "A"
+  #   # => ["c", "a", "t"]
+  #   SCORES.each_value do |array_of_letters|
+  #     if array_of_letters.include?(word)
+  #       puts "we are good"
+  #     end
+  #   end
+  # end
+  # SCORES.each_value do |letter|
+  #   if word.each.include?(letter)
+  #     points = key
+  #     puts points
+  #   end
+  # end
 end
