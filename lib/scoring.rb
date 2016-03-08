@@ -18,7 +18,7 @@ class Scrabble::Scoring
   def self.score(word)
     word.upcase!
     score = 0
-    word.each_char do |letter| 
+    word.each_char do |letter|
       LETTERS.each do |k, v|
         if v.include?(letter)
           score += k
@@ -29,17 +29,34 @@ class Scrabble::Scoring
   end
 
   def self.highest_score_from(array_of_words)
-    temp_array = [0, "word"]
-    loop_score = 0
-    temp_score = 0
+    score_array = []
+    word_array = []
+
     array_of_words.each do |word|
       temp_score = Scrabble::Scoring.score(word)
-      if temp_score > loop_score
-        loop_score = temp_array[0]
-        temp_array = [loop_score, word]
-      end
+      score_array << temp_score
+      word_array << word
     end
-    return temp_array[1]
+
+    total_array = score_array.zip(word_array)
+    sorted_array = total_array.sort_by{|score| score[0]}
+    highest_score = sorted_array[-1][0]
+
+    return sorted_array.drop_while{|array| array[0] != highest_score}
+
+
+    # temp_array = [0, "word"]
+    # loop_score = 0
+    # temp_score = 0
+    # array_of_words.each do |word|
+    #   temp_score = Scrabble::Scoring.score(word)
+    #
+      # if temp_score > loop_score
+      #   loop_score = temp_array[0]
+      #   temp_array = [loop_score, word]
+      # end
+    # end
+    # return temp_array[1]
   end
 
 end

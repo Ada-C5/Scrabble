@@ -19,9 +19,14 @@ describe Scrabble::Scoring do
 
   describe "Scrabble::Scoring#highest_score_from" do
 
-    it "returns the word in array with the highest score" do 
+    it "returns the word in array with the highest score" do
       Scrabble::Scoring.highest_score_from(["WORD", "CAT", "MEOW", "ZEBRA"]).must_equal("ZEBRA")
     end
+
+    it "returns an error message" do
+      Scrabble::Scoring.highest_score_from(["WORD", "CAT", "ZEBRE", "ZEBRA"]).must_be_nil
+    end
+
   end
 
   describe "Scrabble::Scoring#test" do
