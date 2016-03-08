@@ -14,6 +14,7 @@ class Scrabble::Scoring
 
   def self.score(word)
     score = 0
+    tiles = 0
 
     word_array = word.upcase.split("")
 
@@ -21,10 +22,12 @@ class Scrabble::Scoring
       LETTER_POINTS.each do |points, letters_array|
         if letters_array.include? letter
           score += points
+          tiles += 1
         end
       end
     end
-
+    # if all seven tiles are used the below tenary will add 50 points to the users score else return score
+    tiles == 7 ? score += 50 : score
     score
   end
 end

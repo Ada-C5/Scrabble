@@ -31,4 +31,20 @@ describe "Scrabble::Score.score" do
   it "should return the value '2' for the word 'AE' " do
     Scrabble::Scoring.score("AE").must_equal 2
   end
+
+# check case sensativity and multiple characters with different points for total score value
+  it "should return the value '5' for the word 'cAt'" do
+    Scrabble::Scoring.score("cAt").must_equal 5
+  end
+
+# check if user used all 7 tiles and adds 50 points to the score
+  it "should return the value '57' for the word 'aaaaaaa'" do
+    Scrabble::Scoring.score('aaaaaaa').must_equal 57
+  end
+
+# checked another 7 letter word =)
+  it "should return the value '60' for the word 'Valerie'" do
+    Scrabble::Scoring.score('Valerie').must_equal 60
+  end
+
 end
