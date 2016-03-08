@@ -13,16 +13,19 @@ class Scoring
     word_array = word.upcase.split("")
 
     word_score = 0
-    raise ArgumentError unless word.length < 8
-
-    word_array.each do |letter|
-      word_score += SCORE_CHART[letter]
+    
+    if word.length <= 7
+      word_array.each do |letter|
+        word_score += SCORE_CHART[letter]
     #returns score value for given word. word input as string.
-    end
+      end
     #seven letter word get 50point bonus
+      word.length == 7 ? word_score += 50 : word_score
+    end
     return word_score
   end
 
   def self.highest_score_from(array_of_words)
+    
   end
 end
