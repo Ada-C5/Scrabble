@@ -1,5 +1,3 @@
-require_relative '../scrabble'
-
 class Scrabble::Scoring
 
   LETTERS = {
@@ -20,14 +18,15 @@ class Scrabble::Scoring
       end
   end
 
-  def get_score(word_array)
+  def self.score(word)
     word_score = 0
+    word_array = word.split("")
     word_array.each do |letter|
       temp_letter_val = letter_value(letter)
       word_score += temp_letter_val
     end
-  end 
     return word_score
+  end
 
 end
 
