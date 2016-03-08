@@ -27,4 +27,23 @@ class Scoring
      word_score
   end
 
+  def self.highest_score_from(array_of_words)
+    word_hash = {}
+    array_of_words.each do |word|
+      word_hash[word] = score(word)
+    end
+
+    word_list = []
+    max_value = word_hash.max_by do |key, value| value
+    end
+
+    word_hash.each do |key, value|
+      if value == max_value[1]
+        word_list << key
+      end
+    end
+
+    word_list
+  end
+
 end

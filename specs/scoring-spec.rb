@@ -21,4 +21,10 @@ describe Scoring do
       end
     end
   end
+
+  describe "Scoring#highest_score_from" do
+    it "should return ['zoo'] for the list ['cat', 'dog', 'zoo']" do
+      Scoring.highest_score_from(['cat', 'dog', 'zoo']).must_equal(['zoo'])
+    end
+  end
 end
