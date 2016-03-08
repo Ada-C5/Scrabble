@@ -30,4 +30,12 @@ class Scrabble::Scoring
     tiles == 7 ? score += 50 : score
     score
   end
+
+  def self.highest_score_from(array_of_words) # array_of_words = ["hello", "cat"]
+
+    highest_scoring_word = array_of_words.max_by {|word| self.score(word)}
+
+    return highest_scoring_word
+
+  end
 end
