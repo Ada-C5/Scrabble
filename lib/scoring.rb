@@ -1,13 +1,5 @@
 class Scoring
   LETTER_SCORING = {
-  #   1   =>  %w(A, E, I, O, U, L, N, R, S, T),
-  #   2   =>  %w(D, G),
-  #   3   =>  %w(B, C, M, P),
-  #   4   =>  %w(F, H, V, W, Y),
-  #   5   =>  %w(K),
-  #   8   =>  %w(J, X),
-  #   10  =>  %w(Q, Z)
-
     "A" => 1,
     "B" => 3,
     "C" => 3,
@@ -36,7 +28,6 @@ class Scoring
     "Z" => 10,
   }
 
-
   def self.score(word)
     word = word.upcase!
 	  word_array = word.split("")
@@ -58,7 +49,25 @@ class Scoring
   end
 
   def self.highest_score_from(array_of_words)
+    
 
+    
   end
 
 end
+
+
+# def self.highest_score_from(array_of_words)
+#   word = array_of_words[0][1]
+#   array_of_words.each do |i|
+#     if i < higher_scoring_word
+#       i = higher_scoring_word
+#     end
+#   end
+#   return i
+# end
+
+# Need an array of words to test this on
+# First step is to get the value 
+# Then pass it to self.highest_score...
+# That method returns the highest scoring word 
