@@ -7,7 +7,7 @@ describe Scrabble::Scoring do
 		Scrabble::Scoring.wont_be_nil
 	end
 
-	TEST_CASES = {
+	TEST_WORDS = {
 		"sat" => 3,
 		"hotdog" => 11,
 		"puppet" => 12,
@@ -15,10 +15,14 @@ describe Scrabble::Scoring do
 		"queen" => 14
 	}
 
-	TEST_CASES.each do |word, score|
+	TEST_WORDS.each do |word, score|
 		it "returns total score value for the word" do
 			Scrabble::Scoring.score(word).must_equal(score)
 		end
 	end
+
+		it "selects the highest value word in the array" do |array, word|
+			Scrabble::Scoring.highest_score_from(array).must_equal(word)
+		end
 
 end
