@@ -8,6 +8,7 @@ def self.score(word)
 	# somehow we need to establish a score and what it is worth.
 	score += bonus
 	return score
+
 end
 
 
