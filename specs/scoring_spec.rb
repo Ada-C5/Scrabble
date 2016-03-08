@@ -8,10 +8,10 @@ describe Scrabble::Scoring do
   end
 end
 
-  describe Scrabble::Scoring do
-    it "is an object we have access to" do
-    Scrabble::Scoring.wont_be_nil
-    end
+describe Scrabble::Scoring do
+  it "is an object we have access to" do
+  Scrabble::Scoring.wont_be_nil
+  end
 
   describe "LetterValue#convert" do
     TEST_CASES = {
@@ -29,4 +29,14 @@ end
       end
     end
   end
+
+  describe "WordScore" do
+    it "should return total score for word" do
+      Scrabble::Scoring.score(word).must_equal(value)
+    end
+
+    
+
+  end
+
 end
