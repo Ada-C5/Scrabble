@@ -12,9 +12,8 @@ class Scoring
   def self.score(word)
     arr = word.split(//)
     arr.each do |i|
-      if "a"
-        return 1
-      end
+      jerk = SCORE_CHART[i]
+      return jerk
     end
   end
 end
