@@ -23,8 +23,17 @@ describe Scoring do
   end
 
   describe "Scoring#highest_score_from" do
-    it "should return ['zoo'] for the list ['cat', 'dog', 'zoo']" do
-      Scoring.highest_score_from(['cat', 'dog', 'zoo']).must_equal(['zoo'])
+    TEST_ARRAYS = {
+      ['cat', 'dog', 'zoo'] => 'zoo',
+      ['zebra', 'program', 'candy'] => 'program',
+      ['cat', 'dog', 'sit'] => 'cat',
+      ['cat', 'AAAAAAA', 'EEEEEEE'] => 'AAAAAAA'
+    }
+
+    TEST_ARRAYS.each do |list, word|
+      it "should return #{word} for the list #{list}" do
+        Scoring.highest_score_from(list).must_equal(word)
+      end
     end
   end
 end

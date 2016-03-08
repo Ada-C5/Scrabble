@@ -15,16 +15,17 @@ class Scoring
     letter_array = word.split(//)
 
     letter_array.each do |letter|
-       LETTER_SCORES.each do |key, value|
-         if value.include? letter
+      LETTER_SCORES.each do |key, value|
+        if value.include? letter
            word_score += key
-         end
-       end
-     end
+        end
+      end
+    end
       if letter_array.length == 7
         word_score += 50
       end
-     word_score
+
+    word_score
   end
 
   def self.highest_score_from(array_of_words)
@@ -43,7 +44,11 @@ class Scoring
       end
     end
 
-    word_list
+    word_list.find {|word| word.length == 7
+      return word
+    }
+
+    word_list.min_by {|words| words.length}
   end
 
 end
