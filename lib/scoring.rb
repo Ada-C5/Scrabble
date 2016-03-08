@@ -1,7 +1,9 @@
-module Scoring
+# possibly require Scrabble module
 
-# fill in this array of hashes as a lookup table
-LETTER_POINT_VALUES = [{}]
+class Scoring # declare this as Scrabble::Scoring during cleanup.
+
+def self.score(word)
+end
 
 
 end
