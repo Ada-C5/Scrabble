@@ -1,4 +1,4 @@
-require_relative '../scrabble'
+require '../scrabble'
 
 class Scrabble::Player
   # include Scrabble
