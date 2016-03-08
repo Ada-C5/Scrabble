@@ -36,9 +36,10 @@ class Scoring
     "Z" => 10,
   }
 
-  def self.score(word)
 
-	  word_array = word.split
+  def self.score(word)
+    word = word.upcase!
+	  word_array = word.split("")
 	  score_value = 0
 
 	  amount_of_loops = word_array.length
@@ -48,17 +49,16 @@ class Scoring
 
 	   word_array.each do |letter|
 	     LETTER_SCORING.each do |hash_letter, point_value|
-		     if letter == hash_letter
-		       score_value += point_value
+		     if hash_letter == letter
+		        score_value += point_value
 		     end
-		   end 
-	     return score_value
+		   end
 	   end
+     return score_value
   end
 
   def self.highest_score_from(array_of_words)
 
   end
 
-end 
-	
+end
