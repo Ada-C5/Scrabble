@@ -5,4 +5,10 @@ describe Scoring do
   it "if it exists" do
     Scoring.wont_be_nil
   end
+
+  describe Scoring.score do
+    it "if it exists" do
+      Scoring.score.wont_be_nil
+    end
+  end
 end
