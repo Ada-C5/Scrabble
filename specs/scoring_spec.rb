@@ -15,16 +15,25 @@ describe Scrabble::Scoring do
     it "word should generate the score of word being 8" do
       Scrabble::Scoring.score("word").must_equal(8)
     end
+
+    it "QRSTLNE should generate the score of 66" do
+      Scrabble::Scoring.score("QRSTLNE").must_equal(66)
+    end
+
   end
 
   describe "Scrabble::Scoring#highest_score_from" do
 
-    # it "returns the word in array with the highest score" do
-    #   Scrabble::Scoring.highest_score_from(["WORD", "CAT", "MEOW", "ZEBRA"]).must_equal("ZEBRA")
-    # end
+    it "returns the word in array with the highest score => ZEBRA " do
+      Scrabble::Scoring.highest_score_from(["WORD", "CAT", "MEOW", "ZEBRA"]).must_equal("ZEBRA")
+    end
 
-    it "returns an error message" do
-      Scrabble::Scoring.highest_score_from(["WORD", "QRSTLNE", "ZEBRE", "ZEBRA"]).must_equal("ZEBRE")
+    it "returns ZEBRE because it occurs before ZEBRA and both have 16 points" do
+      Scrabble::Scoring.highest_score_from(["WORD", "CAT", "ZEBRE", "ZEBRA"]).must_equal("ZEBRE")
+    end
+
+    it "returns QRSTLNE because it has 7 letters and is tied for 16 pts" do
+      Scrabble::Scoring.highest_score_from(["WORD", "QRSTLNE", "ZEBRE", "ZEBRA"]).must_equal("QRSTLNE")
     end
 
   end

@@ -25,6 +25,11 @@ class Scrabble::Scoring
         end
       end
     end
+
+    if word.length == 7
+      score += 50
+    end
+    
     return score
   end
 
@@ -32,34 +37,49 @@ class Scrabble::Scoring
     score_array = []
     word_array = []
 
+    # creates separate score and word arrays based on array input
     array_of_words.each do |word|
       temp_score = Scrabble::Scoring.score(word)
       score_array << temp_score
       word_array << word
     end
 
-    total_array = score_array.zip(word_array)
+    # combines the score and word array AND sorts
+    total_array = score_array.zip(word_array) # => [[score,word]]
     sorted_array = total_array.sort_by{|score| score[0]}
-    highest_score = sorted_array[-1][0]
+    highest_score = sorted_array[-1][0] # gets highest score
 
+    # deletes sub-arrays that are not equal to the highest score
     tie_array = sorted_array.delete_if{|array| array[0] != highest_score}
+    # if there's one word left
     if tie_array.length == 1
-      return tie_array[0][1]
-    else
+      return tie_array[0][1] # this is the answer
+    # if there's a tie, reassign score to equal length of word => [[length,word]]
+  else
       tie_array.each do |array|
         len = array[1].length
-        array[0] = len 
+        array[0] = len
       end
     end
 
+    # sorts the tied array by length
     sorted_tie_array = tie_array.sort_by { |array| array[0] }
+    # if there are 7 letters, that is the answer
+    sorted_tie_array.each do |array|
+      if array[0] == 7
+        return array[1]
+      end
+    end
+
+    # find shortest word => length
     shortest_word = sorted_tie_array[0][0]
+    # deletes sub-arrays that do not equal the length of the shortest word
     shortest_word_array = sorted_tie_array.delete_if{|array| array[0] != shortest_word }
 
     if shortest_word_array.length == 1
       return shortest_word_array[0][1]
       # else there are multiple words with the same length
-    else 
+    else
       array_of_words.each do |word|
         shortest_word_array.each do |array|
           if word == array[1]
