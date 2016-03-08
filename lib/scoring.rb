@@ -11,6 +11,11 @@ class Scoring
 
   def self.score(word)
     arr = word.split(//)
-    return arr
+    arr.length.each do |i|
+      if arr[i] =
+      end
+    end
+
+
   end
 end
