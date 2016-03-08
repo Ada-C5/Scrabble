@@ -7,11 +7,7 @@ require_relative '../lib/scoring'
 
 describe Scoring do
 
-	ARRAY_OF_WORDS = [
-		["DOG", 5],
-		["BIRD", 7],
-		["QUIZ", 22]
-	]
+	ARRAY_OF_WORDS = ["dog", "bird", "quiz", "require"]
 
 	it "is an object we have access to" do
 		Scoring.wont_be_nil
@@ -31,9 +27,14 @@ describe Scoring do
 			return 66
 	end
 
-	it "returns the highest scoring word" do 
-		Scoring.score(ARRAY_OF_WORDS)
-		 return "QUIZ"
-	end 
+	it "returns the highest scoring word" do
+		Scoring.highest_score_from(ARRAY_OF_WORDS)
+		 return "quiz"
+	end
+
+	it "returns the highest scoring word" do
+		Scoring.highest_score_from(ARRAY_OF_WORDS)
+		 return "require"
+	end
 
 end

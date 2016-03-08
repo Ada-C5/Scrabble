@@ -49,9 +49,32 @@ class Scoring
   end
 
   def self.highest_score_from(array_of_words)
-    
+    score_values_array = []
+    array_of_words = array_of_words.map(&:upcase)
+    array_of_words.each do |word_in_array|
+      score_value = 0
+      letter_array = word_in_array.split("")
 
-    
+      amount_of_loops = letter_array.length
+  	   if amount_of_loops == 7
+  	     score_value +=50
+  	   end
+
+  	   letter_array.each do |letter|
+  	     LETTER_SCORING.each do |hash_letter, point_value|
+  		     if hash_letter == letter
+  		        score_value += point_value
+  		     end
+  		   end
+  	   end
+
+       score_values_array << score_value
+
+     end #array_of_words.each loop end
+
+    high_value_index = score_values_array.index(score_values_array.max)
+    return array_of_words[high_value_index]
+
   end
 
 end
@@ -68,6 +91,6 @@ end
 # end
 
 # Need an array of words to test this on
-# First step is to get the value 
+# First step is to get the value
 # Then pass it to self.highest_score...
-# That method returns the highest scoring word 
+# That method returns the highest scoring word
