@@ -11,20 +11,36 @@ describe Scoring do
       "Scoring#score(word).wont_be_nil"
     end
 
-    # SCORE_CHART = [
-    #   [a, e, i, o, u, l, n, r, s, t = 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    #   [d, g = 2, 2],
-    #   [b, c, m, p = 3, 3, 3, 3],
-    #   [f, h, v, w, y = 4, 4, 4, 4, 4],
-    #   [k = 5],
-    #   [j, x = 8, 8],
-    #   [q, z = 10, 10]
-    # ]
-
     describe "Scoring#score(word)" do
       it "Does it split the word into an array" do
         assert Scoring.score("word") == ["w", "o", "r", "d"]
         return
+      end
+    end
+
+    describe "Scoring#score(word)" do
+      it "Does it split the word into an array" do
+        assert Scoring.score("google") == ["g", "o", "o", "g", "l", "e"]
+        return
+      end
+    end
+
+    describe "Scoring#score" do
+      it "Does it assign a score number to each letter" do
+        TEST_CASES = {
+          a => 1,
+          e => 1,
+          u => 1,
+          d => 2,
+          b => 3,
+          m => 3,
+          f => 4,
+          v => 4,
+          k => 5,
+          j => 8,
+          z => 10
+        }
+
       end
     end
 
