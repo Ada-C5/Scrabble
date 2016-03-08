@@ -8,11 +8,13 @@ describe Scrabble::Scoring do
   end
 
   TEST_SCORE = {
-  	"zebra" => 16
+  	"zebra" => 16,
+    "xylophone" => 0,
+    "develop" => 63
   }
 
   TEST_SCORE.each do |word, score|
-  	it "should return #{ score } score for the #{ word }" do
+  	it "should return #{ score } for '#{ word }'" do
   	Scoring.score(word).must_equal(score)
   	end
   end
