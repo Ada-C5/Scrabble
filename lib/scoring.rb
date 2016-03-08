@@ -55,4 +55,18 @@ class Scrabble::Scoring
     total += word_points(word).reduce(:+)
     total
   end
+
+
+  # Returns the highest-valued word in a word_array.
+  def self.highest_score_from(array_of_words)
+    # word_pt_array stores the points of each word in the array_of_words
+    word_pt_array = array_of_words.map { |word| score(word) }
+
+    # zipped_words stores a sorted array of the words and the points, each in an array
+    zipped_words = (array_of_words.zip(word_pt_array)).sort_by { |pair| pair[1]}
+
+    # Returns the highest-scoring word.
+    return zipped_words[-1][0]
+  end
+
 end

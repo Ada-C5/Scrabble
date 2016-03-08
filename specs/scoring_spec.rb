@@ -5,6 +5,10 @@ require_relative './spec_helper'
 require_relative '../lib/scoring'
 # require_relative '../scrabble'
 
+TEST_WORD_ARRAY = %w[aerugo aether afeard affair affect affined affirm afflux afford affray]
+
+
+
 describe Scrabble::Scoring do
   it "exists" do
     Scrabble::Scoring.wont_be_nil
@@ -41,4 +45,11 @@ describe Scrabble::Scoring do
       assert_equal 59, Scrabble::Scoring.score("dragons")
     end
   end
+
+  describe "Scoring#self.highest_score_from" do
+    it "should find the highest scoring word in the given array" do
+      assert_equal "affined", (Scrabble::Scoring.highest_score_from(TEST_WORD_ARRAY))
+    end
+  end
+
 end
