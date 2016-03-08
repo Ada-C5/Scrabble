@@ -37,4 +37,10 @@ describe Scoring do
 		 return "require"
 	end
 
+	it "returns the word with the fewest letters during a tie" do
+		Scoring.highest_score(ARRAY_OF_WORDS)
+		return ""
+
+	end
+
 end
