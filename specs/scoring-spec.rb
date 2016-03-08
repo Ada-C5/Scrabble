@@ -27,7 +27,12 @@ describe Scoring do
       ['cat', 'dog', 'zoo'] => 'zoo',
       ['zebra', 'program', 'candy'] => 'program',
       ['cat', 'dog', 'sit'] => 'cat',
-      ['cat', 'AAAAAAA', 'EEEEEEE'] => 'AAAAAAA'
+      ['cat', 'AAAAAAA', 'EEEEEEE'] => 'AAAAAAA',
+      ['QZ', 'JX'] => 'QZ',
+      ['JX', 'QZ'] => 'QZ',
+      ['AAAAAAA', 'FFFFFFF'] => 'FFFFFFF',
+      ['AAAA', 'DG'] => 'DG',
+      ['BDG', 'AAAAAAA', 'EEEEEEE'] => 'AAAAAAA'
     }
 
     TEST_ARRAYS.each do |list, word|

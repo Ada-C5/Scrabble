@@ -1,4 +1,5 @@
 class Scoring
+
   LETTER_SCORES = {
     1 => ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
     2 => ['D', 'G'],
@@ -44,11 +45,10 @@ class Scoring
       end
     end
 
-    word_list.find {|word| word.length == 7
-      return word
-    }
+    word_list.find {|word| word.length == 7}
 
     word_list.min_by {|words| words.length}
+
   end
 
 end
