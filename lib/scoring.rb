@@ -11,10 +11,12 @@ class Scrabble::Scoring
     10 => ["Q", "Z"]
   }
 
+  # meow meow meow
   def self.test
     return "MEOW"
   end
 
+  # returns score (single word)
   def self.score(word)
     word.upcase!
     score = 0
@@ -29,10 +31,11 @@ class Scrabble::Scoring
     if word.length == 7
       score += 50
     end
-    
+
     return score
   end
 
+  # returns highest scored word ([array])
   def self.highest_score_from(array_of_words)
     score_array = []
     word_array = []
@@ -55,7 +58,7 @@ class Scrabble::Scoring
     if tie_array.length == 1
       return tie_array[0][1] # this is the answer
     # if there's a tie, reassign score to equal length of word => [[length,word]]
-  else
+    else
       tie_array.each do |array|
         len = array[1].length
         array[0] = len
@@ -64,21 +67,17 @@ class Scrabble::Scoring
 
     # sorts the tied array by length
     sorted_tie_array = tie_array.sort_by { |array| array[0] }
-    # if there are 7 letters, that is the answer
-    sorted_tie_array.each do |array|
-      if array[0] == 7
-        return array[1]
-      end
-    end
-
     # find shortest word => length
     shortest_word = sorted_tie_array[0][0]
     # deletes sub-arrays that do not equal the length of the shortest word
     shortest_word_array = sorted_tie_array.delete_if{|array| array[0] != shortest_word }
 
+    # if there's one word left, it's obvs the answer
     if shortest_word_array.length == 1
       return shortest_word_array[0][1]
-      # else there are multiple words with the same length
+
+    # else there are multiple words with the same length
+    # select the one that came first (based on user input)
     else
       array_of_words.each do |word|
         shortest_word_array.each do |array|
@@ -88,21 +87,5 @@ class Scrabble::Scoring
         end
       end
     end
-
-
-
-    # temp_array = [0, "word"]
-    # loop_score = 0
-    # temp_score = 0
-    # array_of_words.each do |word|
-    #   temp_score = Scrabble::Scoring.score(word)
-    #
-      # if temp_score > loop_score
-      #   loop_score = temp_array[0]
-      #   temp_array = [loop_score, word]
-      # end
-    # end
-    # return temp_array[1]
   end
-
 end

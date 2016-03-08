@@ -36,6 +36,9 @@ describe Scrabble::Scoring do
       Scrabble::Scoring.highest_score_from(["WORD", "QRSTLNE", "ZEBRE", "ZEBRA"]).must_equal("QRSTLNE")
     end
 
+    it "returns ZEBRA because it has the shortest length -- both 16 points" do
+      Scrabble::Scoring.highest_score_from(["ZEDREE", "ZEBRA"]).must_equal("ZEBRA")
+    end
   end
 
   describe "Scrabble::Scoring#test" do
