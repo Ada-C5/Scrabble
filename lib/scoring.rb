@@ -9,6 +9,7 @@ class Scoring
     "U"=>1, "V"=>4, "W"=>4, "X"=>8,
     "Y"=>4, "Z"=>10
   }
+
   def self.score(word)
     word_array = word.upcase.split("")
 
@@ -31,7 +32,8 @@ class Scoring
       x = self.score(word)
       array_of_scores.push(x)
     end
-    return array_of_scores.max
+    highest_score = array_of_scores.max
+    return array_of_words[array_of_scores.index(highest_score)]
 
   end
 end
