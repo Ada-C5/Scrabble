@@ -40,10 +40,4 @@ describe Scrabble::Scoring do
       Scrabble::Scoring.highest_score_from(["ZEDREE", "ZEBRA"]).must_equal("ZEBRA")
     end
   end
-
-  describe "Scrabble::Scoring#test" do
-    it "Should generate 'MEOW'" do
-      Scrabble::Scoring.test.must_equal("MEOW")
-    end
-  end
 end

@@ -11,11 +11,6 @@ class Scrabble::Scoring
     10 => ["Q", "Z"]
   }
 
-  # meow meow meow
-  def self.test
-    return "MEOW"
-  end
-
   # returns score (single word)
   def self.score(word)
     word.upcase!
@@ -27,15 +22,22 @@ class Scrabble::Scoring
         end
       end
     end
-
+    # special bonus if you use 7 tiles
     if word.length == 7
       score += 50
     end
-
+    # return score as int
     return score
   end
 
-  # returns highest scored word ([array])
+  # method that sorts array or arrays by array[0], finds ties and returns array with only ties
+  def self.sort_drop(array_of_arrays, index)
+    sorted_array = array_of_arrays.sort_by { |array| array[0] }
+    min_max = sorted_array[index][0]
+    sorted_array.delete_if{|array| array[0] != min_max }
+    return sorted_array
+  end
+  # returns highest scored word as ([array])
   def self.highest_score_from(array_of_words)
     score_array = []
     word_array = []
@@ -49,38 +51,32 @@ class Scrabble::Scoring
 
     # combines the score and word array AND sorts
     total_array = score_array.zip(word_array) # => [[score,word]]
-    sorted_array = total_array.sort_by{|score| score[0]}
-    highest_score = sorted_array[-1][0] # gets highest score
+    # call method to sort and return only score ties
+    sorted_array = self.sort_drop(total_array, -1)
 
-    # deletes sub-arrays that are not equal to the highest score
-    tie_array = sorted_array.delete_if{|array| array[0] != highest_score}
     # if there's one word left
-    if tie_array.length == 1
-      return tie_array[0][1] # this is the answer
+    if sorted_array.length == 1
+      return sorted_array[0][1] # this is the answer
     # if there's a tie, reassign score to equal length of word => [[length,word]]
     else
-      tie_array.each do |array|
+      sorted_array.each do |array|
         len = array[1].length
         array[0] = len
       end
     end
 
-    # sorts the tied array by length
-    sorted_tie_array = tie_array.sort_by { |array| array[0] }
-    # find shortest word => length
-    shortest_word = sorted_tie_array[0][0]
-    # deletes sub-arrays that do not equal the length of the shortest word
-    shortest_word_array = sorted_tie_array.delete_if{|array| array[0] != shortest_word }
+    # call method to sort and return only length ties
+    sorted_tie_array = self.sort_drop(sorted_array, 0)
 
     # if there's one word left, it's obvs the answer
-    if shortest_word_array.length == 1
-      return shortest_word_array[0][1]
+    if sorted_tie_array.length == 1
+      return sorted_tie_array[0][1]
 
     # else there are multiple words with the same length
     # select the one that came first (based on user input)
     else
       array_of_words.each do |word|
-        shortest_word_array.each do |array|
+        sorted_tie_array.each do |array|
           if word == array[1]
             return array[1]
           end
