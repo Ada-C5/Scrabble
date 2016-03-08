@@ -13,11 +13,7 @@ class Scoring
         word.upcase.each_char do |key|
           total = total + LETTER_VALUE[key]
         end
-        if word.length == 7
-          return total + 50
-        else
-          return total
-        end 
+        word.length == 7 ? total + 50 : total  # Return is implicit
       end
 
 end
