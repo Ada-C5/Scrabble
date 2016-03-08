@@ -34,7 +34,9 @@ describe Scoring do
 
     TEST_CASES = {
        "jacuzzi" => ["cat", "rail", "zoo", "jacuzzi"],
-       "cat" => ["cat", "dog", "god", "met"]
+       "cat" => ["cat", "dog", "god", "met"],
+       "k" => ["cat", "dog", "god", "met", "k"] # k also has score of 5 but is shorter
+
     }
     TEST_CASES.each do |winning_word, array_words|
      it "should return the winning word '#{ winning_word }' for the array of words #{ array_words }" do
