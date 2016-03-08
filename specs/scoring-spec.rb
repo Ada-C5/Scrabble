@@ -7,13 +7,18 @@ describe Scoring do
   end
 
   describe "Scoring#score" do
-    # TEST_CASES = {
-    #   "cat" => 5
-    # }
+      TEST_CASES = {
+        "cat" => 5,
+        "dog" => 5,
+        "zoo" => 12,
+        "AAAAAAA" => 57
+      }
 
-    it "should return ['C', 'A', 'T'] for the word cat" do
-      Scoring.score("cat").must_equal(['C', 'A', 'T'])
+
+      TEST_CASES.each do |word,score|
+        it "should return #{score} for the word #{word}" do
+          Scoring.score(word).must_equal(score)
+      end
     end
   end
-
 end

@@ -13,16 +13,18 @@ class Scoring
     word_score = 0
     word = word.upcase
     letter_array = word.split(//)
-    return letter_array
-    # letter_array.each do |letter|
-    #   LETTER_SCORES.each do |key, value|
-    #     if value.include? letter
-    #       word_score += key
-    #     end
-    #   end
-    # end
 
-    # word_score
+    letter_array.each do |letter|
+       LETTER_SCORES.each do |key, value|
+         if value.include? letter
+           word_score += key
+         end
+       end
+     end
+      if letter_array.length == 7
+        word_score += 50
+      end
+     word_score
   end
 
 end
