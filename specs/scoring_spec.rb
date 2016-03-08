@@ -1,6 +1,7 @@
 require_relative "./spec_helper"
 require_relative "../scrabble"
 
+
 describe Scrabble::Scoring do
   it "it is an object we have acccess to" do
     Scrabble::Scoring.wont_be_nil
@@ -11,7 +12,7 @@ describe Scrabble::Scoring do
   }
 
   TEST_SCORE.each do |word, score|
-  	it "should return score for the word" do
+  	it "should return #{ score } score for the #{ word }" do
   	Scoring.score(word).must_equal(score)
   	end
   end
