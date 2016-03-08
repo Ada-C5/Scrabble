@@ -66,7 +66,7 @@ class Scoring
   def self.compare_things(score_array)
     i = 1
     score_array_x = score_array.dup
-    while score_array_x[0] == score_array_x[1]
+    while (score_array_x[0] == score_array_x[1]) && (score_array_x.length > 1)
       score_array_x.shift
       i +=1
     end

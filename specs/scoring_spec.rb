@@ -11,14 +11,14 @@ describe Scoring do
       Scoring.score("").wont_be_nil
     end
 
-    TEST_CASES = {
+    TEST_CASES_SCORE = {
        1 => "a", #easiest
        5 => "cat", #easier
        4 => "rail",
        12 => "zoo",
        34 + 50 => "jacuzzi" #should have 50 point bonus for 7 letters
     }
-    TEST_CASES.each do |word_score, word|
+    TEST_CASES_SCORE.each do |word_score, word|
      it "should return the score '#{ word_score }' for the word #{ word }" do
        Scoring.score(word).must_equal(word_score)
      end
@@ -32,15 +32,15 @@ describe Scoring do
       Scoring.highest_score_from(["string", "string"]).wont_be_nil
     end
 
-    TEST_CASES = {
+    TEST_CASES_ARRAY = {
        "jacuzzi" => ["cat", "rail", "zoo", "jacuzzi"], # tested single 7 letter word
        "cat" => ["cat", "dog", "god", "met"],
        "k" => ["cat", "dog", "god", "met", "k"], # k also has score of 5 but wins by shortest letters
-       "zizzled" => ["zizzled", "quizzed", "cat"] # case of multiple 7 letter tie
-
+       "zizzled" => ["zizzled", "quizzed", "cat"], # case of multiple 7 letter tie
+       "quizzed" => ["quizzed", "wat"] #considered testing case of shorter word having greater value than 7 letter, near impossible to test
 
     }
-    TEST_CASES.each do |winning_word, array_words|
+    TEST_CASES_ARRAY.each do |winning_word, array_words|
      it "should return the winning word '#{ winning_word }' for the array of words #{ array_words }" do
        Scoring.highest_score_from(array_words).must_equal(winning_word)
      end
