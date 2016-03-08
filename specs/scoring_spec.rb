@@ -32,6 +32,16 @@ describe Scoring do
       Scoring.highest_score_from(["string", "string"]).wont_be_nil
     end
 
+    TEST_CASES = {
+       "jacuzzi" => ["cat", "rail", "zoo", "jacuzzi"],
+       "cat" => ["cat", "dog", "god", "met"]
+    }
+    TEST_CASES.each do |winning_word, array_words|
+     it "should return the winning word '#{ winning_word }' for the array of words #{ array_words }" do
+       Scoring.highest_score_from(array_words).must_equal(winning_word)
+     end
+   end
+
   end
 
 
