@@ -21,8 +21,14 @@ describe Scrabble::Scoring do
 		end
 	end
 
-		it "selects the highest value word in the array" do |array, word|
+	TEST_ARRAYS = {
+		["cat", "dog", "face", "data"] => "face"
+	}
+
+	TEST_ARRAYS.each do |array, word|
+		it "selects the highest value word in the array" do
 			Scrabble::Scoring.highest_score_from(array).must_equal(word)
 		end
+	end
 
 end

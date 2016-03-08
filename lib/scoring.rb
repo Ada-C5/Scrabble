@@ -8,12 +8,15 @@ def self.score(word)
 	self.scoring_math(word)
 end
 
+def self.highest_score_from(array_of_words)
+ nil
+end
 
 private # hiding the mess even from ourselves!!
 
 def self.scoring_math(word)
 	# iterate over the letters in the word (after downcasing the word to ensure it matches up
-	# against our CONSTANT for checking) 
+	# against our CONSTANT for checking)
 	# figure out what word[index] is worth
 	# add to running total
 	total_score = 0
@@ -39,7 +42,7 @@ def self.scoring_math(word)
   end
 
   # check if the word gets a bingo bonus
-  if self.bonus?(word) 
+  if self.bonus?(word)
   	total_score += 50
   end
 
@@ -49,7 +52,7 @@ end
 # this will check if the word gets a bingo bonus!
 # it should be a huh? method
 def self.bonus?(word)
-	if word.length >= 7 
+	if word.length >= 7
 		return true
 	end
 end
