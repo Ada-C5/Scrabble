@@ -33,9 +33,11 @@ describe Scoring do
     end
 
     TEST_CASES = {
-       "jacuzzi" => ["cat", "rail", "zoo", "jacuzzi"],
+       "jacuzzi" => ["cat", "rail", "zoo", "jacuzzi"], # tested single 7 letter word
        "cat" => ["cat", "dog", "god", "met"],
-       "k" => ["cat", "dog", "god", "met", "k"] # k also has score of 5 but is shorter
+       "k" => ["cat", "dog", "god", "met", "k"], # k also has score of 5 but wins by shortest letters
+       "zizzled" => ["zizzled", "quizzed", "cat"] # case of multiple 7 letter tie
+
 
     }
     TEST_CASES.each do |winning_word, array_words|

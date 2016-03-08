@@ -22,12 +22,25 @@ class Scoring
     knockout_array = score_array.sort
     i = self.compare_things(knockout_array.reverse) #sort gives ascending, reverse for descending
     highest_scoring_words  = array_of_words.max_by(i) { |word| self.score(word) }
+
+
+
     if highest_scoring_words.length == 1
       return highest_scoring_words[0].to_s
     end
-    words_by_length = highest_scoring_words.min_by(highest_scoring_words.length) { |word| word.length} #shortest first
 
-    if words_by_length.last.length == 7 # come back for multiple 7s
+    words_by_length = highest_scoring_words.min_by(highest_scoring_words.length) { |word| word.length} #shortest first - sorting WORDS by length
+
+    lengths_of_words = words_by_length.collect { |word| word.length }
+
+    if lengths_of_words.last == 7 # come back for multiple 7s
+      if compare_things(lengths_of_words.reverse) > 1 # to change ascending to descending
+        number_ties_same_length = self.compare_things(lengths_of_words.reverse)
+        potential_winners = words_by_length.first(number_ties_same_length)
+        winning_word = array_of_words.find {|word| potential_winners.include? word}
+        return winning_word
+      end
+
       return words_by_length.last
     elsif self.compare_words_by_length(words_by_length)> 1
       number_ties_same_length = self.compare_words_by_length(words_by_length)
@@ -52,8 +65,9 @@ class Scoring
 
   def self.compare_things(score_array)
     i = 1
-    while score_array[0] == score_array[1]
-      score_array.shift
+    score_array_x = score_array.dup
+    while score_array_x[0] == score_array_x[1]
+      score_array_x.shift
       i +=1
     end
     return i
