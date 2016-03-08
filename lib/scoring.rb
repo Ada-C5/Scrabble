@@ -9,8 +9,13 @@ class Scoring
     10 => ["Q", "Z"]
   }
 
-  def score_letters
-    SCORES.values[0][0] = "A"
-
+# Method doesnt work yet
+def self.score(word)
+  word = word.split(//)
+  SCORES.values.each_with_index do |letter|
+    if word.each.include?(letter)
+      points = letter.keys
+      puts points
+    end
   end
 end
