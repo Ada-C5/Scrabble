@@ -1,54 +1,22 @@
 class Scoring
   SCORES = {
-    1 => ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
-    2 => ["D", "G"],
-    3 => ["B", "C", "M", "P"],
-    4 => ["F", "H", "V", "W", "Y"],
-    5 => ["K"],
-    8 => ["J", "X"],
-    10 => ["Q", "Z"]
+    A: 1, E: 1, I: 1, O: 1, U: 1, L: 1, N: 1, R: 1, S: 1, T: 1, D: 2, G: 2,
+    B: 3, C: 3, M: 3, P: 3, F: 4, H: 4, V: 4, W: 4, Y: 4, K: 5, J: 8, X: 8,
+    Q: 10, Z: 10
   }
 
-  # Method doesnt work yet
+
   def self.score(word)
 
-   word = word.split(//)
-# take each letter and iterate through values of the hash to find the letter
+   word = word.upcase.split(//) # change letters of word to uppercase to match keys
 
-all_points =[]
+  points = 0  # points start at 0
+  points += 50 if word.length == 7
 
-
-SCORES.values.each do |array_of_letters|
-  if array_of_letters.include? "C"
-    points = SCORES.key(array_of_letters)
-    all_points << points
-
-
+  word.each do |letter|
+    points += SCORES[letter.to_sym]
   end
-end
-
-
-
-end
-
-# once letter is found, assign value of the key to that letter
-
-# store value into variable that is an array and add them together
+  return points
   end
 
-    # word = "A"
-  #   word = "A"
-  #   # => ["c", "a", "t"]
-  #   SCORES.each_value do |array_of_letters|
-  #     if array_of_letters.include?(word)
-  #       puts "we are good"
-  #     end
-  #   end
-  # end
-  # SCORES.each_value do |letter|
-  #   if word.each.include?(letter)
-  #     points = key
-  #     puts points
-  #   end
-  # end
 end
