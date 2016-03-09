@@ -83,4 +83,14 @@ describe "Scrabble::Scoring.highest_score_from(array_of_words)" do
     Scrabble::Scoring.highest_score_from(array_of_words).must_equal "aaaaaad"
   end
 
+  # testing multiple words with same score and same length
+  it "should return 'aaaaaaa' from the word_array = ['aaaaaaa', 'eeeeeee', 'frog']" do
+    array_of_words = ["aaaaaaa", "eeeeeee", "frog"]
+    Scrabble::Scoring.highest_score_from(array_of_words).must_equal "aaaaaaa"
+  end
+
+  it %!should return 'aaaaaad' from the word_array = ["nose", "aaaaaad", "eeeeeed", "frog", "rrrrrrr", "qqqqqj"]! do
+    array_of_words = ["nose", "aaaaaad", "eeeeeed", "frog", "rrrrrrr", "qqqqqj"]
+    Scrabble::Scoring.highest_score_from(array_of_words).must_equal "aaaaaad"
+  end
 end
