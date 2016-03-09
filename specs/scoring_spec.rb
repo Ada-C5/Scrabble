@@ -63,8 +63,8 @@ describe "Scrabble::Scoring.highest_score_from(array_of_words)" do
   end
 
   # for tiebreaker, the word with less tiles used is returned
-  it "should return the word 'fee' from the word_array = ['cats', 'fee']" do
-    array_of_words = ["cats", "fee"]
+  it "should return the word 'fee' from the word_array = ['cats', 'fee', 'no']" do
+    array_of_words = ["cats", "fee", "no"]
     Scrabble::Scoring.highest_score_from(array_of_words).must_equal "fee"
   end
 end

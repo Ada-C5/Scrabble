@@ -31,11 +31,23 @@ class Scrabble::Scoring
     score
   end
 
-  def self.highest_score_from(array_of_words) # array_of_words = ["hello", "cat"]
+  def self.highest_score_from(array_of_words) # array_of_words = ["cats", "fee", "no"]
+    array_of_word_values = []
+    array_of_words.each do |word|
+      array_of_word_values << [word, self.score(word), word.length] #  = [["cats", 7, 4], ["fee", 7, 3], ["no", 2, 2]]
+    end
 
-    highest_scoring_word = array_of_words.max(2) {|word| self.score(word)}
+    highest_score_array = array_of_word_values[0] # ["cats", 7, 4]
 
-    return highest_scoring_word
-
+    array_of_word_values.each do |word_array| # ["cats", 7, 4]
+      if word_array[1] == highest_score_array[1]  # compare score
+        if word_array[2] < highest_score_array[2]
+          highest_score_array = word_array # replace the highest score to the word_array being referenced
+        end
+      elsif word_array[1] > highest_score_array[1]
+        highest_score_array = word_array
+      end
+    end
+    return highest_score_array[0]
   end
 end
