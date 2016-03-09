@@ -6,7 +6,7 @@ require_relative '../lib/scoring'
 # require_relative '../scrabble'
 
 TEST_WORD_ARRAY = %w[aerugo aether afeard affair affect affined affirm afflux afford affray]
-
+TEST_WORD_ARRAY2 = %w[cat jeez foot furzy see]
 
 
 describe Scrabble::Scoring do
@@ -46,9 +46,50 @@ describe Scrabble::Scoring do
     end
   end
 
+
+  describe "Scoring#self.word_scores(array_of_words)" do
+    it "should be an array" do
+      Scrabble::Scoring.word_scores(TEST_WORD_ARRAY2).must_be_instance_of Array
+    end
+
+    it "should not be empty" do
+      refute Scrabble::Scoring.word_scores(TEST_WORD_ARRAY2).empty?
+    end
+
+    it "contains fixnums" do
+      Scrabble::Scoring.word_scores(TEST_WORD_ARRAY2)[0].must_be_instance_of Fixnum
+    end
+
+    it "should provide correct scores for array_of_words" do
+      assert_equal Scrabble::Scoring.word_scores(TEST_WORD_ARRAY2), [5, 20, 7, 20, 3]
+    end
+  end
+
+
+  describe "Scoring#self.word_score_pairs(array_of_words)" do
+    it "should be an array" do
+      Scrabble::Scoring.word_score_pairs(TEST_WORD_ARRAY2).must_be_instance_of Array
+    end
+
+    it "should return the correct array of zipped word-score arrays" do
+      assert_equal Scrabble::Scoring.word_score_pairs(TEST_WORD_ARRAY2),
+      [["see", 3], ["cat", 5], ["foot", 7], ["jeez", 20], ["furzy", 20]]
+    end
+  end
+
+
+  describe "Scoring#self.find_ties(array_of_words)" do
+    it "should return an array of tied word-score pairs" do
+      assert_equal Scrabble::Scoring.find_ties(TEST_WORD_ARRAY2),
+      [["jeez", 20], ["furzy", 20]]
+    end
+  end
+
+
   describe "Scoring#self.highest_score_from" do
-    it "should find the highest scoring word in the given array" do
+    it "should find the highest scoring word with the least letters in the given array" do
       assert_equal "affined", (Scrabble::Scoring.highest_score_from(TEST_WORD_ARRAY))
+      assert_equal "jeez", Scrabble::Scoring.highest_score_from(TEST_WORD_ARRAY2)
     end
   end
 

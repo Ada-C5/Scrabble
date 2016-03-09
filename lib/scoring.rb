@@ -56,17 +56,29 @@ class Scrabble::Scoring
     total
   end
 
+  def self.word_scores(array_of_words)
+    # word_scores stores the points of each word in the array_of_words
+    array_of_words.map { |word| score(word) }
+  end
+
+  def self.word_score_pairs(array_of_words)
+    # zipped_words stores a sorted array of the words and the points, each in an array
+    (array_of_words.zip(word_scores(array_of_words))).sort_by { |pair| pair[1]}
+  end
+
+  def self.find_ties(array_of_words)
+    # If multiple words have the same highest-score, return the word with the least letters
+    word_score_pairs(array_of_words).find_all { |pair| pair[1] == word_score_pairs(array_of_words)[-1][1] }
+  end
 
   # Returns the highest-valued word in a word_array.
   def self.highest_score_from(array_of_words)
-    # word_pt_array stores the points of each word in the array_of_words
-    word_pt_array = array_of_words.map { |word| score(word) }
-
-    # zipped_words stores a sorted array of the words and the points, each in an array
-    zipped_words = (array_of_words.zip(word_pt_array)).sort_by { |pair| pair[1]}
-
+    if find_ties(array_of_words).length > 1
+      smallest = find_ties(array_of_words).min_by { |pair| pair[0].length }
+      return smallest[0]
+    end
     # Returns the highest-scoring word.
-    return zipped_words[-1][0]
+    return word_score_pairs(array_of_words)[-1][0]
   end
 
 end
