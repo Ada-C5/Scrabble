@@ -13,13 +13,13 @@ describe Scoring do
       "BOX" => 12,
       "box" => 12,
       "googles" => 59,
-      "GOOgles" => 59
-      # "m" => 3,
-      # "f" => 4,
-      # "v" => 4,
-      # "k" => 5,
-      # "j" => 8,
-      # "z" => 10
+      "GOOgles" => 59,
+      "m" => 3,
+      "f" => 4,
+      "v" => 4,
+      "k" => 5,
+      "j" => 8,
+      "z" => 10
     }
 
     HASH_CASES.each do |letters, score|
@@ -31,14 +31,16 @@ describe Scoring do
 
   describe "Scoring#highest_score_from(array_of_words)" do
     ARRAY_CASES = {
-      "cat" => ["cat"]
-      # "box" => ["cat", "box"],
-      # "box" => ["phone", "box", "cat"],
-      # "purple" => ["purple", "farts", "hands", "butts"],
-      # "hands" => ["hands", "violet"],
-      # "hands" => ["violet", "hands"],
-      # "jukebox" => ["jukebox", "cazique", "mezquit"],
-      # "buzzcut" => ["jukebox", "buzzcut"]
+      "cat" => ["cat"],
+      "box" => ["cat", "box"],
+      "box" => ["phone", "box", "cat"],
+      "purple" => ["purple", "farts", "hands", "butts"],
+      "hands" => ["hands", "violet"],
+      "hands" => ["violet", "hands"],
+      "jukebox" => ["jukebox", "cazique", "mezquit"],
+      "mezquit" => ["mezquit", "jukebox", "cazique"],
+      "buzzcut" => ["jukebox", "buzzcut"],
+      "buzzcut" => ["buzzcut", "jukebox"]
     }
 
     ARRAY_CASES.each do |key, value|
