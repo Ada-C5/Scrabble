@@ -45,6 +45,9 @@ describe "words played by player" do
 
      end
 
+    it "returns array of words equal to ABOVE_100 for the plays method" do
+      @lisa.plays.must_equal ABOVE_100.first(4)
+    end
 
 
      it "returns the total score of all words played for the total_score method" do
@@ -63,6 +66,13 @@ describe "words played by player" do
       @lisa.play("cat").must_equal false
     end
 
+    it "will return the highest scoring word from all words played using the highest_scoring_word method" do
+      @lisa.highest_scoring_word.must_equal "qzjx"
+    end
+
+    it "will return the score of the highest word in the list using the highest_word_score method" do
+      @lisa.highest_word_score.must_equal 36
+    end
 
    end
 end
