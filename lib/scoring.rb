@@ -10,10 +10,12 @@ class Scoring
   }
 
   def self.score(word)
+    tally = 0
     arr = word.split(//)
     arr.each do |i|
-      jerk = SCORE_CHART[i]
-      return jerk
+      value = SCORE_CHART[i]
+      tally = value + tally
     end
+    return tally
   end
 end

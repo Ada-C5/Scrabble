@@ -12,13 +12,13 @@ describe Scoring do
     end
 
     describe "Scoring#score(word)" do
-      # Scoring.score("google") == ["g", "o", "o", "g", "l", "e"]
       TEST_CASES = {
-        "a" => 1,
-        #{}"e" => 1,
+        "cat" => 5
+        # "a" => 1,
+        # "e" => 1,
         # "u" => 1,
         # "d" => 2,
-        "b" => 3,
+        # "b" => 3,
         # "m" => 3,
         # "f" => 4,
         # "v" => 4,
