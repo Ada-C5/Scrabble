@@ -9,7 +9,7 @@ describe Scoring do
 
 	ARRAY_OF_WORDS = ["dog", "bird", "quiz", "require"]
 
-	# zaps and squad are both worth 15 points 
+	# zaps and squad are both worth 15 points
 	TIE_BREAKER_WORDS = ["ale", "hi", "zinc", "cat", "squad", "butts", "zaps"]
 
 	it "is an object we have access to" do
@@ -43,6 +43,11 @@ describe Scoring do
 	it "returns the word with the fewest letters during a tie" do
 		Scoring.highest_score_from(TIE_BREAKER_WORDS)
 		return "ZINC"
+	end
+
+	it "returns the first given word during a tie for highest score and fewest letters" do
+		Scoring.highest_score_from(["ale", "hi", "zaps", "cat", "squad", "butts", "zinc"])
+		return "ZAPS"
 	end
 
 end

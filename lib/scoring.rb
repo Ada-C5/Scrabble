@@ -55,7 +55,7 @@ class Scoring
       score_value = 0
       letter_array = word_in_array.split("")
 
-      # checks for the 50 point bonus 
+      # checks for the 50 point bonus
       amount_of_loops = letter_array.length
   	   if amount_of_loops >= 7
   	     score_value +=50
@@ -77,21 +77,13 @@ class Scoring
     # index of the highest scoring word = array of word values()
     high_value_index = score_values_array.index(score_values_array.max)
 
-    # used to check for a tie 
-    tie_value_index = 
+    # used to check for a tie
+    tie_value_index =
      score_values_array.each_index.select {|i| score_values_array[i] == score_values_array.max}
-    if tie_value_index.length > 1
-      first_word = array_of_words[tie_value_index[0]]
-      second_word = array_of_words[tie_value_index[1]]
-      if first_word.length < second_word.length
-        return first_word
-      elsif second_word.length < first_word.length
-        return second_word
-      else 
-        return first_word
-      end
+    if tie_value_index.length > 1 #tie_value_index holds the indexes of the highest score. if more than one, it's a tie
+      return tie_value_index.min{|a, b| a.size <=> b.size}
     else
-      # returns the highest value word when there is no tie 
+      # returns the highest value word when there is no tie
       return array_of_words[high_value_index]
     end
   end
