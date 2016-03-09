@@ -42,7 +42,10 @@ class Scrabble::Scoring
     array_of_word_values.each do |word_array| # ["cats", 7, 4]
       if word_array[1] == highest_score_array[1]  # compare score
         if word_array[2] < highest_score_array[2]
-          highest_score_array = word_array # replace the highest score to the word_array being referenced
+          highest_score_array[2] == 7 ? highest_score_array : highest_score_array = word_array
+          #highest_score_array = word_array # replace the highest score to the word_array being referenced
+        elsif word_array[2] > highest_score_array[2]
+          word_array[2] == 7 ? highest_score_array = word_array : highest_score_array
         end
       elsif word_array[1] > highest_score_array[1]
         highest_score_array = word_array

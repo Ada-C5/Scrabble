@@ -67,4 +67,20 @@ describe "Scrabble::Scoring.highest_score_from(array_of_words)" do
     array_of_words = ["cats", "fee", "no"]
     Scrabble::Scoring.highest_score_from(array_of_words).must_equal "fee"
   end
+
+  # if top score is tied between multiple words but one used all seven letters, that one wins
+  it "should return the word 'aaaaaaa' from the word_array = ['feet', 'aaaaaad', 'no', 'qqqqqj']" do
+    # chose the following words because aaaaaad's score is 58 including the 7-letter bonus,
+    # and qqqqqj's score is also 58 just because of the rare letters
+    array_of_words = ["feet", "aaaaaad", "no", "qqqqqj"]
+    Scrabble::Scoring.highest_score_from(array_of_words).must_equal "aaaaaad"
+  end
+
+  it "should return the word 'aaaaaaa' from the word_array = ['feet', 'qqqqqj, 'no', 'aaaaaad']! BACKWARDS MODE!" do
+    # chose the following words because aaaaaad's score is 58 including the 7-letter bonus,
+    # and qqqqqj's score is also 58 just because of the rare letters
+    array_of_words = ["feet", "qqqqqj", "no", "aaaaaad"]
+    Scrabble::Scoring.highest_score_from(array_of_words).must_equal "aaaaaad"
+  end
+
 end
