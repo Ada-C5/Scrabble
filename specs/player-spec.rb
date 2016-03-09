@@ -14,12 +14,12 @@ describe Player do
     end
   end
 
-  describe "Player#plays" do
-    it "returns an Array of words played by the player" do
-      Player.new.
+  # describe "Player#plays" do
+  #   it "returns an Array of words played by the player" do
+  #     Player.new.
 
-    end
+  #   end
 
-  end
+  # end
 
 end

@@ -22,31 +22,36 @@ class Scoring
         end
       end
     end
-      if letter_array.length == 7
-        word_score += 50
-      end
+      
+    word_score += 50 if letter_array.length == 7
 
     word_score
   end
 
   def self.highest_score_from(array_of_words)
     word_hash = {}
+    # create a hash where the key is the word and the value is its score
     array_of_words.each do |word|
       word_hash[word] = score(word)
     end
 
     word_list = []
+    # find the highest score value
     max_value = word_hash.max_by do |key, value| value
     end
 
+    # put all the words with the highest score into an array
     word_hash.each do |key, value|
       if value == max_value[1]
         word_list << key
       end
     end
 
+    # if the word used all 7 letters, it wins
     word_list.find {|word| word.length == 7}
 
+    # if no words used 7 letters, the shortest one wins
+    # or if multiple are shortest, the first one in the array wins
     word_list.min_by {|words| words.length}
 
   end
