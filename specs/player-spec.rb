@@ -4,6 +4,7 @@ require_relative '../lib/player'
 describe Player do
   before do
     @sarah = Player.new("sarah")
+    @lisa = Player.new("lisa")
   end
 
 
@@ -21,7 +22,16 @@ describe Player do
 
 describe "words played by player" do
   before do
-    @sarah.play("cat")
+    ABOVE_100 = %w[qz jx qzjx zjkq qq zz jj zz xqj qqqqqq]
+    WORDS_PLAYED = %w[cat dog zebra elephant bird cow snake puma ]
+    WORDS_PLAYED.each do |word|
+    @sarah.play(word)
+    end
+
+      ABOVE_100.each do |word|
+        @lisa.play(word)
+      end
+
   end
 
 
@@ -31,15 +41,27 @@ describe "words played by player" do
 
 
      it "returns an array of words gussed for the plays method" do
-       @sarah.plays.must_equal ["cat"]
+       @sarah.plays.must_equal WORDS_PLAYED
 
      end
 
 
 
      it "returns the total score of all words played for the total_score method" do
-       @sarah.total_score.must_equal 5
+       @sarah.total_score.must_equal 71
      end
+
+     it "returns false if the player has under 100 points for the won? method" do
+       @sarah.won?.must_equal false
+     end
+
+     it "it will return true if the player has over 100 points for the won? methdo" do
+       @lisa.won?.must_equal true
+     end
+
+     it "will return false if the player has already won for the play word method" do
+      @lisa.play("cat").must_equal false
+    end
 
 
    end
