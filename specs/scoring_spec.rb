@@ -11,24 +11,22 @@ describe Scoring do
   describe "Scoring#score" do
     TEST_WORDS = ["cat", "program", "comma"]
 
-    #creates an array with letters from the word (strings)
-    # TEST_WORDS.each do |word|
-    #   it "should create an array of the word that is same length as word" do
-    #     Scoring.score(word).length.must_equal(word.length)
-    #   end
-    # end
 
 
     TEST_WORDS.each do |word|
       it "should return the value as points when given a letter" do
-        Scoring.score(word).must_equal(points)
+        Scoring.score(word).must_be_kind_of Numeric
       end
     end
 
+    TEST_WORDS.each do |word|
+      it "should more tah n 50 poins for 7 letter-word" do
+        if word.length == 7
+          Scoring.score(word).must_be :>, 50
+        end
+      end
+    end
   end
-
-
-
 end
 #
 # TEST_SCORES =
