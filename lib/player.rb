@@ -1,11 +1,8 @@
 class Scrabble::Player
-  attr_reader :name
-   def initialize(name)
-     @name = name
-   end
-
-   def self.plays
-     played_words = []
+  attr_reader :name, :played_words
+   def initialize(hash)
+     @name = hash[:name]
+     @played_words = hash[:words]
    end
 
    def self.play(word)
