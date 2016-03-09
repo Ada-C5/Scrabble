@@ -8,17 +8,15 @@ class Scoring
 
 
   def self.score(word) # takes a string
+    return 0 if word.empty? # empty string/pass
+
     score = 0
 
-    # modify score for corner cases
-    if word.empty? # empty string/pass
-      return 0
-    elsif word.length == WORD_LENGTH_MAXIMUM
-      score = 50 # bonus
-
-    end
+    #Add bonus for word_length corner case.
+    score = 50 if word.length == WORD_LENGTH_MAXIMUM
 
     split_word = word.downcase.split('') # downcase for comparing
+
     split_word.each do |letter|
       score += LETTER_SCORES[letter]
     end
@@ -38,7 +36,7 @@ class Scoring
 
     return highest_scoring_words[0].to_s if highest_scoring_words.length == 1
 
-    words_by_length = highest_scoring_words.min_by(number_of_highest_scores) { |word| word.length}
+    words_by_length = highest_scoring_words.min_by(number_of_highest_scores) { |word| word.length }
     #shortest first - sorting WORDS by length (to analyze ties)
 
     lengths_of_words = words_by_length.collect { |word| word.length }
@@ -60,11 +58,7 @@ class Scoring
   end
 
   def self.has_duplicates?(array_of_words)
-    if self.get_number_of_duplicates(array_of_words) > 1
-      true
-    else
-      false
-    end
+    self.get_number_of_duplicates(array_of_words) > 1 ? true : false
   end
 
   def self.get_first_word_for_length_and_score(array_of_equal_lengths, high_scores_array, original_array)
@@ -73,7 +67,6 @@ class Scoring
     potential_winners = high_scores_array.first(number_of_ties_same_length)
     winning_word = original_array.find { |word| potential_winners.include? word }
     return winning_word
-
   end
 
   def self.get_number_of_duplicates(array_of_words)
@@ -85,6 +78,5 @@ class Scoring
     end
     return i
   end
-
 
 end
