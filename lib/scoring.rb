@@ -1,9 +1,9 @@
-require_relative "../scrabble"
+#require_relative "../scrabble"
 
 class Scrabble::Scoring
 SEVEN_LETTER_BONUS = 50
 PLAYED_WORDS = []
-WORDSSCORE = []
+WORDS_SCORE = []
 WORD_SCORE_COLLECTION =[]
 
   LETTERS = {
@@ -39,15 +39,20 @@ WORD_SCORE_COLLECTION =[]
     return word_score
   end
 
-  def self.collect_score_array(word)
-      WORDSSCORE << score(word)
-      return WORDSSCORE
-  end
+  # def self.collect_score_array(word)
+    # WORDS_SCORE << self.score(word)
+    # return WORDS_SCORE
+  # end
+  #
+  # def self.collect_word_array(word)
+    # PLAYED_WORDS << word
+    # return PLAYED_WORDS
+  # end
 
-  def self.combined_collection
-    word_score_collection = PLAYED_WORDS.zip(WORDSCORE).to_h
-    return word_score_collection
-  end
+  # def self.combined_collection
+    # word_score_collection = PLAYED_WORDS.zip(WORDS_SCORE).to_h
+    # return word_score_collection
+  # end
 
   # def highest_score_from(word_array)
   #
@@ -56,10 +61,6 @@ WORD_SCORE_COLLECTION =[]
   #
   # end
 
-  def self.collect_word_array(word)
-    PLAYED_WORDS << word
-      return PLAYED_WORDS
-  end
 
 end
 

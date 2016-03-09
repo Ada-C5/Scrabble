@@ -56,10 +56,28 @@ end
       end
     end
 
-    describe "HighestScore" do
-      it "should return the highets score in the array." do
-        Scrabble::Scoring.highest_score_from(["CAT", "ZEBRA"]).must_equal("ZEBRA")
-      end
+    # describe "CollectWordArray" do
+      # it "Should create an array of words passed to it" do
+        # Scrabble::Scoring.collect_word_array("HOTDOG").must_equal(["HOTDOG"])
+      # end
+    # end
+
+    # describe "CollectScoreArray" do
+      # it "Should create an array of scores passed to it" do
+        # Scrabble::Scoring.collect_word_array("HOTDOG").must_equal([11])
+      # end
+    # end
+
+    # describe "CombinedCollection" do
+      # it "Should create a hash of arrays with words and their scores" do
+        # Scrabble::Scoring.combined_collection.must_equal(["HOTDOG" => 11])
+      # end
+    # end
+
+    # describe "HighestScore" do
+      # it "should return the highets score in the array." do
+        # Scrabble::Scoring.highest_score_from(["CAT", "ZEBRA"]).must_equal("ZEBRA")
+      # end
 
     # describe "HighestScore" do
     #   it "should return the highet score with the fewest tiles" do
@@ -70,7 +88,7 @@ end
 #       it "should return the first word if score and tiles are the same value." do
     #       Scrabble::Scoring.highest_score_from(["I", "HOT", "HIT"]).must_equal("HOT")
   #     end
-    end
+    #end
 
 
     # describe "WordscoreCollecter" do
