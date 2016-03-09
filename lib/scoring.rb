@@ -33,6 +33,7 @@ class Scoring
 	  word_array = word.split("")
 	  score_value = 0
 
+    # applies 50 point bonus for words >= 7 letters
 	  amount_of_loops = word_array.length
 	   if amount_of_loops >= 7
 	     score_value +=50
@@ -50,11 +51,11 @@ class Scoring
 
   def self.highest_score_from(array_of_words)
     score_values_array = []
+
     array_of_words = array_of_words.map(&:upcase)
     array_of_words.each do |word_in_array|
       score_value = 0
       letter_array = word_in_array.split("")
-
       # checks for the 50 point bonus
       amount_of_loops = letter_array.length
   	   if amount_of_loops >= 7
@@ -69,10 +70,9 @@ class Scoring
   		     end
   		   end
   	   end
-
+       # collects all of the scores for each word 
        score_values_array << score_value
-
-     end #array_of_words.each loop end
+     end
 
     # index of the highest scoring word = array of word values()
     high_value_index = score_values_array.index(score_values_array.max)
@@ -87,5 +87,4 @@ class Scoring
       return array_of_words[high_value_index]
     end
   end
-
 end
