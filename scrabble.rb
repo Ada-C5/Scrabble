@@ -11,4 +11,5 @@ LETTER_POINT_VALUES = { 1 => ["a", "e", "i", "o", "u", "l", "n", "r", "s", "t"],
 												8 => ["j", "x"],
 												10 => ["q", "z"]}
 
+
 end
