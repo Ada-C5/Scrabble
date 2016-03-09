@@ -1,19 +1,15 @@
 require_relative './spec_helper'
 require_relative '../lib/scoring'
 
-#
-# Need a minimum of 8 specs for the scoring class
-#
-
 describe Scoring do
-
-	HIGH_SCORE = ["dog", "bird", "quiz", "bug"] # Test 5
-	
-	FIFTY_POINT_HIGH_SCORE  = ["dog", "bird", "quiz", "require"] # Test 6
-
-	RETURN_FEWEST_LETTERS_TIE = ["ale", "hi", "zinc", "cat", "squad", "butts"] # Test 7 
-
-	RETURN_FIRST_WORD_TIE = ["ale", "hi", "zaps", "cat", "squad", "butts", "zinc"] # Test 8 
+	# Test 5
+	HIGH_SCORE = ["dog", "bird", "quiz", "bug"]
+	# Test 6
+	FIFTY_POINT_HIGH_SCORE  = ["dog", "bird", "quiz", "require"]
+	# Test 7
+	RETURN_FEWEST_LETTERS_TIE = ["ale", "hi", "zinc", "cat", "squad", "butts"]
+	# Test 8 
+	RETURN_FIRST_WORD_TIE = ["ale", "hi", "zaps", "cat", "squad", "butts", "zinc"]
 
 	# TEST 1
 	it "is an object we have access to" do
@@ -46,13 +42,12 @@ describe Scoring do
 	# TEST 7
 	it "returns the word with the fewest letters during a tie" do
 		Scoring.highest_score_from(RETURN_FEWEST_LETTERS_TIE)
-		return "ZINC"
+		return "zinc"
 	end
 	# TEST 8
 	# for highest score and fewest letters
 	it "returns first given word during a tie" do
 		Scoring.highest_score_from(RETURN_FIRST_WORD_TIE)
-		return "ZAPS"
+		return "zaps"
 	end
-
 end
