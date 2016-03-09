@@ -22,7 +22,9 @@ describe Scrabble::Scoring do
 	end
 
 	TEST_ARRAYS = {
-		["cat", "dog", "face", "data"] => "face"
+		["cat", "dog", "face", "data"] => "face",
+		["talon", "cat", "pie", "dog"] => "cat",
+		["jack", "benzol", "blazer", "cupcake"] => "cupcake"
 	}
 
 	TEST_ARRAYS.each do |array, word|
