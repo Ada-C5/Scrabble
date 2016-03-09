@@ -81,7 +81,7 @@ class Scoring
     tie_value_index =
      score_values_array.each_index.select {|i| score_values_array[i] == score_values_array.max}
     if tie_value_index.length > 1 #tie_value_index holds the indexes of the highest score. if more than one, it's a tie
-      return tie_value_index.min{|a, b| a.size <=> b.size}
+      return tie_value_index.min{|a, b| a.size <=> b.size} #can handle any number of words that are tied
     else
       # returns the highest value word when there is no tie
       return array_of_words[high_value_index]
