@@ -85,9 +85,4 @@ class Scrabble::Scoring
     # Returns the highest-scoring word.
     return sort_pairs(array_of_words)[-1][0]
   end
-
-  # sevenletter sevenletter => original test array
-  # find index
-  # return the first one
-
 end
