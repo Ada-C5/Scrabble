@@ -62,23 +62,32 @@ class Scrabble::Scoring
   end
 
   def self.word_score_pairs(array_of_words)
-    # zipped_words stores a sorted array of the words and the points, each in an array
-    (array_of_words.zip(word_scores(array_of_words))).sort_by { |pair| pair[1]}
+    # scores each word in array_of_words, then zips scores to words, creating subarray pairs - still in original TEST_WORD_ARRAY order.
+    array_of_words.zip(word_scores(array_of_words))
+  end
+
+  def self.sort_pairs(array_of_words)
+    # takes array from word_score_pairs and sorts by points.
+    word_score_pairs(array_of_words).sort_by { |pair| pair[1]}
   end
 
   def self.find_ties(array_of_words)
     # If multiple words have the same highest-score, return the word with the least letters
-    word_score_pairs(array_of_words).find_all { |pair| pair[1] == word_score_pairs(array_of_words)[-1][1] }
+    sort_pairs(array_of_words).find_all { |pair| pair[1] == sort_pairs(array_of_words)[-1][1] }
   end
 
   # Returns the highest-valued word in a word_array.
   def self.highest_score_from(array_of_words)
     if find_ties(array_of_words).length > 1
-      smallest = find_ties(array_of_words).min_by { |pair| pair[0].length }
+      smallest = find_ties(array_of_words).min_by { |pair| pair[0].length}
       return smallest[0]
     end
     # Returns the highest-scoring word.
-    return word_score_pairs(array_of_words)[-1][0]
+    return sort_pairs(array_of_words)[-1][0]
   end
+
+  # sevenletter sevenletter => original test array
+  # find index
+  # return the first one
 
 end

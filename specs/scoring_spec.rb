@@ -7,6 +7,8 @@ require_relative '../lib/scoring'
 
 TEST_WORD_ARRAY = %w[aerugo aether afeard affair affect affined affirm afflux afford affray]
 TEST_WORD_ARRAY2 = %w[cat jeez foot furzy see]
+TEST_WORD_ARRAY3 = %w[cat jeez foot furzy see bcmpbcg]
+TEST_WORD_ARRAY4 = %w[bcmpbcg bcmpbcd ccmpbcd cccpbcd]
 
 
 describe Scrabble::Scoring do
@@ -73,7 +75,7 @@ describe Scrabble::Scoring do
 
     it "should return the correct array of zipped word-score arrays" do
       assert_equal Scrabble::Scoring.word_score_pairs(TEST_WORD_ARRAY2),
-      [["see", 3], ["cat", 5], ["foot", 7], ["jeez", 20], ["furzy", 20]]
+      [["cat", 5], ["jeez", 20], ["foot", 7], ["furzy", 20], ["see", 3], ]
     end
   end
 
@@ -89,7 +91,20 @@ describe Scrabble::Scoring do
   describe "Scoring#self.highest_score_from" do
     it "should find the highest scoring word with the least letters in the given array" do
       assert_equal "affined", (Scrabble::Scoring.highest_score_from(TEST_WORD_ARRAY))
+
       assert_equal "jeez", Scrabble::Scoring.highest_score_from(TEST_WORD_ARRAY2)
+
+      assert_equal "bcmpbcg", Scrabble::Scoring.highest_score_from(TEST_WORD_ARRAY3)
+    end
+
+    it "return the first tied word that appears first in the given array" do
+      REVERSE4 = TEST_WORD_ARRAY4.reverse
+      assert_equal "bcmpbcg", Scrabble::Scoring.highest_score_from(TEST_WORD_ARRAY4)
+      assert_equal "cccpbcd", Scrabble::Scoring.highest_score_from(REVERSE4)
+    end
+
+    it "should keep ties in their original order" do
+      assert_equal [["bcmpbcg", 70], ["bcmpbcd", 70], ["ccmpbcd", 70], ["cccpbcd", 70]], Scrabble::Scoring.find_ties(TEST_WORD_ARRAY4).min_by(TEST_WORD_ARRAY4.length) { |pair| pair[0].length}
     end
   end
 
