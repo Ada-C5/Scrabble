@@ -37,17 +37,25 @@ class Scoring
       array_of_scores.push(x)
     end
 
+    index = 0
+
     highest_score = array_of_scores.max
     array_of_scores.each do |score|
       if score == highest_score
         array_of_tied_words << array_of_words[array_of_scores.index(score)]
+        array_of_word_lengths << array_of_tied_words[index]
+        index += 1
       end
     end
 
-    array_of_word_lengths = array_of_tied_words.sort_by {|word| word.length}
 
-    if array_of_tied_words != 7
-
+    if array_of_word_lengths.count(7) >= 1
+      winner_index = array_of_word_lengths.find_index(7)
+      return array_of_tied_words[winner_index]
+    else 
+      return array_of_tied_words.min_by {|win_word| win_word.length} 
+    end
+    #array_of_word_lengths = array_of_tied_words.sort_by {|word| word.length}
      
     #y=0
 
