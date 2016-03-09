@@ -1,4 +1,3 @@
-# require_relative '../scrabble'
 class Scrabble::Scoring
   # letters and corresponding values for scoring the words
   LETTERS = {
