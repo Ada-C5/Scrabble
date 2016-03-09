@@ -34,7 +34,7 @@ class Scoring
 	  score_value = 0
 
 	  amount_of_loops = word_array.length
-	   if amount_of_loops == 7
+	   if amount_of_loops >= 7
 	     score_value +=50
 	   end
 
@@ -55,11 +55,13 @@ class Scoring
       score_value = 0
       letter_array = word_in_array.split("")
 
+      # checks for the 50 point bonus 
       amount_of_loops = letter_array.length
-  	   if amount_of_loops == 7
+  	   if amount_of_loops >= 7
   	     score_value +=50
   	   end
 
+       #split each word into letters, scan and score each letter
   	   letter_array.each do |letter|
   	     LETTER_SCORING.each do |hash_letter, point_value|
   		     if hash_letter == letter
@@ -72,25 +74,26 @@ class Scoring
 
      end #array_of_words.each loop end
 
+    # index of the highest scoring word = array of word values()
     high_value_index = score_values_array.index(score_values_array.max)
-    return array_of_words[high_value_index]
 
+    # used to check for a tie 
+    tie_value_index = 
+     score_values_array.each_index.select {|i| score_values_array[i] == score_values_array.max}
+    if tie_value_index.length > 1
+      first_word = array_of_words[tie_value_index[0]]
+      second_word = array_of_words[tie_value_index[1]]
+      if first_word.length < second_word.length
+        return first_word
+      elsif second_word.length < first_word.length
+        return second_word
+      else 
+        return first_word
+      end
+    else
+      # returns the highest value word when there is no tie 
+      return array_of_words[high_value_index]
+    end
   end
 
 end
-
-
-# def self.highest_score_from(array_of_words)
-#   word = array_of_words[0][1]
-#   array_of_words.each do |i|
-#     if i < higher_scoring_word
-#       i = higher_scoring_word
-#     end
-#   end
-#   return i
-# end
-
-# Need an array of words to test this on
-# First step is to get the value
-# Then pass it to self.highest_score...
-# That method returns the highest scoring word
