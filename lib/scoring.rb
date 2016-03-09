@@ -30,6 +30,7 @@ class Scoring
     array_of_tied_words = []
     array_of_scores = []
     array_of_word_lengths =[]
+    7_letter_words = []
 
     array_of_words.each do |word|
       x = self.score(word)
@@ -43,22 +44,18 @@ class Scoring
       end
     end
 
-    array_of_tied_words = array_of_tied_words.sort_by {|word| word.length}
+    array_of_word_lengths = array_of_tied_words.sort_by {|word| word.length}
 
-    if array_of_tied_words.count > 2 &&
-      return array_of_tied_words[0]
+    if array_of_tied_words != 7
 
-      array_of_tied_words.each do |tied_word|
-        if array_of_tied_words.length == 7
-          return tied_word
-        end
+     
+    #y=0
 
+    #until array_of_tied_words[y].length == 7
+    #  y +=1
+    #end
 
-      return array_of_tied_words[0]
-
-     else array_of_tied_words[1].length
-
-      array_of_tied_words[1]
+    #return array_of_tied_words[y]
 
     #return array_of_words[array_of_scores.index(highest_score)]
 
