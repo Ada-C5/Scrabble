@@ -14,11 +14,9 @@ def self.highest_score_from(array_of_words)
 	  if self.score(word) > self.score(highest_score)
 	    highest_score = word
 	  elsif self.score(word) == self.score(highest_score)
-	  	if word.length < highest_score.length
-	  		highest_score = word
-	  	end
+	  	highest_score = word if word.length < highest_score.length
 	  end
-	end
+  end
 	return highest_score
 end
 
