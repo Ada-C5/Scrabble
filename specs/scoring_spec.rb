@@ -22,6 +22,7 @@ describe Scoring do
       1 => "a", #easiest
       5 => "cat", #easier
       4 => "rail",
+      35 + 50 => "jazzily",
       12 => "zoo"
     }
 
@@ -43,7 +44,7 @@ describe Scoring do
       "quizzed" => ["quizzed", "wat"], #considered testing case of shorter word having greater value than 7 letter, near impossible to test
       "k" => ["cat", "dog", "god", "met", "k"], # tied scores, but shortestwins
       "cat" => ["cat", "dog", "god", "met"], # tied scores, same length - first listed should win
-      "zizzled" => ["zizzled", "quizzed", "cat"] # case of multiple 7 letter tie (same score, same length, first listed should win... make sure it works with seven letters!)
+      "zizzled" => ["zizzled", "jazzily", "quizzed", "cat"] # case of multiple 7 letter tie (same score, same length, first listed should win... make sure it works with seven letters!)
     }
     TEST_CASES_ARRAY.each do |winning_word, array_words|
      it "should return the winning word '#{ winning_word }' for the array of words #{ array_words }" do
