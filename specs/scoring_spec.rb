@@ -1,7 +1,6 @@
 require_relative './spec_helper'
 require_relative '../lib/scoring'
 
-
 # ACCOUNT FOR PLAYER ENTERING NON-LETTERS
 describe Scoring do
   it "is an object we have access to" do
@@ -14,23 +13,24 @@ describe Scoring do
     end
 
     TEST_CASES_SCORE = {
-       1 => "a", #easiest
-       5 => "cat", #easier
-       4 => "rail",
-       12 => "zoo",
-       34 + 50 => "jacuzzi", #should have 50 point bonus for 7 letters
-       6 => "POOR",
-       7 => "LoVe",
-       0 => ''
+      # test corner cases
+      0 => '', # can enter empty string?
+      7 => "LoVe", # does case matter?
+      6 => "POOR",
+      34 + 50 => "jacuzzi", # 50 point bonus for 7 letters
+      # -------------------
+      1 => "a", #easiest
+      5 => "cat", #easier
+      4 => "rail",
+      12 => "zoo"
     }
+    
     TEST_CASES_SCORE.each do |word_score, word|
      it "should return the score '#{ word_score }' for the word #{ word }" do
        Scoring.score(word).must_equal(word_score)
      end
    end
-
   end
-
 
   describe "Scoring#highest_score_from" do
     it "is an object we have access to" do
@@ -50,7 +50,6 @@ describe Scoring do
        Scoring.highest_score_from(array_words).must_equal(winning_word)
      end
    end
-
   end
 
 end

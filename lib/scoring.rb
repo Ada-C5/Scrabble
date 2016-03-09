@@ -5,71 +5,67 @@ class Scoring
      "z"=>10}
 
 
-  def self.score(word) #takes a string
+  def self.score(word) # takes a string
     score = 0
-    if word.length == 7 #bonus for 7 letter word
+
+    # modify score for corner cases
+    if word.length == 7 # bonus
       score = 50
-    elsif word.empty?
+    elsif word.empty? # empty string/pass
       return 0
     end
-    split_word = word.downcase.split('')
+
+    split_word = word.downcase.split('') # downcase for comparing
     split_word.each do |letter|
-      score = score + LETTER_SCORES[letter]
+      score += LETTER_SCORES[letter]
     end
+
     return score
   end
 
   def self.highest_score_from(array_of_words)
     score_array = array_of_words.collect{ |word| self.score(word) }
-    knockout_array = score_array.sort
-    i = self.compare_things(knockout_array.reverse) #sort gives ascending, reverse for descending
-    highest_scoring_words  = array_of_words.max_by(i) { |word| self.score(word) }
 
+    number_of_highest_scores = self.compare_things(score_array.sort.reverse)
+    # sort gives ascending
+    # reverse for descending to compare HIGHEST scores
 
+    highest_scoring_words  = array_of_words.max_by(number_of_highest_scores) { |word| self.score(word) }
 
-    if highest_scoring_words.length == 1
-      return highest_scoring_words[0].to_s
-    end
+    return highest_scoring_words[0].to_s if highest_scoring_words.length == 1
 
-    words_by_length = highest_scoring_words.min_by(highest_scoring_words.length) { |word| word.length} #shortest first - sorting WORDS by length
+    words_by_length = highest_scoring_words.min_by(number_of_highest_scores) { |word| word.length}
+    #shortest first - sorting WORDS by length (to analyze ties)
 
     lengths_of_words = words_by_length.collect { |word| word.length }
 
-    if lengths_of_words.last == 7 # come back for multiple 7s
-      if compare_things(lengths_of_words.reverse) > 1 # to change ascending to descending
-        number_ties_same_length = self.compare_things(lengths_of_words.reverse)
-        potential_winners = words_by_length.first(number_ties_same_length)
-        winning_word = array_of_words.find {|word| potential_winners.include? word}
-        return winning_word
+    if lengths_of_words.last == 7
+      if compare_things(lengths_of_words.reverse) > 1 # reverse to change ascending to descending because 7 is the longest we expect
+         winning_word = self.match_tiebreaker_to_first_in_original_array(lengths_of_words.reverse, words_by_length, array_of_words)
+         return winning_word
       end
 
       return words_by_length.last
-    elsif self.compare_words_by_length(words_by_length)> 1
-      number_ties_same_length = self.compare_words_by_length(words_by_length)
-      # return number_ties_same_length # TESTING RETURN
-      potential_winners = words_by_length.first(number_ties_same_length)
-      winning_word = array_of_words.find {|word| potential_winners.include? word}
+
+    elsif self.compare_things(lengths_of_words) > 1 # we do want this in ascending order because normally smaller words win (based on rules)
+      winning_word = self.match_tiebreaker_to_first_in_original_array(lengths_of_words, words_by_length, array_of_words)
       return winning_word
     else
       words_by_length.first
     end
   end
 
-  def self.compare_words_by_length(words)
-    i = 1
-    words_x = words.dup
-    while words_x.length > 1 && (words_x[0].length == words_x[1].length)
-      words_x.shift
-      i +=1
-    end
-    return i
+  def self.match_tiebreaker_to_first_in_original_array(array_of_equal_lengths, high_scores_array, original_array)
+    number_ties_same_length = self.compare_things(array_of_equal_lengths)
+    potential_winners = high_scores_array.first(number_ties_same_length)
+    winning_word = original_array.find { |word| potential_winners.include? word }
   end
 
-  def self.compare_things(score_array)
+  def self.compare_things(compare_array)
     i = 1
-    score_array_x = score_array.dup
-    while (score_array_x[0] == score_array_x[1]) && (score_array_x.length > 1)
-      score_array_x.shift
+    compare_array_x = compare_array.dup # prevents mutation of compare_array from shift
+    while (compare_array_x[0] == compare_array_x[1]) && (compare_array_x.length > 1)
+      compare_array_x.shift
       i +=1
     end
     return i
@@ -77,30 +73,3 @@ class Scoring
 
 
 end
-
-
-
-#   letter_hash = {}
-# letter_array = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-#
-# letter_array.each do |letter|
-#   case
-#   when LETTER_SCORES[0][0].include?(letter.upcase)
-#     letter_hash[letter] = 1
-#   when LETTER_SCORES[1][0].include?(letter.upcase)
-#     letter_hash[letter] = 2
-#   when LETTER_SCORES[2][0].include?(letter.upcase)
-#     letter_hash[letter] = 3
-#   when LETTER_SCORES[3][0].include?(letter.upcase)
-#     letter_hash[letter] = 4
-#   when LETTER_SCORES[4][0].include?(letter.upcase)
-#     letter_hash[letter] = 5
-#   when LETTER_SCORES[5][0].include?(letter.upcase)
-#     letter_hash[letter] = 8
-#   when LETTER_SCORES[6][0].include?(letter.upcase)
-#     letter_hash[letter] = 10
-#   end
-# end
-#
-#   end
-# end
