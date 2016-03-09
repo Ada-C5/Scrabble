@@ -18,4 +18,8 @@ class Scoring
     end
     return tally
   end
+
+  def self.highest_score_from(array_of_words)
+      Scoring::score(array_of_words)
+  end
 end
