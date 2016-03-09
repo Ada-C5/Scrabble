@@ -14,14 +14,21 @@ class Scoring
 
    word = word.split(//)
 # take each letter and iterate through values of the hash to find the letter
-points =[]
-SCORES.values.each do |value|
-  word.each do |letter|
-    if letter == value
-      points << SCORES.key(letter)
-    end
+
+all_points =[]
+
+
+SCORES.values.each do |array_of_letters|
+  if array_of_letters.include? "C"
+    points = SCORES.key(array_of_letters)
+    all_points << points
+
 
   end
+end
+
+
+
 end
 
 # once letter is found, assign value of the key to that letter
