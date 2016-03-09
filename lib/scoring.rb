@@ -10,8 +10,8 @@ class Scoring
   }
 
   def self.score(word)
-    tally = 0
-    arr = word.split(//)
+    arr = word.downcase.split(//)
+    arr.length == 7 ? tally = 50 : tally = 0
     arr.each do |i|
       value = SCORE_CHART[i]
       tally = value + tally

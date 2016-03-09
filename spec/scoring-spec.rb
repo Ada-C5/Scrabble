@@ -13,12 +13,12 @@ describe Scoring do
 
     describe "Scoring#score(word)" do
       TEST_CASES = {
-        "cat" => 5
-        # "a" => 1,
-        # "e" => 1,
-        # "u" => 1,
-        # "d" => 2,
-        # "b" => 3,
+        "cat" => 5,
+        "CAT" => 5,
+        "BOX" => 12,
+        "box" => 12,
+        "googles" => 59,
+        "GOOgles" => 59
         # "m" => 3,
         # "f" => 4,
         # "v" => 4,
