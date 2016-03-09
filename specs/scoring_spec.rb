@@ -12,7 +12,9 @@ describe Scrabble::Scoring do
 		"hotdog" => 11,
 		"puppet" => 12,
 		"cupcake" => 67,
-		"queen" => 14
+		"queen" => 14,
+		"QUEEN" => 14,
+		"CupCaKe" => 67
 	}
 
 	TEST_WORDS.each do |word, score|
