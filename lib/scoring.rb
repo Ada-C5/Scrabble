@@ -16,10 +16,9 @@ class Scoring
 # take each letter and iterate through values of the hash to find the letter
 points =[]
 SCORES.values.each do |value|
-  return value
   word.each do |letter|
     if letter == value
-      points << value.keys
+      points << SCORES.key(letter)
     end
 
   end
