@@ -9,7 +9,7 @@ describe Scoring do
 
 
   describe "Scoring#score" do
-    TEST_WORDS = ["cat", "program", "comma"]
+    TEST_WORDS = ["cat", "program", "comma", "elephant"]
 
 
 
@@ -26,21 +26,25 @@ describe Scoring do
         end
       end
     end
+
+    TEST_WORDS.each do |word|
+      it "should raise an error if word is longer than 7 letters" do
+          if word.length > 7
+            Scoring.score(word).must_raise ArgumentError("NO")
+          end
+      end
+    end
+
   end
 
   describe "Scoring#highest_score_from" do
+    TEST_ARRAYS = [["cat", "program"], ["dogs", "hotdog"]]
 
+    TEST_ARRAYS.each do |array|
+    it "returns the word from array as a string" do
+      Scoring.highest_score_from(array).must_be_instance_of String
+    end
+  end
 
   end
 end
-#
-# TEST_SCORES =
-# {
-# 1 => ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
-# 2 => ["D", "G"],
-# 3 => ["B", "C", "M", "P"],
-# 4 => ["F", "H", "V", "W", "Y"],
-# 5 => ["K"],
-# 8 => ["J", "X"],
-# 10 => ["Q", "Z"]
-# }
