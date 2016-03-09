@@ -72,6 +72,7 @@ class Scoring
     number_of_ties_same_length = self.get_number_of_duplicates(array_of_equal_lengths)
     potential_winners = high_scores_array.first(number_of_ties_same_length)
     winning_word = original_array.find { |word| potential_winners.include? word }
+    return winning_word
 
   end
 

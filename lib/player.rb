@@ -13,13 +13,13 @@ class Player
       return false
     else
       plays << word
-      return Scoring.score(word) #make sure pulling scoring from scoring.rb
+      return Scoring.score(word)
     end
   end
 
   def total_score
-    (return 0) if plays.empty?
-    score_array = plays.collect { |word| Scoring.score(word)}
+    return 0 if plays.empty?
+    score_array = plays.collect { |word| Scoring.score(word) }
     score_array.reduce(:+)
   end
 
