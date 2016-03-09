@@ -20,6 +20,15 @@ class Scoring
   end
 
   def self.highest_score_from(array_of_words)
-      Scoring::score(array_of_words)
+    high_words = ""
+    high_score = 0
+    array_of_words.each do |word|
+      self.score(word)
+      if self.score(word) > high_score
+        high_words = word
+        high_score = self.score(word)
+      end
+    end
+    return high_words
   end
 end

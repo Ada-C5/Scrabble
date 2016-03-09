@@ -30,13 +30,20 @@ describe Scoring do
   end
 
   describe "Scoring#highest_score_from(array_of_words)" do
-    ARRAY_CASES = [
-      "cat", "box"#, "phone", "butts", "purple", "farts", "hands"
-    ]
+    ARRAY_CASES = {
+      "cat" => ["cat"]
+      # "box" => ["cat", "box"],
+      # "box" => ["phone", "box", "cat"],
+      # "purple" => ["purple", "farts", "hands", "butts"],
+      # "hands" => ["hands", "violet"],
+      # "hands" => ["violet", "hands"],
+      # "jukebox" => ["jukebox", "cazique", "mezquit"],
+      # "buzzcut" => ["jukebox", "buzzcut"]
+    }
 
-    ARRAY_CASES.each do |array_word|
+    ARRAY_CASES.each do |key, value|
       it "Does it return the highest score" do
-        Scoring.highest_score_from(array_word).max
+        Scoring.highest_score_from(value).must_equal(key)
       end
     end
   end
