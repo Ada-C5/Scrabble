@@ -8,6 +8,7 @@ describe Scrabble::Scoring do
   end
 
   TEST_SCORE = {
+      "jogged" => 16,
       "zebra" => 16,
       "xylophone" => 0,
       "develop" => 63,
@@ -15,10 +16,12 @@ describe Scrabble::Scoring do
       "doggies" => 60,
       "zenith" => 18,
       "cramps" => 12,
-      "naysays" => 63
+      "naysays" => 63,
+      "mixup" => 16
     }
 
   ARRAY_OF_WORDS = [
+      "jogged",
       "zebra",
       "xylophone",
       "develop",
@@ -26,7 +29,8 @@ describe Scrabble::Scoring do
       "doggies",
       "zenith",
       "cramps",
-      "naysays"
+      "naysays",
+      "mixup"
   ]
   describe "Scoring#score" do
     TEST_SCORE.each do |word, score|
@@ -38,12 +42,16 @@ describe Scrabble::Scoring do
 
   describe "Scoring#highest_score_from" do
 
-      it "should return the word with the highest score" do
-        array = TEST_SCORE.max_by{|word,score| score}
+        array = TEST_SCORE.max_by{|word, score| score}
         best_word = array[0]
+        it "should return the #{best_word} with the highest score" do
         Scoring.highest_score_from(ARRAY_OF_WORDS).must_equal(best_word)
 
-        it "should return the word with fewest"
+        #it "should return the word with fewest tiles" do
+
+
+
+
       end
   end
 end
