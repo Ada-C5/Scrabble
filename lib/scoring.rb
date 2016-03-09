@@ -1,4 +1,10 @@
+# require_relative "../scrabble"
+
 class Scrabble::Scoring
+SEVEN_LETTER_BONUS = 50
+PLAYED_WORDS = []
+WORDSSCORE = []
+WORD_SCORE_COLLECTION =[]
 
   LETTERS = {
   %w(A E I O U L N R S T) => 1,
@@ -20,12 +26,27 @@ class Scrabble::Scoring
 
   def self.score(word)
     word_score = 0
+    bonus = SEVEN_LETTER_BONUS
+    word_score += bonus if word.length == 7
     word_array = word.split("")
     word_array.each do |letter|
       temp_letter_val = letter_value(letter)
       word_score += temp_letter_val
     end
+    # PLAYED_WORDS << word
+    # WORDSSCORE << word_score
+    # WORD_SCORE_COLLECTION = PLAYED_WORDS.zip(WORDSSCORE)
     return word_score
+  end
+
+  def highest_score_from(word_array)
+
+    
+  end
+
+  def self.collect_word_array(word)
+    PLAYED_WORDS << self.score(word)
+  return PLAYED_WORDS
   end
 
 end
@@ -38,5 +59,5 @@ end
 #         value_array << letter_value(letter)
 #     end
 #       total = value_array.inject(:+)
-#       return total
+#       return word, total
 # end
