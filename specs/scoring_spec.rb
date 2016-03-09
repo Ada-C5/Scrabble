@@ -27,8 +27,9 @@ describe Scoring do
   describe "Scoring#highest_score_from" do    #this is testing the method that will return the word with the greatest value
     TEST_CASES = {
       [ "cat", "kittens", "dog"] => "kittens",
-      [ "fare", "mom"] => "mom"
-
+      [ "fare", "mom"] => "mom",
+      ["qzqzqz", "aeiounf"] => "aeiounf", #testing that between 2 words with the same score (60), the one with 7 tiles wins, even if  it's not the first word in array
+      ["wadeiou", "kittens", "dog"] => "wadeiou" #testing that between 2 words with same score (61) with same numer of tiles (7), the first one wins
     }
 
     TEST_CASES.each do |array, highest_word|

@@ -42,6 +42,9 @@ class Scoring
         winner = array_tie[0]        #we are setting the winner by default to the first word
 
         array_tie.each do |word|     #iterating through the tie array and checking if the current word's length is less than the minimum
+          if word.length == 7   #add conditional so that if the word is 7 letters long, it is automatically the winner
+            return word
+          end          #return the word and exit
           if word.length < min
             min = word.length        #if it is, set it's length as the new min value
             winner = word            #set the corresponding word as the current winner (which might change the next iteration though)
