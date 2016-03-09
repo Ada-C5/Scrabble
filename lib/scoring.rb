@@ -20,4 +20,14 @@ class Scoring
   return points
   end
 
+
+  def self.highest_score_from(array_of_words)
+    # => array_of_words = ["melissa", "cat"]
+    all_scores = []
+    array_of_words.each do |one_word|
+    all_scores << self.score(one_word)
+    # => all_scores = [59, 5]
+    end
+    return array_of_words[all_scores.index(all_scores.max)]
+  end
 end

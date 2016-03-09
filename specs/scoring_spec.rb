@@ -27,6 +27,11 @@ describe Scoring do
       end
     end
   end
+
+  describe "Scoring#highest_score_from" do
+
+
+  end
 end
 #
 # TEST_SCORES =
