@@ -26,7 +26,8 @@ describe Scoring do
 
   describe "Scoring#highest_score_from" do    #this is testing the method that will return the word with the greatest value
     TEST_CASES = {
-      [ "cat", "kittens", "dog"] => "kittens"
+      [ "cat", "kittens", "dog"] => "kittens",
+      [ "fare", "mom"] => "mom"
 
     }
 
