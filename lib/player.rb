@@ -10,18 +10,18 @@ class Player
 
 
   def play(word)
-    return false if @already_won == true
-    @plays << word
+    return false if @already_won == true # can't play more words if already won
+    @plays << word # adds word to list of words played
     score = Scoring.score(word)
     @total_score += score
-    won?
+    won? # check to see if the game is won before giving back score
     score
   end
 
 
   def won?
     return false unless total_score > 100
-    @already_won = true
+    @already_won = true # changes to true when score > 100
   end
 
   def highest_scoring_word
