@@ -15,14 +15,38 @@ describe "Scrabble::Player#name" do
 end
 
 describe "Scrabble::Player#plays and #play(word)" do
-  # returns an array of the words played by the player
+    joe = Scrabble::Player.new(name: "Joe")
+
+  it "should return the score '5' for the word 'cat'" do
+    joe.play("cat").must_equal 5
+  end
+
+  it "should return false if player has already won" do
+
+  end
+
+describe "Scrabble::Player#total_score" do
   joe = Scrabble::Player.new(name: "Joe")
+  it %!should return '243' for array_of_words = ["nose", "aaaaaad", "eeeeeed", "frog", "rrrrrrr", "qqqqqj"]! do
+    array_of_words = ["nose", "aaaaaad", "eeeeeed", "frog", "rrrrrrr", "qqqqqj"]
+
+    # create an each method that will play the words in the array one by one
+    array_of_words.each do |word_played|
+      joe.play(word_played)
+    end
+
+    joe.total_score.must_equal 243
+  end
+end
+
+  # # returns an array of the words played by the player
+  # joe = Scrabble::Player.new(name: "Joe")
   # it "should return [] played by Joe" do
   #   # joe = Scrabble::Player.new(name: "Joe")
   #   joe.plays.must_equal []
   # end
 
-  # # adds input word to the plays array
+  # adds input word to the plays array
   # it "should return ['Japan', 'Eritrea', 'Mexico'] when joe.play('Mexico')" do
   #   joe.play("Japan")
   #   joe.play("Eritrea")
@@ -30,11 +54,5 @@ describe "Scrabble::Player#plays and #play(word)" do
   #   joe.plays.must_equal ["Japan", "Eritrea", "Mexico"]
   # end
 
-  it "should return the score '5' for the word 'cat'" do
-    joe.play("cat").must_equal 5
-  end
 
-  # it "should return false if player has already won" do
-  # 
-  # end
 end

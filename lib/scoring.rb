@@ -1,4 +1,4 @@
-#require_relative '../scrabble'  #   allows this class to access scrabble and run through irb
+require_relative '../scrabble'  #   allows this class to access scrabble and run through irb
 
 class Scrabble::Scoring
   include Scrabble
@@ -64,7 +64,7 @@ end
 # highest_word = ""
 #       highest_score = 0
 #
-# array_of_words.each  do |word|
+# array_of_words.max_by  do |word|
 #   new_score = self.score(word)
 #   puts "word: #{word}"
 #   if new_score > highest_score
