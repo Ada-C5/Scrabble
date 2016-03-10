@@ -94,19 +94,19 @@ describe Scrabble::Scoring do
 
   describe "Scoring#self.highest_score_from" do
     it "should find the highest scoring word with the least letters in the given array" do
-      assert_equal "affined", (Scrabble::Scoring.highest_score_from(TEST_WORD_ARRAY))
+      assert_equal "affined", (Scrabble::Scoring.highest_score_from(TEST_WORD_ARRAY, Scrabble::RWORD))
 
-      assert_equal "jeez", Scrabble::Scoring.highest_score_from(TEST_WORD_ARRAY2)
+      assert_equal "jeez", Scrabble::Scoring.highest_score_from(TEST_WORD_ARRAY2, Scrabble::RWORD)
 
-      assert_equal "bcmpbcg", Scrabble::Scoring.highest_score_from(TEST_WORD_ARRAY3)
+      assert_equal "bcmpbcg", Scrabble::Scoring.highest_score_from(TEST_WORD_ARRAY3, Scrabble::RWORD)
 
-      assert_equal "bgeeeee", Scrabble::Scoring.highest_score_from(TEST_WORD_ARRAY5)
+      assert_equal "bgeeeee", Scrabble::Scoring.highest_score_from(TEST_WORD_ARRAY5, Scrabble::RWORD)
     end
 
     it "return the first tied word that appears first in the given array" do
       REVERSE4 = TEST_WORD_ARRAY4.reverse
-      assert_equal "bcmpbcg", Scrabble::Scoring.highest_score_from(TEST_WORD_ARRAY4)
-      assert_equal "cccpbcd", Scrabble::Scoring.highest_score_from(REVERSE4)
+      assert_equal "bcmpbcg", Scrabble::Scoring.highest_score_from(TEST_WORD_ARRAY4, Scrabble::RWORD)
+      assert_equal "cccpbcd", Scrabble::Scoring.highest_score_from(REVERSE4, Scrabble::RWORD)
     end
 
     it "should keep ties in their original order" do

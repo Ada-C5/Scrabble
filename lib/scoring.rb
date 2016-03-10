@@ -86,16 +86,16 @@ class Scrabble::Scoring
   end
 
   # Returns the highest-valued word in a word_array.
-  def self.highest_score_from(array_of_words)
+  def self.highest_score_from(array_of_words, index)
     if find_ties(array_of_words).length > 1
       if ties_w_seven_letters(array_of_words).length >= 1
-        return ties_w_seven_letters(array_of_words)[0][0]
+        return ties_w_seven_letters(array_of_words)[0][index]
       else
         least_letters = find_ties(array_of_words).min_by { |pair| pair[0].length}
-        return least_letters[0]
+        return least_letters[index]
       end
     end
     # Returns the highest-scoring word.
-    return sort_pairs(array_of_words)[-1][0]
+    return sort_pairs(array_of_words)[-1][index]
   end
 end

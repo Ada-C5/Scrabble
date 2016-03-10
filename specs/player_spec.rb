@@ -5,6 +5,8 @@ require_relative 'spec_helper'
 
 describe Scrabble::Player do
 DORIS = Scrabble::Player.new("Doris")
+DEDE = Scrabble::Player.new("Dede")
+
   it "exists" do
     Scrabble::Player.wont_be_nil
   end
@@ -27,11 +29,22 @@ DORIS = Scrabble::Player.new("Doris")
 
   describe "Scrabble::Player#total_score" do
     it "returns the sum of scores in words_played" do
-      DORIS.play("dumpling") # 14
-      DORIS.play("donut") # 6
-      DORIS.play("doodoo") # 8
-      assert_equal 28, DORIS.total_score
+      DEDE.play("dumpling") # 14
+      DEDE.play("donut") # 6
+      DEDE.play("doodoo") # 8
+      assert_equal 28, DEDE.total_score
     end
+  end
 
+  describe "Scrabble::Player#highest_scoring_word" do
+    it "returns the highest-scoring word in words_played" do
+      assert_equal "dumpling", DEDE.highest_scoring_word
+    end
+  end
+
+  describe "Scrabble::Player#highest_word_score" do
+    it "returns the highest score from words_played" do
+      assert_equal 14, DEDE.highest_word_score
+    end
   end
 end

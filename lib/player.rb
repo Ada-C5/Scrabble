@@ -33,5 +33,12 @@ class Scrabble::Player
     Scrabble::Scoring.word_scores(words_played).reduce(:+)
   end
 
+  def highest_scoring_word
+    Scrabble::Scoring.highest_score_from(words_played, Scrabble::RWORD)
+  end
+
+  def highest_word_score
+    Scrabble::Scoring.highest_score_from(words_played, Scrabble::RPOINTS)
+  end
 
 end
