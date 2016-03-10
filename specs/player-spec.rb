@@ -1,5 +1,6 @@
 require_relative './spec_helper'
 require_relative '../lib/player'
+require_relative '../lib/tilebag'
 
 describe Player do
   before do
@@ -65,6 +66,23 @@ describe Player do
 
     it "will return the score of the highest word in the list using the highest_word_score method" do
       @lisa.highest_word_score.must_equal 36
+    end
+
+
+    it "will return an empty array" do
+      @sarah.tiles.must_equal []
+    end
+
+    it "will return an array using the draw tile method" do
+      tile_bag = TileBag.new
+      @sarah.draw_tiles(tile_bag).must_be_instance_of Array
+
+    end
+
+    it "will return an array of length 7" do
+      tile_bag = TileBag.new
+      @sarah.draw_tiles(tile_bag).length.must_equal 7
+
     end
 
   end

@@ -1,12 +1,14 @@
+require_relative './tilebag'
+require_relative './scoring'
 class Player
-  require_relative './scoring'
-  attr_reader :name, :plays ,:total_score
+  attr_reader :name, :plays ,:total_score, :tiles
 
   def initialize(name)
     @name = name
     @plays = []
     @total_score = 0
     @already_won = false
+    @tiles = []
   end
 
   def play(word)
@@ -33,4 +35,9 @@ class Player
     Scoring.score(highest_word)
   end
 
+  def draw_tiles(tile_bag)
+    @tiles.push *tile_bag.draw_tiles(7 - @tiles.length)
+    @tiles
+
+  end
 end
