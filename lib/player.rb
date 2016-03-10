@@ -4,7 +4,7 @@ class Player
   @name = name
   end
 
-  def self.plays
-
+  def plays
+    "hello"
   end
 end
