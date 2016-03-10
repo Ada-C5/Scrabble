@@ -2,7 +2,7 @@ require_relative './spec_helper'
 require_relative '../lib/scoring'
 
 describe Scoring do
-  it "if it exists" do
+  it "Does the Scoring Class exist?" do
     Scoring.wont_be_nil
   end
 
