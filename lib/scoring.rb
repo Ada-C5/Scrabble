@@ -9,8 +9,8 @@ class Scrabble::Scoring
 
   def self.score(word)
     if word.length > 7
-        raise ArgumentError.new "NO"
-      end
+      raise ArgumentError.new "NO"
+    end
 
     word = word.upcase.split(//) # change letters of word to uppercase to match keys
     points = 0  # points start at 0
@@ -44,7 +44,6 @@ class Scrabble::Scoring
         winners << pair
       end
     end
-     winners
     tie_winner = winners.min_by do |winner|
       winner[1].size
     end
