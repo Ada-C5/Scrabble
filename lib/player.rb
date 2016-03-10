@@ -25,18 +25,37 @@ class Scrabble::Player
   # (pass score values to total_score method)
   # test score is being stored (for test purposes, pass a value at the end)
 
+def words_and_matching_scores
+  total_score_hash = {}
+
+  words_played_array.each do |word|
+    total_score_hash[word] = Scrabble::Scoring.score(word)
+  end
+  total_score_hash
+end
+
   def total_score
-    total_score_array = []
-
-    words_played_array.each do |word|
-      total_score_array << Scrabble::Scoring.score(word)
-    end
-
-    total_score = total_score_array.reduce(:+)
-
+    # gets value from the scores_for_each_word method
+    total_score = words_and_matching_scores.values.reduce(:+)
   end
 
   def won?
     total_score >= 100 ? true : false
   end
+
+  def highest_scoring_word
+    highest_score[0]
+  end
+
+  def highest_score
+    high_score = words_and_matching_scores.max_by do |word, score|
+      score
+    end
+    high_score
+  end
+
+  def highest_word_score
+    highest_score[1]
+  end
+
 end

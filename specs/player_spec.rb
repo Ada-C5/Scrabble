@@ -62,8 +62,6 @@ describe "Scrabble::Player#highest_scoring_word" do
     april.play("nose")
     april.highest_scoring_word.must_equal "frog"
   end
-
-
 end
 
   # # returns an array of the words played by the player
