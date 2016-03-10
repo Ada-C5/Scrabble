@@ -8,13 +8,11 @@ class Scrabble::Scoring
 
 
   def self.score(word)
+    if word.length > 7
+        raise ArgumentError.new "NO"
+      end
 
     word = word.upcase.split(//) # change letters of word to uppercase to match keys
-    #  if word.length > 7
-    #      raise ArgumentError, "NO"
-    #    end
-
-
     points = 0  # points start at 0
     points += BONUS if word.length == 7
 
