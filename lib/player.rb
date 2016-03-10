@@ -12,6 +12,11 @@ class Scrabble::Player
    end
 
    def total_score
+    points = 0
+    played_words.each do |word|
+      points += Scrabble::Scoring.score(word)
+    end
+    return points
    end
 
    def won?

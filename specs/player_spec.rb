@@ -23,8 +23,14 @@ describe Scrabble::Player do
   it "returns score of newly played word" do
     bob = Scrabble::Player.new(name: "Bob", words: ["house", "cat"])
     bob.play("zebra").must_equal(16)
-
   end
+
+  # test total score based on array of words
+  it "returns the total score of all the words in the array" do
+    bob = Scrabble::Player.new(name: "Bob", words: ["zebre","zebra"])
+    bob.total_score.must_equal(32)
+  end
+
 
 
 end
