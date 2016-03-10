@@ -5,6 +5,10 @@ class Player
   end
 
   def plays
-    "hello"
+    players_played_words = []
+    return players_played_words
+  end
+  
+  def play(word)
   end
 end

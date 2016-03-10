@@ -12,19 +12,35 @@ describe Player do
     end
   end
 
-  before do
-    jillian = Player.new(name)
+  describe "#plays" do
+    test_player = Player.new(name)
+    it "Does it contain an array" do
+      test_player.plays.must_be_kind_of Array
+    end
+  end
 
-    describe "#plays" do
-      it "Does it contain an array" do
-        jillian.plays.must_be_kind_of Array
+  describe "#play(word)" do
+
+    test_player = Player.new(name)
+
+    TEST_CASES = ["word", "butt", "fart", "red"]
+
+    TEST_CASES.each do |word|
+      it "Does it add the played word?" do
+        test_player.play(word).must_equal(TEST_CASES)
       end
     end
   end
 end
 
 
-
+# describe "#plays" do
+#   test_player = Player.new(name)
+#   it "Does it return array of words played by player" do
+#
+#
+#   end
+# end
 
 
 
