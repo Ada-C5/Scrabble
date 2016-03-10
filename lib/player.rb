@@ -1,7 +1,9 @@
-# require_relative "../scrabble"
+require_relative "../scrabble"
 
 class Scrabble::Player
+  WINNING_SCORE = 100
   attr_accessor :played_words
+  attr_reader  :name
   def initialize(name)
     @name = name
     @played_words = []
@@ -13,8 +15,17 @@ class Scrabble::Player
   end
 
   def won?
+    return true if total_score > WINNING_SCORE
     return false
   end
+
+  # def won?
+    # if name.total_score > WINNING_SCORE
+      # return true
+    # else
+      # return false
+    # end
+  # end
 
   def play(word)
     @played_words << word
