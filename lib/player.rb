@@ -7,8 +7,8 @@ attr_accessor :name, :words_played
   end
 
 
-  def plays(name)
-    return @words_played 
+  def plays
+    return @words_played
   end
 
 
@@ -22,7 +22,11 @@ attr_accessor :name, :words_played
 
 
   def total_score
-
+    sum_of_scores = 0
+    @words_played.each do |word|
+      sum_of_scores =+ Scoring.score(word)
+    end
+    return sum_of_scores
   end
 
 
