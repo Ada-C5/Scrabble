@@ -17,16 +17,24 @@ end
 describe "Scrabble::Player#plays and #play(word)" do
   # returns an array of the words played by the player
   joe = Scrabble::Player.new(name: "Joe")
-  it "should return [] played by Joe" do
-    # joe = Scrabble::Player.new(name: "Joe")
-    joe.plays.must_equal []
+  # it "should return [] played by Joe" do
+  #   # joe = Scrabble::Player.new(name: "Joe")
+  #   joe.plays.must_equal []
+  # end
+
+  # # adds input word to the plays array
+  # it "should return ['Japan', 'Eritrea', 'Mexico'] when joe.play('Mexico')" do
+  #   joe.play("Japan")
+  #   joe.play("Eritrea")
+  #   joe.play("Mexico")
+  #   joe.plays.must_equal ["Japan", "Eritrea", "Mexico"]
+  # end
+
+  it "should return the score '5' for the word 'cat'" do
+    joe.play("cat").must_equal 5
   end
 
-  # adds input word to the plays array
-  it "should return ['Japan', 'Eritrea', 'Mexico'] when joe.play('Mexico')" do
-    joe.play("Japan")
-    joe.play("Eritrea")
-    joe.play("Mexico")
-    joe.plays.must_equal ["Japan", "Eritrea", "Mexico"]
-  end
+  # it "should return false if player has already won" do
+  # 
+  # end
 end
