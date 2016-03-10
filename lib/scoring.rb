@@ -27,45 +27,24 @@ class Scoring
   end
 
   def self.highest_score_from(array_of_words)
-    array_of_tied_words = []
-    array_of_scores = []
-    array_of_word_lengths =[]
-    7_letter_words = []
+    win_score = 0
+    win_word = array_of_words[0]
+
 
     array_of_words.each do |word|
-      x = self.score(word)
-      array_of_scores.push(x)
-    end
-
-    index = 0
-
-    highest_score = array_of_scores.max
-    array_of_scores.each do |score|
-      if score == highest_score
-        array_of_tied_words << array_of_words[array_of_scores.index(score)]
-        array_of_word_lengths << array_of_tied_words[index]
-        index += 1
+      score_inst = self.score(word)
+      #checks if current winning score is less than or equal 
+      #to the current word's score, then uses the tiebreaker 
+      #conditions to determine winning word and score
+      if score_inst > win_score
+        win_score = score_inst
+        win_word = word
+      elsif score_inst == win_score && word.length < win_word.length
+        win_word = word
+        win_score = score_inst
       end
     end
-
-
-    if array_of_word_lengths.count(7) >= 1
-      winner_index = array_of_word_lengths.find_index(7)
-      return array_of_tied_words[winner_index]
-    else 
-      return array_of_tied_words.min_by {|win_word| win_word.length} 
-    end
-    #array_of_word_lengths = array_of_tied_words.sort_by {|word| word.length}
-     
-    #y=0
-
-    #until array_of_tied_words[y].length == 7
-    #  y +=1
-    #end
-
-    #return array_of_tied_words[y]
-
-    #return array_of_words[array_of_scores.index(highest_score)]
+    return win_word
 
   end
 end

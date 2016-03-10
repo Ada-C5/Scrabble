@@ -22,9 +22,12 @@ describe Scrabble::Scoring do
 
   HASH_WORDS = {
     "jogged" => ["jogged"],
+    "mixup" => ["mixup", "jogged", "pigsty", "zebra", "cramps"],
     "zebra" => ["jogged", "zebra", "pigsty", "mixup", "cramps"],
+    "zenith" => ["jogged", "zebra", "pigsty", "mixup", "cramps", "zenith"],
     "develop" => ["jogged", "zebra", "develop", "pigsty", "doggies", "naysays", "mixup", "cramps", "zenith"]
     }
+
   describe "Scoring#score" do
     TEST_SCORE.each do |word, score|
     	it "should return #{ score } for '#{ word }'" do
@@ -37,8 +40,6 @@ describe Scrabble::Scoring do
     HASH_WORDS.each do |word,array|
       it "should return #{word} with the highest score and tiebreaker" do
       Scoring.highest_score_from(array).must_equal(word)
-
-      #it "should return the word with fewest tiles" do
       end
     end
   end
