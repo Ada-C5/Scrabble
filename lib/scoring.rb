@@ -2,9 +2,8 @@
 
 class Scrabble::Scoring
 SEVEN_LETTER_BONUS = 50
-PLAYED_WORDS = []
-WORDS_SCORE = []
-WORD_SCORE_COLLECTION =[]
+#PLAYED_WORDS = []
+#WORD_SCORE_COLLECTION =[]
 
   LETTERS = {
   %w(A E I O U L N R S T) => 1,
