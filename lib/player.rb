@@ -13,10 +13,10 @@ attr_accessor :name, :words_played
 
 
   def play(word)
+    if won? == true
+      return false
+    end
     @words_played << word
-      #if won == true
-        #return false
-      #end
    return Scoring.score(word)
   end
 
@@ -31,7 +31,11 @@ attr_accessor :name, :words_played
 
 
   def won?
-
+    if total_score > 100
+      return true
+    else
+      return false
+    end
   end
 
 
