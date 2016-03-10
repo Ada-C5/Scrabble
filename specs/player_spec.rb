@@ -25,10 +25,28 @@ end
       risha = Scrabble::Player.new("risha")
       risha.play("RED")
       risha.plays.must_equal(["RED"])
-      # played_words.include?("RED")
+    end
+  end
+
+  describe "PlayWordReturnValue" do
+    it "should return score of word, if player has not won" do
+        risha = Scrabble::Player.new("risha")
+        risha.play("RED").must_equal(4)
+      end
+  end
+
+  describe "PlayWordReturnValue" do
+    it "should return false if player has won" do
+      risha = Scrabble::Player.new("risha")
+        risha.play("RED").must_equal(false)
+      end
     end
 
-    # it "should include word into an array" do
-    # played_words.include?("RED")
-    # end
-  end
+    describe "TotalScore" do
+      it "should return the total score of the played words array" do
+        risha = Scrabble::Player.new("risha")
+          risha.play("RED")
+          risha.play("HOTDOG")
+          risha.total_score.must_equal(15)
+          end
+        end
