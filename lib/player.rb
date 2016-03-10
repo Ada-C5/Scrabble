@@ -15,6 +15,7 @@ attr_accessor :total_score
 	end
 
 	def play(word)
+		return false if won?
 		self.plays << word
 		self.total_score += Scrabble::Scoring.score(word)
 		Scrabble::Scoring.score(word)
