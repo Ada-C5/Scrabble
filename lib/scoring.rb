@@ -28,10 +28,23 @@ class Scoring
   def self.highest_score_from(array_of_words)
     # => array_of_words = ["melissa", "cat"]
     all_scores = []
+    all_winners =[]
     array_of_words.each do |one_word|
     all_scores << self.score(one_word)
-    # => all_scores = [59, 5]
+    # => all_scores = [59, 59, 4, 6]
     end
-    return array_of_words[all_scores.index(all_scores.max)]
+
+    winner_score = all_scores.max
+
+    all_scores.each do |scores|
+      if scores == winner_score
+        all_winners << array_of_words[all_scores.index(winner_score)]
+      end
+    end
+    return all_winners
   end
+
+  # all_winners.each do |smallest|
+  #   smallest.chars.min
+  # end
 end
