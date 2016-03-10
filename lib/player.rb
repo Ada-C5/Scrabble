@@ -1,10 +1,13 @@
 require_relative '../lib/scoring'
 
 class Player
-  def initialize(name)
+
+	WINNING_SCORE = 100 
+
+  def initialize(name, scores_array=[], words_played=[])
     @name = name
-    @words_played = []
-    @scores_array = []
+    @scores_array = scores_array
+    @words_played = words_played
     return @name
   end
 
@@ -13,24 +16,20 @@ class Player
   end
 
   def plays   #returns an array of all the words played by Player
-    return words_played
+    return @words_played
   end
 
   def play(word)  #adds word to the words_played array
-    @words_played << word
-    @scores_array << Scoring.score(word)
-    # won?
-  end
-
-  def total_score #returns sum of scores of played words
-  	# This can also come from some logic regarding highest word score
-  	# Grab that array of values and enuerable it together with .inject
-  	# or .reduce which are the same thing 
-
+    @scores_array.total_score
+    if @scores_array >= WINNING_SCORE 
+    	return false 
+    else 
+    	@words_played << word
+    	@scores_array << Scoring.score(word)
   end
 
   def won?  #returns true if over 100pts, otherwise false(haven't won yet)
-    if Player.total_score >= 100
+    if Player.total_score >= WINNING_SCORE
       "You win!"
     else
       "You haven't won yet."
@@ -43,13 +42,11 @@ class Player
 
   def highest_word_score #returns the highest score 
 
-  	# we have an array of scores over in Scoring.rb.
-  	# 1) either copy that logic here
-  	# 2) or find some way to make that data available to Player.rb
-  	# I think option one is easier but I could be wrong because
-  	# I am le tired right now and better at writing comments
-  	# than writing code. 
-
+  	@scores_array.max
   end
-
+  
+  def self.total_score #returns sum of scores of played words
+  		@scores_array.reduce(0, :+) 
+	end
+ end
 end

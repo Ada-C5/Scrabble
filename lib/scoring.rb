@@ -30,7 +30,7 @@ class Scoring
 
   def self.score(word)
     word = word.upcase!
-	  word_array = word.split("")
+	  word_array = word.split("") # could use .chars here 
 	  score_value = 0
 
     # applies 50 point bonus for words >= 7 letters
@@ -46,7 +46,7 @@ class Scoring
 		     end
 		   end
 	   end
-     return score_value
+     return score_value.to_i
   end
 
   def self.highest_score_from(array_of_words)
