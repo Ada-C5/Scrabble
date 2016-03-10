@@ -24,7 +24,7 @@ attr_accessor :name, :words_played
   def total_score
     sum_of_scores = 0
     @words_played.each do |word|
-      sum_of_scores =+ Scoring.score(word)
+      sum_of_scores = sum_of_scores + Scoring.score(word)
     end
     return sum_of_scores
   end

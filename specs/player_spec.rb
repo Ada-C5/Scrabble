@@ -44,17 +44,30 @@ end
 
   end
 
+  describe "Player#play(word)" do
+    mindy = Player.new("mindy")
+    it "should return the score of the word played" do
+      mindy.play("kittens").must_equal(61)
+    end
+  end
+
+  describe "Player#play(word)" do
+    mindy = Player.new("mindy")
+    mindy.play("cat")
+    mindy.play("kittens")
+
+    it "should return the array of words played with the new word added" do
+      mindy.words_played.must_equal(["cat", "kittens"])
+    end
+  end
 
 
+  describe "Player#play(word)" do
+    mindy = Player.new("mindy")
+    mindy.play("cat")
+    mindy.play("kittens")
 
-    # it "should return the score of the word played" do
-    #   mindy.play("kittens").must_equal(61)
-    # end
-    #
-    # it "should return the array of words played with the new word added" do
-    #   mindy.words_played.must_equal(["cat", "kittens"])
-    # end
-    #
-    # it "should return the sum of scores" do
-    #   mindy.total_score.must_equal(66)
-    # end
+    it "should return the sum of scores" do
+      mindy.total_score.must_equal(66)
+    end
+  end
