@@ -20,42 +20,48 @@ describe Scrabble::Player do
 		Scrabble::Player.wont_be_nil
 	end
 
-  it "has a readable name instance variable" do
-    @jane.name.must_equal("Jane")
-  end
+TEST_PLAYERS = [
+  @jane,
+  @bob,
+  @fred
+]
+
+TEST_PLAYERS.each do |player|
 
   it "will return a value when total score is queried" do
-  	@jane.total_score.wont_be_nil
+  	player.total_score.wont_be_nil
   end
 
   it "will return the score when a play is made" do
-    @jane.play("cat").must_equal(5)
+    player.play("cat").must_equal(5)
   end
 
   it "will increase total_score when a word is played" do
-    @jane.total_score.must_equal(5)
+    player.total_score.must_equal(5)
   end
 
   it "will push a word into the plays array" do
-    @jane.plays.must_include("cat")
+    player.plays.must_include("cat")
   end
 
   it "will return true if total score is >100" do
-    @fred.won?.must_equal(true)
+    player.won?.must_equal(true)
   end
 
 	it "returns highest scoring word in an array" do
-		@fred.highest_scoring_word(@fred.plays).must_equal("cupcake")
+		player.highest_scoring_word(player.plays).must_equal("cupcake")
 	end
 
-  it "returns the score for highest scoring word" do 
-    @fred.highest_word_score.must_equal(67)
+  it "returns the score for highest scoring word" do
+    player.highest_word_score.must_equal(67)
   end
 
-
+  it "returns false if fred tries to play" do
+    player.play("cat").must_equal(false)
+  end
 
   # it "will return false if the player has won" do
   #   @jane.total_score
   # end
-
+end
 end
