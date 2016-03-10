@@ -15,7 +15,6 @@ attr_accessor :total_score
 	end
 
 	def play(word)
-		return false if won?
 		self.plays << word
 		self.total_score += Scrabble::Scoring.score(word)
 		Scrabble::Scoring.score(word)
@@ -27,6 +26,10 @@ attr_accessor :total_score
 
 		# Returns the score of the word
 	end
+
+	# def total_score
+	#
+	# end
 
 	def won?
 		# If the player has over 100 points, returns true, otherwise returns false
