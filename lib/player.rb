@@ -25,7 +25,7 @@ class Player
 
   def play(word)  #adds word to the words_played array
   	# test to see if score is over 100
-  	if @scores_array.reduce(0, :+) >= 100 
+  	if @scores_array.reduce(0, :+) >= WINNING_SCORE 
   		return false
   	end  
     @words_played << word
@@ -33,15 +33,17 @@ class Player
   end
 
   def won?  #returns true if over 100pts, otherwise false(haven't won yet)
-    if Player.total_score >= WINNING_SCORE
-      "You win!"
-    else
+    if @scores_array.reduce(0, :+) >= WINNING_SCORE 
+  		"You win!"
+  		return true
+  	else
       "You haven't won yet."
+      return false 
     end
   end
 
   def highest_scoring_word #returns highest scored word from words_played array
-  	Scoring.highest_score_from(words_played)
+  	Scoring.highest_score_from(@words_played)
   end
 
   def highest_word_score #returns the highest score 

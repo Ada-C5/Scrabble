@@ -3,6 +3,7 @@ require_relative '../lib/player'
 
 describe Player do 
  WORDS_PLAYED = ["GOAT", "PUPPY", "MONKEY", "CAT", "WHALES", "IGUANA"]
+ HIGH_SCORE_TEST = [200] 
 
 	# TEST 1
 	it "Player is an object we have access to" do
@@ -21,6 +22,7 @@ describe Player do
 		assert_equal [8], fran.play("word") 
 	end 
 
+	# TEST 4
 	it "should return an array of words played" do 
 		fran = Player.new("Fran")
 		fran.play("goat")
@@ -31,13 +33,48 @@ describe Player do
 		fran.play("iguana")
 		assert_equal WORDS_PLAYED, fran.plays
 	end
-end 
 
-describe Player do
-	HIGH_SCORE_TEST = [200] 
-	# TEST 4
-		it "should return false" do 
+	# TEST 5
+		it "return false if player plays when score is >= 100" do 
 			chacha = Player.new("ChaCha", HIGH_SCORE_TEST)
 			assert_equal false, chacha.play("word") 
+		end
+
+	# TEST 6
+	 it "should return true for winning" do
+	 	chacha = Player.new("ChaCha", HIGH_SCORE_TEST)
+	 	assert true, chacha.won? 
 	end
-end
+
+	# TEST 7 
+		it "should return total score of words played so far" do 
+			fran = Player.new("Fran")
+			fran.play("goat")
+			fran.play("puppy")
+		assert_equal 19, fran.total_score
+	end 
+	# TEST 8 
+		it "should return highest scoring word played" do 
+			fran = Player.new("Fran")
+			fran.play("goat")
+			fran.play("puppy")
+		assert_equal "PUPPY", fran.highest_scoring_word
+	end 
+	# TEST 9
+		it "should return highest word score" do 
+			fran = Player.new("Fran")
+			fran.play("goat")
+			fran.play("puppy")
+		assert_equal 14, fran.highest_word_score
+	end 
+	# TEST 10
+		it "returns the score of a word played" do 
+			fran = Player.new("Fran")
+			assert_equal [14], fran.play("puppy")
+	end 
+	# TEST 11
+		it "player class accepts one argument" do 
+			assert_raises(ArgumentError) {fran = Player.new}
+	end 
+end 
+
