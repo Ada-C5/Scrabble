@@ -1,19 +1,23 @@
 class Player
-
+attr_accessor :name, :words_played
   def initialize (name)
     @name = name
+    @words_played = []
+    #@total_score =
   end
 
 
-  def plays(name)          #do we need to pass in words one by one and iterate through to then shovel them into an array??
-    words_played = []    #how are we getting the words? are these TEST_CASES??
-
-
+  def plays(name)
+    return @words_played 
   end
 
 
   def play(word)
-
+    @words_played << word
+      #if won == true
+        #return false
+      #end
+   return Scoring.score(word)
   end
 
 

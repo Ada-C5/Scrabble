@@ -7,7 +7,7 @@ describe Player do                   #this is testing to make sure Player exists
   end
 end
 
-
+#this tests to make sure the initialize method exists
  describe "Player#new(name)" do
   it "does the class initialize a name" do
     Player.new(name).wont_be_nil
@@ -16,16 +16,15 @@ end
 end
 
 
+describe "Player#play(word)" do
+  mindy = Player.new("mindy")
 
-describe "Player#plays" do
-  TEST_CASES = {
-    
-  }
-
-
-  TEST_CASES.each do |name, words_played|
-    it "should return the name of the player #{name} for the word #{word}" do
-      Scoring.score(word).must_equal(score)
+    it "should return the score of the word played" do
+      mindy.play("cat").must_equal(5)
     end
-  end
+
+    it "should return the array of words played with the new word added" do
+      mindy.words_played.must_equal(["cat"])
+    end
+
 end
