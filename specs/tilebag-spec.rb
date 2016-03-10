@@ -19,7 +19,7 @@ describe TileBag do
     end
 
     it "returns the remaining number of tiles in the tile bag using tiles_remaining method" do
-      @tiles.tiles_remaining.must_equal 1 # 327
+      @tiles.tiles_remaining.must_equal 327
     end
 
   end
