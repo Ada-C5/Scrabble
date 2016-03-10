@@ -5,6 +5,6 @@ module Scrabble
   class Scoring
   end
 
-  class Player
+  class Player < Scoring
   end
 end
