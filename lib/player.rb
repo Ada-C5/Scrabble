@@ -1,4 +1,4 @@
-require_relative "../scrabble"
+#require_relative "../scrabble"
 
 class Scrabble::Player
   WINNING_SCORE = 100
