@@ -19,10 +19,13 @@ describe Player do
 		fran = Player.new("Fran")
 		assert_equal [8], fran.play("word") 
 	end 
+end 
 
+describe Player do
+	HIGH_SCORE_TEST = [200] 
 	# TEST 4
-	# 	it "should return a name when entered" do 
-	# 	chacha = Player.new("ChaCha", 200)
-	# 	assert_equal false, chacha.play("word")
-	# end
+		it "should return false" do 
+			chacha = Player.new("ChaCha", HIGH_SCORE_TEST)
+			assert_equal false, chacha.play("word") 
+	end
 end

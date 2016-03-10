@@ -4,10 +4,10 @@ class Player
 
 	WINNING_SCORE = 100 
 
-  def initialize(name, scores_array=[], words_played=[])
+  def initialize(name, scores_array=[])
     @name = name
     @scores_array = scores_array
-    @words_played = words_played
+    @words_played = []
     return @name
   end
 
@@ -15,17 +15,21 @@ class Player
     @name
   end
 
+  def total_score #returns sum of scores of played words
+  		@scores_array.reduce(0, :+) 
+	end
+
   def plays   #returns an array of all the words played by Player
     return @words_played
   end
 
   def play(word)  #adds word to the words_played array
-    @scores_array.total_score
-    if @scores_array >= WINNING_SCORE 
-    	return false 
-    else 
-    	@words_played << word
-    	@scores_array << Scoring.score(word)
+  	# test to see if score is over 100
+  	if @scores_array.reduce(0, :+) >= 100 
+  		return false
+  	end  
+    @words_played << word
+    @scores_array << Scoring.score(word)
   end
 
   def won?  #returns true if over 100pts, otherwise false(haven't won yet)
@@ -44,9 +48,4 @@ class Player
 
   	@scores_array.max
   end
-  
-  def self.total_score #returns sum of scores of played words
-  		@scores_array.reduce(0, :+) 
-	end
- end
 end
