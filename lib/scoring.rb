@@ -33,8 +33,8 @@ class Scoring
 
     array_of_words.each do |word|
       score_inst = self.score(word)
-      #checks if current winning score is less than or equal 
-      #to the current word's score, then uses the tiebreaker 
+      #checks if current winning score is less than or equal
+      #to the current word's score, then uses the tiebreaker
       #conditions to determine winning word and score
       if score_inst > win_score
         win_score = score_inst
