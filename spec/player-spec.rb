@@ -25,10 +25,14 @@ describe Player do
 
     TEST_CASES = ["word", "butt", "fart", "red"]
 
-    TEST_CASES.each do |word|
+    TEST_CASES.each do |played_word|
       it "Does it add the played word?" do
-        test_player.play(word).must_equal(TEST_CASES)
+        test_player.play(played_word).must_equal(test_player.plays)
       end
+    end
+
+    it "Does it return false if the player has won?" do
+      
     end
   end
 end
