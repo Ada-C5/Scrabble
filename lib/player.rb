@@ -1,14 +1,16 @@
 class Player
-  attr_reader :name
+  attr_reader :name, :word
   def initialize(name)
   @name = name
+  @words = []
   end
 
+
   def plays
-    players_played_words = []
-    return players_played_words
+    @words
   end
-  
+
   def play(word)
+    @words << word
   end
 end
