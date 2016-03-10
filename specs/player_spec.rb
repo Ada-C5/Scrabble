@@ -93,4 +93,19 @@ describe Player do
       end
     end
 
+    describe "Player#tiles" do
+      it "is a collection of random tiles" do
+        play_cat = Player.new("game")
+        play_cat.tiles.length.must_equal(7)
+      end
+    end
+
+    describe "Player#draw_tiles" do
+      it "draws tiles" do
+        play_cat = Player.new("game")
+        play_cat.tiles.pop
+        play_cat.draw_tiles
+        play_cat.tiles.length.must_equal(7)
+      end
+    end
 end

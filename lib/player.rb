@@ -1,11 +1,19 @@
 require_relative './scoring.rb'
+require_relative './tilebag.rb'
 
 class Player
   attr_reader :name
-  attr_accessor :plays
+  attr_accessor :plays, :tiles
   def initialize(name)
     @name = name
     @plays = []
+    @tile_bag = TileBag.new()
+    @tiles = @tile_bag.draw_tiles(Scoring::WORD_LENGTH_MAXIMUM)
+  end
+
+  def draw_tiles(tile_bag=@tile_bag)
+    tiles_drawn = tile_bag.draw_tiles(Scoring::WORD_LENGTH_MAXIMUM - tiles.length)
+    tiles << tiles_drawn
   end
 
   def play(word)
