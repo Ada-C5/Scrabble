@@ -30,7 +30,7 @@ class Scrabble::Player
   end
 
   def total_score
-    @words_played.reduce(:+)
+    Scrabble::Scoring.word_scores(words_played).reduce(:+)
   end
 
 

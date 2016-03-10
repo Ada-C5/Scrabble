@@ -27,10 +27,10 @@ DORIS = Scrabble::Player.new("Doris")
 
   describe "Scrabble::Player#total_score" do
     it "returns the sum of scores in words_played" do
-      DORIS.play("dumpling")
-      DORIS.play("donut")
-      DORIS.play("doodoo")
-      assert_equal __, DORIS.total_score
+      DORIS.play("dumpling") # 14
+      DORIS.play("donut") # 6
+      DORIS.play("doodoo") # 8
+      assert_equal 28, DORIS.total_score
     end
 
   end
