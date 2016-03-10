@@ -1,5 +1,6 @@
 require_relative './spec_helper'
-require_relative '../lib/tilebag'
+# require_relative '../lib/tilebag'
+require_relative '../scrabble'
 
 describe TileBag do
   it "is an object we have access to" do

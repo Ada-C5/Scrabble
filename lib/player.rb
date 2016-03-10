@@ -1,18 +1,20 @@
-require_relative './scoring.rb'
-require_relative './tilebag.rb'
+# require_relative '../scrabble.rb'
+# require_relative './scoring.rb'
+# require_relative './tilebag.rb'
 
 class Player
   attr_reader :name
-  attr_accessor :plays, :tiles
+  attr_accessor :plays, :tiles, :tile_bag
   def initialize(name)
     @name = name
     @plays = []
     @tile_bag = TileBag.new()
-    @tiles = @tile_bag.draw_tiles(Scoring::WORD_LENGTH_MAXIMUM)
+    @tiles = @tile_bag.draw_tiles(Scrabble::WORD_LENGTH_MAXIMUM)
   end
 
-  def draw_tiles(tile_bag=@tile_bag)
-    tiles_drawn = tile_bag.draw_tiles(Scoring::WORD_LENGTH_MAXIMUM - tiles.length)
+
+  def draw_tiles(tile_bag = @tile_bag)
+    tiles_drawn = tile_bag.draw_tiles(Scrabble::WORD_LENGTH_MAXIMUM - tiles.length)
     tiles << tiles_drawn
   end
 
@@ -21,7 +23,8 @@ class Player
       return false
     else
       plays << word
-      return Scoring.score(word)
+      this = Scoring.score(word)
+      return this
     end
   end
 
