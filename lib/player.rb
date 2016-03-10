@@ -27,10 +27,6 @@ attr_accessor :total_score
 		# Returns the score of the word
 	end
 
-	# def total_score
-	#
-	# end
-
 	def won?
 		# If the player has over 100 points, returns true, otherwise returns false
 		if self.total_score > 100
