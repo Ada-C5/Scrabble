@@ -4,7 +4,8 @@ require_relative '../lib/player'
 
 describe Scrabble::Player do
   before do
-    @player_one = Scrabble::Player.new("Jane")
+    @jane = Scrabble::Player.new("Jane")
+    @jane.play("cat")
   end
 
   it "exists" do
@@ -12,15 +13,23 @@ describe Scrabble::Player do
 	end
 
   it "has a readable name instance variable" do
-    @player_one.name.must_equal("Jane")
+    @jane.name.must_equal("Jane")
   end
 
   it "will return a value when total score is queried" do
-  	@player_one.total_score.wont_be_nil
+  	@jane.total_score.wont_be_nil
   end
 
   it "will return a value when a play is made" do
-  	@player_one.play("jack").wont_be_nil
+  	@jane.play("jack").wont_be_nil
+  end
+
+  it "will return the score when a play is made" do
+    @jane.play("cat").must_equal(5)
+  end
+
+  it "will push a word into the plays array" do
+    @jane.plays.must_include("cat")
   end
 
 end
