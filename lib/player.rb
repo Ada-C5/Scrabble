@@ -38,7 +38,7 @@ attr_accessor :total_score
 		end
 	end
 
-	def self.highest_scoring_word(array_of_words)
+	def highest_scoring_word(array_of_words)
 		highest_score = ""
 		array_of_words.each do |word|
 		  if Scrabble::Scoring.score(word) > Scrabble::Scoring.score(highest_score)
@@ -51,7 +51,15 @@ attr_accessor :total_score
 	end
 
 	def highest_word_score
-		self.highest_scoring_word(array_of_words).score
+		highest_score = ""
+		plays.each do |word|
+		  if Scrabble::Scoring.score(word) > Scrabble::Scoring.score(highest_score)
+		    highest_score = word
+		  elsif Scrabble::Scoring.score(word) == Scrabble::Scoring.score(highest_score)
+		  	highest_score = word if word.length < highest_score.length
+		  end
+	  end
+		return Scrabble::Scoring.score(highest_score)
 	end
 
 end
