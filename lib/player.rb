@@ -2,7 +2,9 @@ require_relative '../scrabble'
 require_relative './scoring'
 
 class Scrabble::Player
-attr_reader :name, :plays, :total_score
+attr_reader :name, :plays
+attr_accessor :total_score
+
 
 	# set up with empty plays array and score as instance variable
 	def initialize(name)
@@ -13,6 +15,8 @@ attr_reader :name, :plays, :total_score
 	end
 
 	def play(word)
+		self.plays << word
+		self.total_score += Scrabble::Scoring.score(word)
 		Scrabble::Scoring.score(word)
 		# checks if won
 		# Returns false if player has already won
@@ -22,6 +26,10 @@ attr_reader :name, :plays, :total_score
 
 		# Returns the score of the word
 	end
+
+	# def total_score
+	# 
+	# end
 
 	def won?
 		# If the player has over 100 points, returns true, otherwise returns false
