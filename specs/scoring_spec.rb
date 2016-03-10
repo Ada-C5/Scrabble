@@ -2,27 +2,27 @@ require_relative './spec_helper'
 require_relative '../scrabble'
 
 
-describe Scoring do
+describe Scrabble::Scoring do
   it "is an object that isn't empty" do
-    Scoring.wont_be_nil
+    Scrabble::Scoring.wont_be_nil
   end
 
 
-  describe "Scoring#score" do
+  describe "Scrabble::Scoring#score" do
     TEST_WORDS = ["yes", "program", "pull", "comma"]
 
 
 
     TEST_WORDS.each do |word|
       it "should return the value as points when given a letter" do
-        Scoring.score(word).must_be_kind_of Numeric
+        Scrabble::Scoring.score(word).must_be_kind_of Numeric
       end
     end
 
     TEST_WORDS.each do |word|
-      it "should more tah n 50 poins for 7 letter-word" do
+      it "should more than n 50 poins for 7 letter-word" do
         if word.length == 7
-          Scoring.score(word).must_be :>, 50
+          Scrabble::Scoring.score(word).must_be :>, 50
         end
       end
     end
@@ -37,20 +37,22 @@ describe Scoring do
 
   end
 
-  describe "Scoring#highest_score_from" do
-    TEST_ARRAYS = [["cat", "program"], ["dogs", "hotdog"]]
+  describe "Scrabble::Scoring#highest_score_from" do
+    TEST_ARRAYS = [["cat", "program"], ["dogs", "hotdog"], ["yes", "pull"]]
 
     TEST_ARRAYS.each do |array|
     it "returns the word from array as a string" do
-      Scoring.highest_score_from(array).must_be_instance_of String
+      Scrabble::Scoring.highest_score_from(array).must_be_instance_of String
     end
+    end
+
+      it "should return the shortest word when the score is tied" do
+        Scrabble::Scoring.highest_score_from(["yes", "pull", "all"]).must_equal("yes")
+      end
+
+
   end
 
-#   TEST_ARRAYS.each do |array|
-#   it "returns the word from array as a string" do
-#     Scoring.highest_score_from(array).must_be_instance_of String
-#   end
-# end
 
-  end
+
 end

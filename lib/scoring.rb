@@ -1,4 +1,4 @@
-class Scoring
+class Scrabble::Scoring
   BONUS = 50
   SCORES = {
     A: 1, E: 1, I: 1, O: 1, U: 1, L: 1, N: 1, R: 1, S: 1, T: 1, D: 2, G: 2,
@@ -9,42 +9,47 @@ class Scoring
 
   def self.score(word)
 
-   word = word.upcase.split(//) # change letters of word to uppercase to match keys
-   if word.length > 7
-       raise ArgumentError, "NO"
-     end
+    word = word.upcase.split(//) # change letters of word to uppercase to match keys
+    #  if word.length > 7
+    #      raise ArgumentError, "NO"
+    #    end
 
 
-  points = 0  # points start at 0
-  points += BONUS if word.length == 7
+    points = 0  # points start at 0
+    points += BONUS if word.length == 7
 
-  word.each do |letter|
-    points += SCORES[letter.to_sym]
-  end
-  return points
+    word.each do |letter|
+      points += SCORES[letter.to_sym]
+    end
+    return points
   end
 
 
   def self.highest_score_from(array_of_words)
     # => array_of_words = ["melissa", "cat"]
     all_scores = []
-    all_winners =[]
     array_of_words.each do |one_word|
-    all_scores << self.score(one_word)
-    # => all_scores = [59, 59, 4, 6]
+      all_scores << self.score(one_word)
+      # => all_scores = [59, 59, 4, 6]
     end
 
-    winner_score = all_scores.max
+    pairs = all_scores.zip(array_of_words)
+    # example: [[59, "pull"], [43, "cat"], [59, "yes"], [3, "andrea"], [7, "carlos"]]
+    winners = []
 
-    all_scores.each do |scores|
-      if scores == winner_score
-        all_winners << array_of_words[all_scores.index(winner_score)]
+    # winners = pairs.max do |score|
+    #   score.max[1]
+    # end
+
+    pairs.each do |pair|
+      if pair[0] == pairs.max[0]
+        winners << pair
       end
     end
-    return all_winners
+     winners
+    tie_winner = winners.min_by do |winner|
+      winner[1].size
+    end
+    return tie_winner[1]
   end
-
-  # all_winners.each do |smallest|
-  #   smallest.chars.min
-  # end
 end
