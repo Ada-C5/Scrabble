@@ -37,8 +37,7 @@ class Scoring
 
     word_list = []
     # find the highest score value
-    max_value = word_hash.max_by do |key, value| value
-    end
+    max_value = word_hash.max_by { |key, value| value }
 
     # put all the words with the highest score into an array
     word_hash.each do |key, value|
@@ -48,7 +47,9 @@ class Scoring
     end
 
     # if the word used all 7 letters, it wins
-    word_list.find {|word| word.length == 7}
+    seven_long = word_list.find {|word| word.length == 7}
+
+    return seven_long unless seven_long.nil?
 
     # if no words used 7 letters, the shortest one wins
     # or if multiple are shortest, the first one in the array wins

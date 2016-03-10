@@ -1,13 +1,13 @@
 class Player
   require_relative './scoring'
   attr_reader :name, :plays ,:total_score
+
   def initialize(name)
     @name = name
     @plays = []
     @total_score = 0
     @already_won = false
   end
-
 
   def play(word)
     return false if @already_won == true # can't play more words if already won
@@ -17,7 +17,6 @@ class Player
     won? # check to see if the game is won before giving back score
     score
   end
-
 
   def won?
     return false unless total_score > 100

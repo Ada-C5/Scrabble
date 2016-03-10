@@ -15,7 +15,7 @@ describe TileBag do
     end
 
     it "returns number of tiles from tile bag using draw_tiles method" do
-      @tiles.draw_tiles(5).must_equal 5
+      @tiles.draw_tiles(5).length.must_equal 5
     end
 
     it "returns the remaining number of tiles in the tile bag using tiles_remaining method" do

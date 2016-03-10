@@ -7,17 +7,17 @@ describe Scoring do
   end
 
   describe "Scoring#score" do
-      TEST_CASES = {
-        "cat" => 5,
-        "dog" => 5,
-        "zoo" => 12,
-        "AAAAAAA" => 57
-      }
+    TEST_CASES = {
+      "cat" => 5,
+      "dog" => 5,
+      "zoo" => 12,
+      "AAAAAAA" => 57
+    }
 
 
-      TEST_CASES.each do |word,score|
-        it "should return #{score} for the word #{word}" do
-          Scoring.score(word).must_equal(score)
+    TEST_CASES.each do |word,score|
+      it "should return #{score} for the word #{word}" do
+        Scoring.score(word).must_equal(score)
       end
     end
   end
@@ -32,7 +32,10 @@ describe Scoring do
       ['JX', 'QZ'] => 'QZ',
       ['AAAAAAA', 'FFFFFFF'] => 'FFFFFFF',
       ['AAAA', 'DG'] => 'DG',
-      ['BDG', 'AAAAAAA', 'EEEEEEE'] => 'AAAAAAA'
+      ['QQQQQQ', 'FAAAAAA', 'FEEEEEE'] => 'FAAAAAA'
+      # old test flawed: 'BDG' and 'AAAAAAA' both have scores of 7, 
+      # but 'AAAAAAA' got 50 bonus points and that's why it won in 
+      # the test (not because the word.length == 7 did anything--it didn't)
     }
 
     TEST_ARRAYS.each do |list, word|
