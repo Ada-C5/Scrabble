@@ -8,10 +8,7 @@
 #highest_scoring_word: Returns the highest scoring played word
 #highest_word_score: Returns the highest_scoring_word score
 
-require_relative '../scrabble'
-
 class Scrabble::Player
-  include Scoring
   attr_reader :name, :words_played
 
   def initialize(name)
@@ -28,7 +25,7 @@ class Scrabble::Player
     @words_played << word
     # Returns false if player has already won
     word_score = Scrabble::Scoring.score(word)
-      won? ? false : word_score
+    won? ? false : word_score
       # scores word & returns score
   end
 end

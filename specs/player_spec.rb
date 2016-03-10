@@ -18,5 +18,9 @@ DORIS = Scrabble::Player.new("Doris")
       DORIS.play("dumpling")
       assert DORIS.words_played.include?("dumpling")
     end
+
+    it "returns the correct score for a played word" do
+      assert_equal 14, DORIS.play("dumpling")
+    end
   end
 end

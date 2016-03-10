@@ -1,7 +1,7 @@
 require 'simplecov'
 SimpleCov.start
 
-require_relative './spec_helper'
+require_relative 'spec_helper'
 
 TEST_WORD_ARRAY = %w[aerugo aether afeard affair affect affined affirm afflux afford affray]
 TEST_WORD_ARRAY2 = %w[cat jeez foot furzy see]
