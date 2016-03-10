@@ -65,5 +65,22 @@ describe "Won?Methodreturn_false" do
     risha.play("RED")
     risha.won?.must_equal(false)
   end
+end
 
+describe "HighestScoringWord" do
+  it "should return the highest scoring word" do
+    risha = Scrabble::Player.new("risha")
+    risha.play("RED")
+    risha.play("HOTDOG")
+    risha.highest_scoring_word.must_equal("HOTDOG")
+  end
+end
+
+describe "HighestWordScore" do
+  it "should return the highest score" do
+    risha = Scrabble::Player.new("risha")
+    risha.play("RED")
+    risha.play("HOTDOG")
+    risha.highest_word_score.must_equal(11)
+  end
 end

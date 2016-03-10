@@ -19,14 +19,6 @@ class Scrabble::Player
     return false
   end
 
-  # def won?
-    # if name.total_score > WINNING_SCORE
-      # return true
-    # else
-      # return false
-    # end
-  # end
-
   def play(word)
     @played_words << word
     return false if won?
@@ -40,5 +32,20 @@ class Scrabble::Player
     end
     return total_score.reduce(0, :+)
   end
+
+  def highest_scoring_word
+    high_score_word = plays.max_by do |word|
+     Scrabble::Scoring.score(word)
+    end
+    return high_score_word
+  end
+
+  def highest_word_score
+    highest_scored_word = plays.max_by do |word|
+      Scrabble::Scoring.score(word)
+    end
+      return Scrabble::Scoring.score(highest_scored_word)
+  end
+
 
 end
