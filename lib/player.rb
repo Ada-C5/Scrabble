@@ -27,11 +27,15 @@ class Scrabble::Player
     total_score >= 100 ? true : false
    end
 
+   # Returns the highest scoring played word
    def highest_scoring_word
+      played_words.max_by {|word| Scrabble::Scoring.score(word)}
    end
 
    # Returns the highest_scoring_word score
    def highest_word_score
+      highest_word = played_words.max_by {|word| Scrabble::Scoring.score(word)}
+      Scrabble::Scoring.score(highest_word)
    end
 
 end

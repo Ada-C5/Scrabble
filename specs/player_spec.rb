@@ -54,4 +54,16 @@ describe Scrabble::Player do
     bob.play("bees").must_equal false
   end
 
+  # test to see highest_scoring_word returns correctly
+  it "returns highest scoring word" do
+    bob = Scrabble::Player.new(name: "Bob", words: ["cat", "house", "zebra", "ZZZZZZZ"])
+    bob.highest_scoring_word.must_equal "ZZZZZZZ"
+  end
+
+    # test to see highest_word_score returns correctly
+  it "returns highest score" do
+    bob = Scrabble::Player.new(name: "Bob", words: ["cat", "house", "zebra", "ZZZZZZZ"])
+    bob.highest_word_score.must_equal 120
+  end
+
 end
