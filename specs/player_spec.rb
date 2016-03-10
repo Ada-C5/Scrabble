@@ -22,7 +22,9 @@ end
 
   describe "PlayWordsMethodExists" do
     it "should input a new word to the plays array" do
-      Scrabble::Player.new("risha").play("RED")
+      risha = Scrabble::Player.new("risha")
+      risha.play("RED")
+      risha.plays.must_equal(["RED"])
       # played_words.include?("RED")
     end
 

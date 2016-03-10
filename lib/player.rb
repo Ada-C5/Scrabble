@@ -1,3 +1,5 @@
+require_relative "../scrabble"
+
 class Scrabble::Player
   attr_accessor :played_words
   def initialize(name)
