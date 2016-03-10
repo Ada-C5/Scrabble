@@ -16,8 +16,7 @@ class Scrabble::Player
   def play(word)
     @words_played_array << word
     score = Scrabble::Scoring.score(word)
-    puts "Score: #{score}"
-    won?(score) == true ? false : score
+    won? == true ? false : score
     #return false if the player has already won
 
   end
@@ -37,7 +36,7 @@ class Scrabble::Player
 
   end
 
-  def won?(score)
-    score >= 100 ? true : false
+  def won?
+    total_score >= 100 ? true : false
   end
 end

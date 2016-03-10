@@ -22,12 +22,7 @@ describe "Scrabble::Player#plays and #play(word)" do
   end
 
   it "should return false if player has already won" do
-
-  end
-
-describe "Scrabble::Player#total_score" do
-  joe = Scrabble::Player.new(name: "Joe")
-  it %!should return '243' for array_of_words = ["nose", "aaaaaad", "eeeeeed", "frog", "rrrrrrr", "qqqqqj"]! do
+    # starts joe off with a bunch of words already played, then adds "cat"
     array_of_words = ["nose", "aaaaaad", "eeeeeed", "frog", "rrrrrrr", "qqqqqj"]
 
     # create an each method that will play the words in the array one by one
@@ -35,7 +30,20 @@ describe "Scrabble::Player#total_score" do
       joe.play(word_played)
     end
 
-    joe.total_score.must_equal 243
+    joe.play("cat").must_equal false
+  end
+
+describe "Scrabble::Player#total_score" do
+  jane = Scrabble::Player.new(name: "Jane")
+  it %!should return '243' for array_of_words = ["nose", "aaaaaad", "eeeeeed", "frog", "rrrrrrr", "qqqqqj"]! do
+    array_of_words = ["nose", "aaaaaad", "eeeeeed", "frog", "rrrrrrr", "qqqqqj"]
+
+    # create an each method that will play the words in the array one by one
+    array_of_words.each do |word_played|
+      jane.play(word_played)
+    end
+
+    jane.total_score.must_equal 243
   end
 end
 

@@ -1,4 +1,4 @@
-require_relative '../scrabble'  #   allows this class to access scrabble and run through irb
+#require_relative '../scrabble'  #   allows this class to access scrabble and run through irb
 
 class Scrabble::Scoring
   include Scrabble
