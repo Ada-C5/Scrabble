@@ -29,4 +29,8 @@ class TileBag
 
   end
 
+  def tiles_remaining
+    default_tiles.length
+  end
+
 end

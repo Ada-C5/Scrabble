@@ -32,6 +32,14 @@ describe TileBag do
 
     end
 
+    it "removes drawn tiles from default tile array, tiles_remaining returns number tiles remaining" do
+      test_bag = TileBag.new()
+      test_bag.draw_tiles(5)
+      test_bag.tiles_remaining.must_equal(93)
+    end
+
+
+
   end
 
 end
