@@ -12,7 +12,7 @@ describe Scoring do
 	RETURN_FIRST_WORD_TIE = ["ale", "hi", "zaps", "cat", "squad", "butts", "zinc"]
 
 	# TEST 1
-	it "is an object we have access to" do
+	it "Scoring is an object we have access to" do
 		Scoring.wont_be_nil
 	end
 	# TEST 2
