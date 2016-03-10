@@ -50,6 +50,9 @@ describe Scrabble::Scoring do
         Scrabble::Scoring.highest_score_from(["yes", "pull", "all"]).must_equal("yes")
       end
 
+      it "should pick the first word in the supplied list, in caseof multiple words with the same score and same length" do
+        Scrabble::Scoring.highest_score_from(["dogs", "all", "pull"]).wont_be_same_as("pull")
+      end
 
   end
 
