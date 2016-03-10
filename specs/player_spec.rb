@@ -13,8 +13,18 @@ describe Scrabble::Player do
     bob.name.must_equal("Bob")
   end
 
+  # make sure played_words returns array of words
   it "returns the played words" do
     bob = Scrabble::Player.new(name: "Bob", words: ["house", "cat", "zebra"])
     bob.played_words.must_equal(["house", "cat", "zebra"])
   end
+
+  # test play(word) returns score
+  it "returns score of newly played word" do
+    bob = Scrabble::Player.new(name: "Bob", words: ["house", "cat"])
+    bob.play("zebra").must_equal(16)
+
+  end
+
+
 end

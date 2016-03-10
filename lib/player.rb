@@ -5,21 +5,23 @@ class Scrabble::Player
      @played_words = hash[:words]
    end
 
-   def self.play(word)
-     played_words << word
+   def play(word)
+    # returns false if already won
+    @played_words << word
+    Scrabble::Scoring.score(word)
    end
 
-   def self.total_score
+   def total_score
    end
 
-   def self.won?
+   def won?
    end
 
-   def self.highest_scoring_word
+   def highest_scoring_word
    end
 
    # Returns the highest_scoring_word score
-   def self.highest_word_score
+   def highest_word_score
    end
 
 end
