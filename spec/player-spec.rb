@@ -6,10 +6,19 @@ describe Player do
     Player.wont_be_nil
   end
 
-  describe "Player#new" do
+  describe "Player#new(name)" do
     it "Does the class initialize with a name" do
-      self.new.wont_be_nil
+      Player.new(name).wont_be_nil
+    end
+  end
+
+  describe "Player#plays" do
+    it "Does it exist" do
+      "Player#plays.wont_be_nil"
     end
 
+    it "returns an array of the words played by the player" do
+      "Player#plays.wont_be_nil"
+    end
   end
 end
