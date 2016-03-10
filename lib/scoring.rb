@@ -8,7 +8,7 @@ class Scoring
                    "Q"=> 10, "Z"=> 10
                  }
 
-      def self.score(word)                    #this is going to find the total value of the word/ self. bc its a method of the class, not an instance
+      def self.score(word)                    #this is going to find the total value of the word.... self. bc its a method of the class, not an instance (the numbers are always the same for the letters)
         total = 0                             #defining total (variable) as zero for now
         word.upcase.each_char do |key|        #turning the word into upcase and iterating through each character(letter) of the word
           total = total + LETTER_VALUE[key]   #tally the total sum of the value of those letters, when we call [key] on LETTER_VALUE it will give us the value of that key and add it to our total
@@ -18,11 +18,10 @@ class Scoring
 
 
 
-
       def self.highest_score_from(array)
         hash ={}                     #this hash will contain words and their values/scores
 
-        array.each do |word|
+        array.each do |word|         #iterating through words given and assigning the score (through the score method) to the word
           hash[word] = score(word)
         end
 
@@ -42,9 +41,9 @@ class Scoring
         winner = array_tie[0]        #we are setting the winner by default to the first word
 
         array_tie.each do |word|     #iterating through the tie array and checking if the current word's length is less than the minimum
-          if word.length == 7   #add conditional so that if the word is 7 letters long, it is automatically the winner
-            return word
-          end          #return the word and exit
+          if word.length == 7        #add conditional so that if the word is 7 letters long, it is automatically the winner
+            return word              #return the word and exit
+          end
           if word.length < min
             min = word.length        #if it is, set it's length as the new min value
             winner = word            #set the corresponding word as the current winner (which might change the next iteration though)
