@@ -4,10 +4,10 @@ class Player
 
 	WINNING_SCORE = 100 
 
-  def initialize(name, scores_array=[])
+  def initialize(name, scores_array=[], words_played=[])
     @name = name
     @scores_array = scores_array
-    @words_played = []
+    @words_played = words_played
     return @name
   end
 

@@ -2,6 +2,7 @@ require_relative './spec_helper'
 require_relative '../lib/player'
 
 describe Player do 
+ WORDS_PLAYED = ["GOAT", "PUPPY", "MONKEY", "CAT", "WHALES", "IGUANA"]
 
 	# TEST 1
 	it "Player is an object we have access to" do
@@ -19,6 +20,17 @@ describe Player do
 		fran = Player.new("Fran")
 		assert_equal [8], fran.play("word") 
 	end 
+
+	it "should return an array of words played" do 
+		fran = Player.new("Fran")
+		fran.play("goat")
+		fran.play("puppy")
+		fran.play("monkey")
+		fran.play("cat")
+		fran.play("whales")
+		fran.play("iguana")
+		assert_equal WORDS_PLAYED, fran.plays
+	end
 end 
 
 describe Player do
