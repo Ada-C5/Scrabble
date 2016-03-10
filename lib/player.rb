@@ -33,6 +33,9 @@ attr_accessor :total_score
 
 	def won?
 		# If the player has over 100 points, returns true, otherwise returns false
+		if self.total_score > 100
+			return true
+		end
 	end
 
 	def highest_scoring_word
