@@ -1,4 +1,4 @@
-#require_relative "../scrabble"
+# require_relative "../scrabble"
 
 class Scrabble::Scoring
 SEVEN_LETTER_BONUS = 50
@@ -39,6 +39,22 @@ WORD_SCORE_COLLECTION =[]
     return word_score
   end
 
+  def self.highest_score_from(word_array)
+    by_scores = word_array.group_by { |word| self.score(word) }
+      win_words = by_scores.max[1]
+    if win_words.length == 1
+      return win_words[0]
+    elsif win_words.any? { |word| word.length == 7 }
+        seven_letter_words = win_words.select { |word| word.length == 7}
+        return seven_letter_words.first
+    else
+      min_word = win_words.min_by { |word| word.length }
+      return min_word
+    end
+  end
+
+end
+
   # def self.collect_score_array(word)
     # WORDS_SCORE << self.score(word)
     # return WORDS_SCORE
@@ -53,16 +69,6 @@ WORD_SCORE_COLLECTION =[]
     # word_score_collection = PLAYED_WORDS.zip(WORDS_SCORE).to_h
     # return word_score_collection
   # end
-
-  # def highest_score_from(word_array)
-  #
-  #   self.collect_word_array
-  #
-  #
-  # end
-
-
-end
 
 #=======================================================================
 # def self.score(word)
