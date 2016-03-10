@@ -28,4 +28,10 @@ class Scrabble::Player
     won? ? false : word_score
       # scores word & returns score
   end
+
+  def total_score
+    @words_played.reduce(:+)
+  end
+
+
 end

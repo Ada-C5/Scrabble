@@ -7,6 +7,7 @@ TEST_WORD_ARRAY = %w[aerugo aether afeard affair affect affined affirm afflux af
 TEST_WORD_ARRAY2 = %w[cat jeez foot furzy see]
 TEST_WORD_ARRAY3 = %w[cat jeez foot furzy see bcmpbcg]
 TEST_WORD_ARRAY4 = %w[bcmpbcg bcmpbcd ccmpbcd cccpbcd]
+TEST_WORD_ARRAY5 = %w(qqqqqq bgeeeee cat)
 
 
 describe Scrabble::Scoring do
@@ -85,6 +86,11 @@ describe Scrabble::Scoring do
     end
   end
 
+  describe "Scoring#ties_w_seven_letters" do
+    it "prefers seven letter words in ties" do
+      assert_equal [["bgeeeee", 60]], Scrabble::Scoring.ties_w_seven_letters(TEST_WORD_ARRAY5)
+    end
+  end
 
   describe "Scoring#self.highest_score_from" do
     it "should find the highest scoring word with the least letters in the given array" do
@@ -93,6 +99,8 @@ describe Scrabble::Scoring do
       assert_equal "jeez", Scrabble::Scoring.highest_score_from(TEST_WORD_ARRAY2)
 
       assert_equal "bcmpbcg", Scrabble::Scoring.highest_score_from(TEST_WORD_ARRAY3)
+
+      assert_equal "bgeeeee", Scrabble::Scoring.highest_score_from(TEST_WORD_ARRAY5)
     end
 
     it "return the first tied word that appears first in the given array" do

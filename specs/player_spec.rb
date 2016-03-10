@@ -19,8 +19,19 @@ DORIS = Scrabble::Player.new("Doris")
       assert DORIS.words_played.include?("dumpling")
     end
 
+    # need to test this method for when won? is true
     it "returns the correct score for a played word" do
       assert_equal 14, DORIS.play("dumpling")
     end
+  end
+
+  describe "Scrabble::Player#total_score" do
+    it "returns the sum of scores in words_played" do
+      DORIS.play("dumpling")
+      DORIS.play("donut")
+      DORIS.play("doodoo")
+      assert_equal __, DORIS.total_score
+    end
+
   end
 end
