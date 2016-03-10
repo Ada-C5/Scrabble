@@ -7,8 +7,12 @@ class Scrabble::Player
 
    def play(word)
     # returns false if already won
-    @played_words << word
-    Scrabble::Scoring.score(word)
+    if won?
+      return false
+    else
+      @played_words << word
+      Scrabble::Scoring.score(word)
+    end
    end
 
    def total_score
@@ -20,6 +24,7 @@ class Scrabble::Player
    end
 
    def won?
+    total_score >= 100 ? true : false
    end
 
    def highest_scoring_word

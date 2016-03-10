@@ -31,6 +31,27 @@ describe Scrabble::Player do
     bob.total_score.must_equal(32)
   end
 
+  # test to see if player won based on total score = true
+  it "returns true/false based on player winning" do
+    bob = Scrabble::Player.new(name: "Bob", words: ["zzzzzzz","zzzzzzz"])
+    bob.won?.must_equal true
+  end
 
+  # test to see if player has NOT won => false
+  it "returns true/false based on player winning" do
+    bob = Scrabble::Player.new(name: "Bob", words: ["cat"])
+    bob.won?.must_equal false
+  end
+
+  # test to see if player has NOT won => false
+  it "returns true/false based on player winning" do
+    bob = Scrabble::Player.new(name: "Bob", words: ["cat"])
+    bob.play("zebra")
+    bob.played_words.must_equal(["CAT", "ZEBRA"])
+    bob.total_score.must_equal(21)
+    bob.play("zzzzzzz")
+    bob.total_score.must_equal(141)
+    bob.play("bees").must_equal false
+  end
 
 end
