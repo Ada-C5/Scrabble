@@ -15,4 +15,12 @@ describe Scrabble::Player do
     @player_one.name.must_equal("Jane")
   end
 
+  it "will return a value when total score is queried" do
+  	@player_one.total_score.wont_be_nil
+  end
+
+  it "will return a value when a play is made" do
+  	@player_one.play("jack").wont_be_nil
+  end
+
 end
