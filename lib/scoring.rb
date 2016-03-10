@@ -1,5 +1,3 @@
-require_relative '../scrabble'
-
 class Scrabble::Scoring
 
   SCORE_CHART = {

@@ -1,8 +1,7 @@
 require 'simplecov'
 SimpleCov.start
 
-require_relative './spec_helper'
-require_relative '../lib/player'
+require_relative 'spec_helper'
 
 describe Scrabble::Player do
 DORIS = Scrabble::Player.new("Doris")
