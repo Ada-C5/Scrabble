@@ -20,6 +20,7 @@ class Player
 
   def won?
     return false unless total_score > 100
+    puts "You win!"
     @already_won = true # changes to true when score > 100
   end
 

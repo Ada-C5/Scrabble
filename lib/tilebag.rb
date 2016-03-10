@@ -40,13 +40,13 @@ class TileBag
     tile_array
   end
 
-
   def initialize
     @tile_bag = fill_tile_bag
   end
 
   def draw_tiles(num)
-    @tile_bag.shuffle.shift(num)
+    @tile_bag.shuffle!
+    @tile_bag.shift(num)
   end
 
   def tiles_remaining
