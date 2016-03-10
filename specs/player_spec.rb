@@ -14,24 +14,30 @@ describe "Scrabble::Player#name" do
   end
 end
 
-describe "Scrabble::Player#plays and #play(word)" do
-    joe = Scrabble::Player.new(name: "Joe")
+describe "Scrabble::Player#plays" do
+  joe = Scrabble::Player.new(name: "Joe")
 
   it "should return the score '5' for the word 'cat'" do
     joe.play("cat").must_equal 5
   end
 
+end
+
+describe "Scrabble::Player#play(word)" do
+  mary = Scrabble::Player.new(name: "Mary")
+
   it "should return false if player has already won" do
-    # starts joe off with a bunch of words already played, then adds "cat"
+    # starts mary off with a bunch of words already played, then adds "cat"
     array_of_words = ["nose", "aaaaaad", "eeeeeed", "frog", "rrrrrrr", "qqqqqj"]
 
     # create an each method that will play the words in the array one by one
     array_of_words.each do |word_played|
-      joe.play(word_played)
+      mary.play(word_played)
     end
 
-    joe.play("cat").must_equal false
+    mary.play("cat").must_equal false
   end
+end
 
 describe "Scrabble::Player#total_score" do
   jane = Scrabble::Player.new(name: "Jane")
@@ -45,6 +51,19 @@ describe "Scrabble::Player#total_score" do
 
     jane.total_score.must_equal 243
   end
+end
+
+describe "Scrabble::Player#highest_scoring_word" do
+  april = Scrabble::Player.new(name: "April")
+
+  # it should return the highest scoring played WORD
+  it %!should return "frog" for the words played "frog" and "nose"! do
+    april.play("frog")
+    april.play("nose")
+    april.highest_scoring_word.must_equal "frog"
+  end
+
+
 end
 
   # # returns an array of the words played by the player
@@ -61,6 +80,3 @@ end
   #   joe.play("Mexico")
   #   joe.plays.must_equal ["Japan", "Eritrea", "Mexico"]
   # end
-
-
-end
