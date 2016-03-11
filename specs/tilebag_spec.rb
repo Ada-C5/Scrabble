@@ -30,12 +30,4 @@ describe Scrabble::TileBag do
     game.draw_tiles(99)
     game.tiles_remaining.must_equal(0)
   end
-
-  # remove all the tiles
-  it "what happens when you remove 99 tiles!?!?!?" do
-    game = Scrabble::TileBag.new
-    game.draw_tiles(99).must_equal("dogs")
-  end
-
-
 end

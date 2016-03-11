@@ -7,7 +7,7 @@ describe Scrabble::Player do
     Scrabble::Player.wont_be_nil
   end
 
- #make a bob, do certain plays and assert what's in bob
+ # make a bob, do certain plays and assert what's in bob
   it "returns a name" do
     bob = Scrabble::Player.new(name: "Bob", words: ["house", "cat", "zebra"])
     bob.name.must_equal("Bob")
@@ -66,9 +66,16 @@ describe Scrabble::Player do
     bob.highest_word_score.must_equal 120
   end
 
-  it "returns highest score" do
-    bob = Scrabble::Player.new(name: "Bob", words: ["cat", "house", "zebra", "ZZZZZZZ"])
-    bob.highest_word_score.must_equal 120
+  it "should start with 7 tiles " do
+    bob = Scrabble::Player.new(name: "Bob", words: ["dog"])
+    bob.tiles.length.must_equal(7)
+  end
+
+  it "should always have 7 tiles to play with after playing words " do
+    bob = Scrabble::Player.new(name: "Bob", words: ["dog"])
+    bob.tiles
+    bob.play("abcd")
+    bob.tiles.length.must_equal(7)
   end
 
 end
