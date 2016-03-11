@@ -1,7 +1,7 @@
 require_relative '../scrabble'
 
 class Scrabble::Tilebag
-  attr_reader :tiles
+  attr_reader :tiles, :total_tiles_drawn
 
 	def initialize
 		@tiles = Scrabble::DEFAULT_TILES.shuffle
@@ -13,6 +13,10 @@ class Scrabble::Tilebag
 			tiles_drawn << tiles.pop
 		end
     return tiles_drawn
+	end
+
+	def tiles_remaining
+		tiles.length
 	end
 
 end
