@@ -50,26 +50,16 @@ describe Scrabble::Player do
     @fred.won?.must_equal(true)
   end
 
-
-  TEST_ARRAYS = {
-		["cat", "dog", "face", "data"] => "face",
-		["talon", "cat", "pie", "dog"] => "cat",
-		["jack", "benzol", "blazer", "cupcake"] => "cupcake"
-	}
-
-
-	TEST_ARRAYS.each do |array, word|
-		it "selects the highest value word in the array" do
-			Scrabble::Player.highest_scoring_word(array).must_equal(word)
-		end
-
-    it "selects the highest value word in the array and shows score value" do 
-      Scrabble::Player.highest_word_score.must_equal(word.score)
-    end
-
-	end
-
   it "will return false if a winner tries to make a play" do
     @fred.play("cat").must_equal(false)
   end
+
+	it "selects the highest value word in the array" do
+		@fred.highest_scoring_word(@fred.plays).must_equal("cupcake")
+	end
+
+  it "selects the highest value word in the array and shows score value" do 
+    @fred.highest_word_score.must_equal(67)
+  end
+
 end
