@@ -10,27 +10,31 @@ class Scrabble::TileBag
   def draw_tiles(num)
     letter = []
     num.times do |tile|
+      # make sure there are tiles left in bag
+      if tilebag.length == 0
+        puts "No more tiles left."
+        break
+      end
       index = rand(0..tilebag.length-1)
       # shovels letters into array
       letter << tilebag[index][0]
       # removes 1 from letter count if tile is drawn
       @tilebag[index][1] = tilebag[index][1] - 1
-
+      # if letter amount = 0 remove entire subarray
       if tilebag[index][1] == 0
         @tilebag.delete(tilebag[index])
       end
     end
-      return letter
-      #
-
+    return letter
   end
 
+  # method to return number of tiles remaining
   def tiles_remaining
     tiles = 0
+    # counter numbers from each letter subarray
     tilebag.each do |letter, number|
       tiles = tiles + number
     end
     return tiles
   end
-
 end

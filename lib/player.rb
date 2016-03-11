@@ -1,8 +1,9 @@
 class Scrabble::Player
-  attr_reader :name, :played_words
+  attr_reader :name, :played_words, :tiles
    def initialize(hash)
-     @name = hash[:name]
-     @played_words = hash[:words]
+    @name = hash[:name]
+    @played_words = hash[:words]
+    @tiles = Scrabble::TileBag.draw_tiles(7)
    end
 
    def play(word)
@@ -13,6 +14,7 @@ class Scrabble::Player
       @played_words << word
       Scrabble::Scoring.score(word)
     end
+    # pass new word to tiles_method to remove those letters from @tiles
    end
 
    def total_score
@@ -38,4 +40,16 @@ class Scrabble::Player
       Scrabble::Scoring.score(highest_word)
    end
 
+   # removes letters from played word and repopulates tiles to 7
+   def tiles_method(word)
+    len = word.length
+    
+    # word.each_char do |char|
+    #   if tiles.include?(char)
+    #     @tiles.delete(char)
+    #   end
+    # end
+    @tiles << Scrabble::TileBag.draw_tiles(len)
+    return @tiles
+   end
 end

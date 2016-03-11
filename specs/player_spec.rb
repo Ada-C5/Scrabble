@@ -66,4 +66,9 @@ describe Scrabble::Player do
     bob.highest_word_score.must_equal 120
   end
 
+  it "returns highest score" do
+    bob = Scrabble::Player.new(name: "Bob", words: ["cat", "house", "zebra", "ZZZZZZZ"])
+    bob.highest_word_score.must_equal 120
+  end
+
 end
