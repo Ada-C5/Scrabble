@@ -37,12 +37,14 @@ class Player
   end
 
   def highest_scoring_word
-    words_and_scores = Hash.new {|hash, key| hash[key] = []}
+    words_and_scores = { }
+    most = []
     @words.each do |word|
-      words_and_scores[:word] << (Scoring.score(word))
-      end
-      words_and_scores.max_by do |key, value|
-      return words_and_scores.key(value.max)
+      words_and_scores[word] = (Scoring.score(word))
     end
+    most = words_and_scores.max_by do |key, value|
+      value
+    end
+    return most[0]
   end
 end
