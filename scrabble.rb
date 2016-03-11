@@ -1,5 +1,9 @@
 module Scrabble
   include Scoring
+
+  include Player
+
+  include TileBag
   
 end
 
