@@ -66,7 +66,7 @@ end
 
   def draw_tiles(tile_bag)
     num = MAX_TILES_ON_TRAY - tiles.length
-    tile_bag.draw_tiles(num)
+    @tiles = tile_bag.draw_tiles(num)
   end
 
 end

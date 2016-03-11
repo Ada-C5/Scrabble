@@ -12,6 +12,7 @@ class Scrabble::Scoring
     10 => ["Q", "Z"]
   }
 
+  # returns the score value for a single given word
   def self.score(word)
     score = 0
     tiles = 0
@@ -32,33 +33,52 @@ class Scrabble::Scoring
   end
 
   def self.highest_score_from(array_of_words) # array_of_words = ["cats", "fee", "no"]
+    array_of_words.uniq.length == array_of_words.length ? self.find_high_score(array_of_words) : self.tiebreaker(array_of_words)
+  end
 
-    array_of_word_values = []
-    array_of_words.each do |word|
-      array_of_word_values << [word, self.score(word), word.length] #  = [["cats", 7, 4], ["fee", 7, 3], ["no", 2, 2]]
+  def self.find_high_score(array_of_words)
+    array_of_words.max_by {|word| self.score(word) }
+  end
+
+  def self.tiebreaker(array_of_words)
+    # 7-related conditions:
+    seven_letter_word_array = array_of_words.find_all {|word| word.length == 7}
+    if seven_letter_word_array == nil
+      # -if neither of the highest-scoring words have 7 letters, the one with the least letters wins
+      array_of_words.min_by {|word| word.length}
+    elsif seven_letter_word_array.length == 1
+      # -if only one of the highest-scoring words has 7 letters, that one wins
+      array_of_words.max_by {|word| word.length}
+    elsif seven_letter_word_array.length > 1
+      # -if more than one of the highest-scoring words has 7 letters, the first instance wins
+      array_of_words.find {|word| word.length == 7}
     end
-
-    highest_score_array = array_of_word_values[0] # ["cats", 7, 4]
-
-    array_of_word_values.each do |word_array| # ["cats", 7, 4]
-      # compares the score of the words
-      if word_array[1] == highest_score_array[1]  # compare score
-        # compares the length of the words
-        if word_array[2] < highest_score_array[2]
-          highest_score_array[2] == 7 ? highest_score_array : highest_score_array = word_array
-          #highest_score_array = word_array # replace the highest score to the word_array being referenced
-        elsif word_array[2] >= highest_score_array[2]
-          if highest_score_array[2] < 7
-            word_array[2] == 7 ? highest_score_array = word_array : highest_score_array
-          end
-        end
-      elsif word_array[1] > highest_score_array[1]
-        highest_score_array = word_array
-      end
-    end
-    return highest_score_array[0]
   end
 end
+#
+#     highest_score_array = array_of_word_values[0] # ["cats", 7, 4]
+#
+#     array_of_word_values.each do |word_array| # ["cats", 7, 4]
+#       # compares the score of the words
+#       if word_array[1] == highest_score_array[1]  # compare score
+#         # compares the length of the words
+#         if word_array[2] < highest_score_array[2]
+#           highest_score_array[2] == 7 ? highest_score_array : highest_score_array = word_array
+#           #highest_score_array = word_array # replace the highest score to the word_array being referenced
+#         elsif word_array[2] >= highest_score_array[2]
+#           if highest_score_array[2] < 7
+#             word_array[2] == 7 ? highest_score_array = word_array : highest_score_array
+#           end
+#         end
+#       elsif word_array[1] > highest_score_array[1]
+#         highest_score_array = word_array
+#       end
+#     end
+#     return highest_score_array[0]
+#   end
+# end
+
+
 
 
 # highest_word = ""
