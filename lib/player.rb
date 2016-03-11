@@ -63,7 +63,7 @@ attr_accessor :total_score
 	end
 
 	def draw_tiles(tile_bag)
-		tiles << tile_bag.draw_tiles(7 - tiles.length)
+		tiles << tile_bag.draw_tiles(Scrabble::MAX_TILES - tiles.length)
 		tiles.flatten!
 	end
 
