@@ -30,19 +30,19 @@ class TileBag
   }
 
 	def initialize
-
-	end
-
-	def called 
 		# sets up instaces with collections of default tiles
-		# like the pawns example
+		@starting_tiles = STARTING_TILE_SET # is this valid?
 	end
 
 	def self.draw_tiles(number_of_tiles)
 		# returns num number of random tiles, removes the tiles from the default set.
+
+		# @starting_tiles - number_of_tiles
+		# returns drawn tiles and subtracts from starting tile pool. Maybe use .sample? 
 	end
 
 	def self.tiles_remaining
 		# returns the number of tiles remaining in the bag
+		# every time tiles are drawn, this needs to update
 	end 
 end
