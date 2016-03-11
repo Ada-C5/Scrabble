@@ -64,6 +64,17 @@ describe "Scrabble::Player#highest_scoring_word" do
   end
 end
 
+describe "Scrabble::Player#highest_word_score" do
+  jody = Scrabble::Player.new(name: "Jody")
+
+  # it should return the highest scoring played WORD
+  it %!should return "8" for the words played "frog" and "nose"! do
+    jody.play("frog")
+    jody.play("nose")
+    jody.highest_word_score.must_equal 8
+  end
+end
+
   # # returns an array of the words played by the player
   # joe = Scrabble::Player.new(name: "Joe")
   # it "should return [] played by Joe" do

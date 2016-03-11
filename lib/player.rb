@@ -2,19 +2,19 @@
 
 class Scrabble::Player
   include Scrabble
-  attr_reader :name, :words_played_array
+  attr_reader :name
 
   def initialize(player_info)
     @name = player_info[:name]
-    @words_played_array = []
+    @plays = []
   end
 
   def plays
-    @words_played_array
+    @plays
   end
 
   def play(word)
-    @words_played_array << word
+    @plays << word
     score = Scrabble::Scoring.score(word)
     won? == true ? false : score
     #return false if the player has already won
@@ -28,7 +28,7 @@ class Scrabble::Player
 def words_and_matching_scores
   total_score_hash = {}
 
-  words_played_array.each do |word|
+  plays.each do |word|
     total_score_hash[word] = Scrabble::Scoring.score(word)
   end
   total_score_hash
