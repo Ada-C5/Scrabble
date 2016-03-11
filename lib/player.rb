@@ -4,16 +4,17 @@ class Scrabble::Player
     @name = hash[:name]
     @played_words = hash[:words]
     @bag = Scrabble::TileBag.new
+    # initialize bag of tiles to play with - always 7
     @tiles = @bag.draw_tiles(7)
    end
 
+   # method to take in word, remove length from tiles, see if player won and generate score for word
    def play(word)
     # removes number of played tiles and re-draws from tile bag
     length = word.length
     @tiles.pop(length)
     # pass new word to tiles_method to remove those letters from @tiles
     draw(length)
-
     # returns false if already won
     if won?
       return false
@@ -23,6 +24,7 @@ class Scrabble::Player
     end
    end
 
+   # take all played words and generate score (sum of all)
    def total_score
     points = 0
     played_words.each do |word|
@@ -31,6 +33,7 @@ class Scrabble::Player
     return points
    end
 
+   # method to track if player has won
    def won?
     total_score >= 100 ? true : false
    end
