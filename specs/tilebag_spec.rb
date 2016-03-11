@@ -16,11 +16,22 @@ describe Scrabble::TileBag do
       assert_equal 4, new_tilebag.draw_tiles(4).length
     end
 
-    it "should mutate the original array by the number of tiles draw" do
+    it "should mutate the original array by the number of tiles drawn" do
       new_tilebag = Scrabble::TileBag.new
       assert_equal 98, new_tilebag.tilebag.length
       new_tilebag.draw_tiles(4)
       assert_equal 94, new_tilebag.tilebag.length
+    end
+  end
+
+  describe "TileBag#tiles_remaining" do
+    it "returns the number of remaining letters in tilebag after a draw." do
+      new_tilebag = Scrabble::TileBag.new
+      assert_equal 98, new_tilebag.tiles_remaining
+      new_tilebag.draw_tiles(4)
+      assert_equal 94, new_tilebag.tiles_remaining
+      new_tilebag.draw_tiles(4)
+      assert_equal 90, new_tilebag.tiles_remaining
     end
   end
 
