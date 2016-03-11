@@ -19,4 +19,8 @@ class Player
     @words << word
     return @word_score
   end
+
+  def total_score
+
+  end
 end
