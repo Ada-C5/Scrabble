@@ -65,6 +65,11 @@ describe Scrabble::Player do
     @fred.highest_word_score.must_equal(67)
   end
 
+  it "will return the tiles when queried" do
+    @bob.draw_tiles(@testbag)
+    @bob.must_respond_to(:tiles)
+  end
+
   it "will fill tiles when tiles are drawn" do
     @bob.draw_tiles(@testbag)
     @bob.tiles.length.must_equal(7)
