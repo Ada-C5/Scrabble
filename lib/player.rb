@@ -64,6 +64,7 @@ attr_accessor :total_score
 
 	def draw_tiles(tile_bag)
 		tiles << tile_bag.draw_tiles(7 - tiles.length)
+		tiles.flatten!
 	end
 
 end
