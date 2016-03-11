@@ -7,8 +7,8 @@ describe Scrabble::Scoring do
     Scrabble::Scoring.wont_be_nil
   end
 
-  # make sure constant array is initialized (array of arrays) holding letter/value info
-  it "Is the constant array of letter/values correct?"
+  # make sure constant array is initialized (array of arrays) holding letter/amount info
+  it "Is the constant array of letter/amount correct?"
     Scrabble::Scoring.LETTERS.length.must_equal(26)
   end
 
