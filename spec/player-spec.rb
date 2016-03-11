@@ -27,11 +27,12 @@ describe Player do
 
     test_player = Player.new(name)
 
-    TEST_CASES.each do |played_word|
+    # TEST_CASES.each do |played_word|
       it "Does it add the played word?" do
-        test_player.play(played_word).must_equal(test_player.plays)
+        test_player.play("word")
+        test_player.plays.must_equal(["word"])
       end
-    end
+    # end
   end
 
   describe "#play(word)" do
