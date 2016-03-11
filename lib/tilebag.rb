@@ -11,5 +11,12 @@ class Scrabble::TileBag
   def draw_tiles(num)
     sample = @tiles.keys.sample(num)
     # =>[:J, :B, :F, :L, :Y, :I, :C]
+
+    @tiles.each do |letter, quantity|
+    if sample.include? letter
+      quantity -= 1
+      tiles[letter] = quantity
+    end
+    #  tiles
   end
 end
