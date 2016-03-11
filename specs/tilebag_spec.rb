@@ -7,15 +7,39 @@ describe Tilebag do
   end
 end
 
-describe "Tilebag#tiles_remaining" do
-  it "should return the tiles remaining in the game" do
-    Tilebag.tiles_remaining.must_equal(98)
-  end
-  it "should return the tiles remaining in the game" do
-    Tilebag.draw_tiles(7)
-    Tilebag.tiles_remaining.must_equal(91)
+describe "Tilebag#tdraw_tiles" do
+	nadine_bag = Tilebag.new
+  it "should return out of tiles" do
+    nadine_bag.draw_tiles(100).must_equal("Out of tiles")
   end
 end
+
+describe "Tilebag#tiles_remaining" do
+	nadine_bag = Tilebag.new
+  it "should return the 98 tiles remaining in the game" do
+    nadine_bag.tiles_remaining.must_equal(98)
+  end
+end
+
+describe "Tilebag#tiles_remaining2" do
+	suzanne_bag= Tilebag.new
+  it "should return the 91 tiles remaining in the game" do
+    suzanne_bag.draw_tiles(7)
+    suzanne_bag.tiles_remaining.must_equal(91)
+  end
+end
+
+describe "Tilebag#tiles_remaining3" do
+  jeremy_bag=Tilebag.new
+  it "should return the 0 tiles remaining in the game" do
+    jeremy_bag.draw_tiles(98)
+    jeremy_bag.tiles_remaining.must_equal(0)
+  end
+end
+
+
+
+
 
  # TILEBAG = {
  #   "a"=>9, "b"=>2, "c"=>2, "d"=>4, "e"=>12, "f"=>2, "g"=>3, "h"=>2, "i"=>9,
