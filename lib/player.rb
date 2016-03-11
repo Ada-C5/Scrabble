@@ -25,7 +25,6 @@ class Scrabble::Player
        array_of_scores << Scrabble::Scoring.score(word)
     end
     # => array_of_scores = [4, 6, 8,]
-    # array_of_scores.reduce(:+)
-    return array_of_scores
+    return array_of_scores.reduce(:+)
   end
 end

@@ -42,9 +42,9 @@ describe Scrabble::Player do
     it "should return the sum of scores played" do
     test_words = ["melissa", "pull"]
     test_words.each do |word|
-      # melissa.play(word)
-      melissa.total_score.must_equal 65
+       melissa.play(word)
       end
+    melissa.total_score.must_equal 65
     end
   end
 end
