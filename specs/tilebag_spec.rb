@@ -20,13 +20,16 @@ describe Scrabble::Tilebag do
   	Scrabble::DEFAULT_TILES.must_include(@tilebag.draw_tiles(1)[0])
   end
 
-  it "returns same number of tiles as is drawn" do
-    @tilebag.draw_tiles(2).length.must_equal(2)
-  end
+  TILE_DRAWS = [4, 6, 3, 1]
 
-  it "returns the correct number of remaining tiles after a play" do
-    @tilebag.draw_tiles(3)
-    @tilebag.tiles_remaining.must_equal(Scrabble::DEFAULT_TILES.length - 3)
-  end
+  TILE_DRAWS.each do |index|
+    it "returns same number of tiles as is drawn" do
+      @tilebag.draw_tiles(index).length.must_equal(index)
+    end
 
+    it "returns the correct number of remaining tiles after a play" do
+      @tilebag.draw_tiles(index)
+      @tilebag.tiles_remaining.must_equal(Scrabble::DEFAULT_TILES.length - index)
+    end
+  end
 end
