@@ -2,14 +2,14 @@ require_relative './spec_helper'
 
 
 # ACCOUNT FOR PLAYER ENTERING NON-LETTERS
-describe Scoring do
+describe Scrabble::Scoring do
   it "is an object we have access to" do
-    Scoring.wont_be_nil
+    Scrabble::Scoring.wont_be_nil
   end
 
   describe "Scoring#score" do
     it "is an object we have access to" do
-      Scoring.score("").wont_be_nil
+      Scrabble::Scoring.score("").wont_be_nil
     end
 
     TEST_CASES_SCORE = {
@@ -28,14 +28,14 @@ describe Scoring do
 
     TEST_CASES_SCORE.each do |word_score, word|
      it "should return the score '#{ word_score }' for the word #{ word }" do
-       Scoring.score(word).must_equal(word_score)
+       Scrabble::Scoring.score(word).must_equal(word_score)
      end
    end
   end
 
   describe "Scoring#highest_score_from" do
     it "is an object we have access to" do
-      Scoring.highest_score_from(['']).wont_be_nil
+      Scrabble::Scoring.highest_score_from(['']).wont_be_nil
     end
 
     TEST_CASES_ARRAY = {
@@ -48,7 +48,7 @@ describe Scoring do
     }
     TEST_CASES_ARRAY.each do |winning_word, array_words|
      it "should return the winning word '#{ winning_word }' for the array of words #{ array_words }" do
-       Scoring.highest_score_from(array_words).must_equal(winning_word)
+       Scrabble::Scoring.highest_score_from(array_words).must_equal(winning_word)
      end
    end
   end
