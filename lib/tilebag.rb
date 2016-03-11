@@ -11,16 +11,28 @@ class Tilebag
     "s"=>4, "t"=>6, "u"=>4, "v"=>2, "w"=>2, "x"=>1, "y"=>2, "z"=>1}
 
   def self.draw_tiles(num)
+    keys = []
+    letters = []
+    keys = (@tilebag.keys).shuffle
+    puts keys
+    count = 0
+      until count == num do
+        letter = keys[count]
+          if @tilebag[letter] >= 1
+            @tilebag[letter] = @tilebag[letter] - 1
+            letters << letter
+            count = count + 1
+          end
+      end
+    return letters
 
-  	
-  	return 
   end
 
   def self.tiles_remaining
-  	self.draw_tiles
-
+    remaining = 0
   	@tilebag.each do |letter, number|
   		remaining += number
   	end
-  	return (remaining-)
+  	return remaining
+  end
 end
