@@ -1,9 +1,12 @@
 class Player
   attr_reader :name, :word
+  WIN_CONDITION = 100
+
   def initialize(name)
   @name = name
   @words = []
   @word_score = 0
+
   end
 
   def plays
