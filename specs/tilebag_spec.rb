@@ -13,7 +13,10 @@ describe Scrabble::Tilebag do
 	end
 
   it "has the correct letters" do
-    @tilebag.tiles.must_include	"DEFAULT_TILES"
+    @tilebag.tiles.must_equal(Scrabble::DEFAULT_TILES)
   end
 
+  it "returns a tile when you draw one" do
+  	Scrabble::DEFAULT_TILES.must_include(@tilebag.draw_tiles(1))
+  end
 end
