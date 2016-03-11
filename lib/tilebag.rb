@@ -8,7 +8,7 @@ class Scrabble::TileBag
 
   def initialize
     @default_tiles = [["A", 1], ["A", 1], ["A", 1], ["A", 1], ["A", 1], ["A", 1], ["A", 1], ["A", 1], ["A", 1],
-                      ["B", 1], ["B", 1], 
+                      ["B", 1], ["B", 1],
                       ["C", 1], ["C", 1],
                       ["D", 1], ["D", 1], ["D", 1], ["D", 1],
                       ["E", 1], ["E", 1], ["E", 1], ["E", 1], ["E", 1], ["E", 1], ["E", 1],
@@ -37,7 +37,15 @@ class Scrabble::TileBag
   end
 
   def draw_tiles(num)
-    default_tiles.sample(5)[0]
+
+    array_of_selected_words =[]
+
+    num.times do
+      selected_tile_array = default_tiles.sample
+      array_of_selected_words << selected_tile_array[0]
+      @default_tiles.delete(selected_tile_array)
+    end
+    array_of_selected_words
   end
 
 end
