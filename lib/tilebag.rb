@@ -1,36 +1,7 @@
-#require_relative '../scrabble'
+require_relative '../scrabble'
 class Scrabble::Tilebag
+  attr_accessor :default_tiles
 
-# TILES = {
-#   'A' => 9,
-#   "B" => 2,
-#   "C" => 2,
-#   "D" => 4,
-#   "E" => 12,
-#   "F" => 2,
-#   "G" => 3,
-#   "H" => 2,
-#   "I" => 9,
-#   "J" => 1,
-#   "K" => 1,
-#   "L" => 4,
-#   "M" => 2,
-#   "N" => 6,
-#   "O" => 8,
-#   "P" => 2,
-#   "Q" => 1,
-#   "R" => 6,
-#   "S" => 4,
-#   "T" => 6,
-#   "U" => 4,
-#   "V" => 2,
-#   "W" => 2,
-#   "X" => 1,
-#   "Y" => 1,
-#   "Z" => 1
-# }
-
-attr_accessor :default_tiles
   def initialize
     @default_tiles = new_bag
   end
@@ -64,21 +35,27 @@ attr_accessor :default_tiles
       "Y" => 1,
       "Z" => 1
     }
-
   end
 
   def display_all_tiles
     array = []
     @default_tiles.each do |key, value|
       array << (key * value).split("")
-      return array.flatten
     end
+    return array.flatten
   end
 
   def draw_tiles(num)
-    our_tiles = display_all_tiles.sample(num)
+    if num < tiles_remaining
+      our_tiles = display_all_tiles.sample(num)
       tile_removal(our_tiles)
       return our_tiles
+    else
+      print "Sorry, there are only #{tiles_remaining} left."
+      our_tiles = display_all_tiles.sample(tiles_remaining)
+      tile_removal(our_tiles)
+      return our_tiles
+    end
   end
 
   def tiles_remaining
