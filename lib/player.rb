@@ -27,4 +27,14 @@ class Scrabble::Player
     # => array_of_scores = [4, 6, 8,]
     return array_of_scores.reduce(:+)
   end
+
+  def won?
+   total_score
+   if total_score >= 100
+     return true
+   else
+     return false
+   end
+ end
+
 end
