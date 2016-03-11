@@ -1,6 +1,4 @@
-require File.expand_path('../scoring.rb',__FILE__)
-
-class Player < Scoring
+class Player
 	attr_accessor :name
 
 	def initialize (name)
@@ -10,7 +8,8 @@ class Player < Scoring
 	def hash_players
 		hash_players = {
 			"Suzanne" => ["cramps", "develop", "mixup", "doggies"],
-			"Jeremy" => ["zebra", "naysays", "pigsty"]
+			"Jeremy" => ["zebra", "naysays", "pigsty"],
+			"Nadine" => ["mice"]
 		}
 	end
 
@@ -18,7 +17,7 @@ class Player < Scoring
 		played_words = []
 		hash_players.each do |name, words|
 			if @name == name
-				played_words = words
+				played_words += words
 			end
 		end
 		return played_words
@@ -28,16 +27,51 @@ class Player < Scoring
 		super
 	end
 
-	# def total_score
-	# 	total_array_values = 0
-	# 	hash_players.each do |name, array|
-	# 		if @name == name
-	# 			array.each do |word|
-	# 				total_array_values += Scoring.score(word)
-	# 			end
-	# 		end
-	# 	end
-	# 	return total_array_values
-	# end
+	def play(word)
+		if won? == true
+			return false
+		else
+			hash_players.each do |name, words|
+				if @name == name
+					words << word
+				end
+			end
+			return Scoring.score(word)	
+		end
+	end
 
+	def total_score
+	 	total_array_values = 0
+	 	hash_players.each do |name, array|
+	 		if @name == name
+	 			array.each do |word|
+	 				total_array_values += Scoring.score(word)
+	 			end
+	 		end
+	 	end
+	 	return total_array_values
+	 end
+
+	def won?
+		if total_score >100
+	 		return true
+	 	else
+	 		return false
+	 	end
+	end
+
+	def highest_scoring_word
+		win_word = ""
+		hash_players.each do |name,array|
+			if @name == name 
+				win_word = Scoring.highest_score_from(array)
+			end
+		end
+		return win_word
+	end
+
+	def highest_word_score
+		highest_score = 0
+		highest_score = Scoring.score(highest_scoring_word)
+	end
 end
