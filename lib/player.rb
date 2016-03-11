@@ -47,4 +47,16 @@ class Player
     end
     return most[0]
   end
+
+  def highest_word_score
+    words_and_scores = { }
+    most = []
+    @words.each do |word|
+      words_and_scores[Scoring.score(word)] = word
+    end
+    most = words_and_scores.max_by do |key, value|
+      key
+    end
+    return most[0]
+  end
 end
