@@ -31,18 +31,20 @@ class TileBag
 
 	def initialize
 		# sets up instaces with collections of default tiles
-		@starting_tiles = STARTING_TILE_SET # is this valid?
+		@tiles_in_bag = STARTING_TILE_SET # is this valid?
 	end
 
 	def self.draw_tiles(number_of_tiles)
 		# returns num number of random tiles, removes the tiles from the default set.
-
+    number_of_tiles.times do
+      return STARTING_TILE_SET.sample
+    end
 		# @starting_tiles - number_of_tiles
-		# returns drawn tiles and subtracts from starting tile pool. Maybe use .sample? 
+		# returns drawn tiles and subtracts from starting tile pool. Maybe use .sample?
 	end
 
 	def self.tiles_remaining
 		# returns the number of tiles remaining in the bag
 		# every time tiles are drawn, this needs to update
-	end 
+	end
 end
