@@ -1,15 +1,18 @@
 require_relative './spec_helper'
 require_relative '../scrabble'
 require_relative '../lib/player'
+require_relative '../lib/tilebag'
 
 describe Scrabble::Player do
   before do
+    @testbag = Scrabble::Tilebag.new
+
     @jane = Scrabble::Player.new("Jane")
     @jane.play("cat")
-    
+
     @bob = Scrabble::Player.new("bob")
     @bob.total_score
-    
+
     @fred = Scrabble::Player.new("fred")
     @fred.play("cupcake")
     @fred.play("abalone")
@@ -25,7 +28,7 @@ describe Scrabble::Player do
   it "has a name" do
     proc { Scrabble::Player.new() }.must_raise(ArgumentError)
   end
-  
+
   it "has a readable name instance variable" do
     @jane.name.must_equal("Jane")
   end
@@ -58,8 +61,13 @@ describe Scrabble::Player do
 		@fred.highest_scoring_word(@fred.plays).must_equal("cupcake")
 	end
 
-  it "selects the highest value word in the array and shows score value" do 
+  it "selects the highest value word in the array and shows score value" do
     @fred.highest_word_score.must_equal(67)
+  end
+
+  it "will fill tiles when tiles are drawn" do
+    @bob.draw_tiles(@testbag)
+    @bob.tiles.length.must_equal(7)
   end
 
 end
