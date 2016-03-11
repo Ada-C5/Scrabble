@@ -2,16 +2,15 @@ require_relative '../scrabble'
 require_relative './scoring'
 
 class Scrabble::Player
-attr_reader :name, :plays
+attr_reader :name, :plays, :tiles
 attr_accessor :total_score
-
 
 	# set up with empty plays array and score as instance variable
 	def initialize(name, score = 0)
 	  @name = name
 	  @total_score = score
 	  @plays = []
-	  @won = false
+		@tiles = []
 	end
 
 	def play(word)
@@ -61,6 +60,10 @@ attr_accessor :total_score
 		  end
 	  end
 		return Scrabble::Scoring.score(highest_score)
+	end
+
+	def draw_tiles(tile_bag)
+		tiles << tile_bag.draw_tiles(7 - tiles.length)
 	end
 
 end
