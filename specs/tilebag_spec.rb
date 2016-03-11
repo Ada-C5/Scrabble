@@ -24,4 +24,9 @@ describe Scrabble::Tilebag do
     @tilebag.draw_tiles(2).length.must_equal(2)
   end
 
+  it "returns the correct number of remaining tiles after a play" do
+    @tilebag.draw_tiles(3)
+    @tilebag.tiles_remaining.must_equal(Scrabble::DEFAULT_TILES.length - 3)
+  end
+
 end
