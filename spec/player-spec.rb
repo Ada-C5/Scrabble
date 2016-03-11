@@ -53,9 +53,9 @@ describe Player do
 
     it "Does it return the total score" do
       TEST_CASES.each do |word|
-        total += total.total_score
-        total.must_equal(Scoring.score(word))
+        test_player.play(word)
       end
+      test_player.total_score.must_equal(25)
     end
   end
 end

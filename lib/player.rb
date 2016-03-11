@@ -10,7 +10,6 @@ class Player
   end
 
   def plays
-    @words
     return @words
   end
 
@@ -21,6 +20,10 @@ class Player
   end
 
   def total_score
-
+    tally = 0
+    @words.each do |word|
+    tally += Scoring.score(word)
+    end
+   return tally
   end
 end
