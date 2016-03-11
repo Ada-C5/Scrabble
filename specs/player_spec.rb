@@ -8,7 +8,7 @@ describe Scrabble::Player do
     @testbag = Scrabble::Tilebag.new
 
     @jane = Scrabble::Player.new("Jane")
-    @jane.play("cat")
+    
 
     @bob = Scrabble::Player.new("bob")
     @bob.total_score
@@ -30,22 +30,25 @@ describe Scrabble::Player do
   end
 
   it "has a readable name instance variable" do
-    @jane.name.must_equal("Jane")
+    @jane.must_respond_to(:name)
   end
 
   it "will return a value when total score is queried" do
-    @jane.total_score.wont_be_nil
+    @jane.must_respond_to(:total_score)
   end
 
   it "will return the score when a play is made" do
-    @jane.play("cat").must_equal(5)
+    @jane.play("cat").must_equal(Scrabble::Scoring.score("cat"))
   end
 
   it "will increase total_score when a word is played" do
-    @jane.total_score.must_equal(5)
+    score = @jane.total_score
+    @jane.play("elephant")
+    @jane.total_score.must_equal(score + Scrabble::Scoring.score("elephant"))
   end
 
   it "will push a word into the plays array" do
+    @jane.play("cat")
     @jane.plays.must_include("cat")
   end
 
@@ -62,17 +65,16 @@ describe Scrabble::Player do
 	end
 
   it "selects the highest value word in the array and shows score value" do
-    @fred.highest_word_score.must_equal(67)
+    @fred.highest_word_score.must_equal(Scrabble::Scoring.score(@fred.highest_scoring_word(@fred.plays)))
   end
 
   it "will return the tiles when queried" do
-    @bob.draw_tiles(@testbag)
     @bob.must_respond_to(:tiles)
   end
 
   it "will fill tiles when tiles are drawn" do
     @bob.draw_tiles(@testbag)
-    @bob.tiles.length.must_equal(7)
+    @bob.tiles.length.must_equal(Scrabble::MAX_TILES)
   end
 
 end
