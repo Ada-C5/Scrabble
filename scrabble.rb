@@ -9,3 +9,4 @@ end
 # the Scrabble module, meaning the code in scoring.rb won't work
 require_relative './lib/scoring'
 require_relative './lib/player'
+require_relative './lib/tilebag'

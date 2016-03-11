@@ -21,10 +21,6 @@ class Scrabble::Player
 
   end
 
-  #total_score: Returns the sum of scores of played words
-  # (pass score values to total_score method)
-  # test score is being stored (for test purposes, pass a value at the end)
-
 def words_and_matching_scores
   total_score_hash = {}
 
@@ -36,7 +32,7 @@ end
 
   def total_score
     # gets value from the scores_for_each_word method
-    total_score = words_and_matching_scores.values.reduce(:+)
+    words_and_matching_scores.values.reduce(:+)
   end
 
   def won?
