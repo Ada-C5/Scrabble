@@ -1,7 +1,4 @@
 require_relative './spec_helper'
-# require_relative '../lib/player'
-require_relative '../scrabble'
-
 
 describe Player do
   it "is an object we have access to" do
@@ -104,7 +101,19 @@ describe Player do
     describe "Player#draw_tiles" do
       it "draws tiles" do
         play_cat = Player.new("game")
-        play_cat.tiles.pop
+        play_cat.tiles.pop #simulates removing tile for letter play
+        play_cat.draw_tiles
+        play_cat.tiles.length.must_equal(7)
+      end
+    end
+
+    describe "Player#draw_tiles" do
+      it "will draw tiles for letters removed due to words played" do
+        play_cat = Player.new("game")
+        string = play_cat.tiles.join
+        play_cat.play(string)
+        play_cat.remove_tiles(string)
+        play_cat.tiles.length.must_equal(7-7) # we joined all 7 tiles
         play_cat.draw_tiles
         play_cat.tiles.length.must_equal(7)
       end

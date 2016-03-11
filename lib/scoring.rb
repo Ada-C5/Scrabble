@@ -12,7 +12,7 @@ class Scoring
     score = 0
 
     #Add bonus for word_length corner case.
-    score = 50 if word.length == Scrabble::WORD_LENGTH_MAXIMUM
+    score = 50 if word.length == Scrabble::MAXIMUM_NUMBER_OF_LETTERS
 
     split_word = word.downcase.split('') # downcase for comparing
 
@@ -40,7 +40,7 @@ class Scoring
 
     lengths_of_words = words_by_length.collect { |word| word.length }
 
-    if lengths_of_words.last == Scrabble::WORD_LENGTH_MAXIMUM
+    if lengths_of_words.last == Scrabble::MAXIMUM_NUMBER_OF_LETTERS
       if self.has_duplicates?(lengths_of_words.reverse) # reverse to change ascending to descending because WORD_LENGTH_MAXIMUM is the longest we expect
        winning_word = self.get_first_word_for_length_and_score(lengths_of_words.reverse, words_by_length, array_of_words)
        return winning_word

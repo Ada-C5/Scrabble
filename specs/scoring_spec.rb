@@ -1,6 +1,5 @@
 require_relative './spec_helper'
-# require_relative '../lib/scoring'
-require_relative '../scrabble'
+
 
 # ACCOUNT FOR PLAYER ENTERING NON-LETTERS
 describe Scoring do
