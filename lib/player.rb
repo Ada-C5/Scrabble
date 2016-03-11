@@ -47,7 +47,6 @@ class Player
   end
 
   def highest_word_score #returns the highest score 
-
   	@scores_array.max
   end
 end
