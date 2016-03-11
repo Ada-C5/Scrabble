@@ -6,6 +6,7 @@ require_relative 'spec_helper'
 describe Scrabble::Player do
 DORIS = Scrabble::Player.new("Doris")
 DEDE = Scrabble::Player.new("Dede")
+DELILAH = Scrabble::Player.new("Delilah")
 
   it "exists" do
     Scrabble::Player.wont_be_nil
@@ -14,6 +15,16 @@ DEDE = Scrabble::Player.new("Dede")
   it "should require a name parameter" do
     assert_equal "Doris", DORIS.name
   end
+
+  describe "Scrabble::Player#won?" do
+    it "returns true for a winning score of 100 or more and false for any lower score" do
+      DELILAH.play("kitteh")
+      DELILAH.play("cat")
+      DELILAH.play("ZZZZZZZ")
+      assert_equal true, DELILAH.won?
+    end
+  end
+
 
   describe "Scrabble::Player#play(word)" do
     it "should push the played word into the words_played array" do
@@ -29,22 +40,31 @@ DEDE = Scrabble::Player.new("Dede")
 
   describe "Scrabble::Player#total_score" do
     it "returns the sum of scores in words_played" do
-      DEDE.play("dumpling") # 14
-      DEDE.play("donut") # 6
-      DEDE.play("doodoo") # 8
-      assert_equal 28, DEDE.total_score
+      dede = Scrabble::Player.new("Dede")
+      dede.play("dumpling") # 14
+      dede.play("donut") # 6
+      dede.play("doodoo") # 8
+      assert_equal 28, dede.total_score
     end
   end
 
   describe "Scrabble::Player#highest_scoring_word" do
     it "returns the highest-scoring word in words_played" do
-      assert_equal "dumpling", DEDE.highest_scoring_word
+      dede = Scrabble::Player.new("Dede")
+      dede.play("dumpling") # 14
+      dede.play("donut") # 6
+      dede.play("doodoo") # 8
+      assert_equal "dumpling", dede.highest_scoring_word
     end
   end
 
   describe "Scrabble::Player#highest_word_score" do
     it "returns the highest score from words_played" do
-      assert_equal 14, DEDE.highest_word_score
+      dede = Scrabble::Player.new("Dede")
+      dede.play("dumpling") # 14
+      dede.play("donut") # 6
+      dede.play("doodoo") # 8
+      assert_equal 14, dede.highest_word_score
     end
   end
 end

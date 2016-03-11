@@ -17,12 +17,13 @@ class Scrabble::Player
   end
 
   def won?
-    false
+    total_score >= 100
   end
 
   def play(word)
     # adds word to array of words
     @words_played << word
+    p @words_played
     # Returns false if player has already won
     word_score = Scrabble::Scoring.score(word)
     won? ? false : word_score
@@ -34,10 +35,12 @@ class Scrabble::Player
   end
 
   def highest_scoring_word
+    p words_played
     Scrabble::Scoring.highest_score_from(words_played, Scrabble::RWORD)
   end
 
   def highest_word_score
+    p words_played
     Scrabble::Scoring.highest_score_from(words_played, Scrabble::RPOINTS)
   end
 

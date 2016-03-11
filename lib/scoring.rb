@@ -96,6 +96,8 @@ class Scrabble::Scoring
       end
     end
     # Returns the highest-scoring word.
-    return sort_pairs(array_of_words)[-1][index]
+    p sort_pairs(array_of_words)[-1][index]
+    # "affined"
+    # "bcmpbcg"
   end
 end
