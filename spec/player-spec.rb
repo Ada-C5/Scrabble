@@ -1,6 +1,10 @@
 require_relative './spec_helper'
 require_relative '../lib/player'
 
+TEST_CASES = ["word", "butt", "fart", "red"]
+
+
+
 describe Player do
   it "Does the Player Class exist test?" do
     Player.wont_be_nil
@@ -23,16 +27,21 @@ describe Player do
 
     test_player = Player.new(name)
 
-    TEST_CASES = ["word", "butt", "fart", "red"]
-
     TEST_CASES.each do |played_word|
       it "Does it add the played word?" do
         test_player.play(played_word).must_equal(test_player.plays)
       end
     end
+  end
 
-    it "Does it return false if the player has won?" do
-      
+  describe "#play(word)" do
+
+    test_player = Player.new(name)
+
+    TEST_CASES.each do |played_word|
+    it "Does it return the score of the word" do
+        test_player.play(played_word).must_equal(Scoring.score(played_word))
+      end
     end
   end
 end
