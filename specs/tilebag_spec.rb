@@ -17,4 +17,25 @@ describe "Scrabble::TileBag#draw_tiles" do
     joe_tiles = Scrabble::TileBag.new
     joe_tiles.draw_tiles(5).length.must_equal 5
   end
+
+  it "should return 7 random tiles" do
+    joe_tiles = Scrabble::TileBag.new
+    joe_tiles.draw_tiles(7).length.must_equal 7
+  end
+
+end
+
+describe "Scrabble::TileBag#tiles_remaining" do
+  # returns the number of tiles remaining in the bag
+  it "should return 98 for draw_tiles(0)" do
+    joe_tiles = Scrabble::TileBag.new
+    joe_tiles.tiles_remaining.must_equal 98
+  end
+
+  it "should return '93' for draw_tiles(5)" do
+    joe_tiles = Scrabble::TileBag.new
+    joe_tiles.draw_tiles(5)
+    joe_tiles.tiles_remaining.must_equal 93
+  end
+
 end
