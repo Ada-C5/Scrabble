@@ -15,17 +15,26 @@ describe TileBag do
     end
   end
 
-  # describe "#draw_tiles" do
-  #   it "Does it return the correct amount of tiles left" do
-  #     test_tiles = TileBag.new
-  #     tile_list = test_tiles.draw_tiles(7)
-  #     tile_list.draw_tiles.must_equal(91)
-  # end
+  describe "#tiles_remaining" do
+    it "Does it return the correct amount of tiles left" do
+      test_tiles = TileBag.new
+      tile_list = test_tiles.draw_tiles(7)
+      tile_list.draw_tiles.must_equal(98)
+    end
+  end
 
-  # describe "#draw_tiles" do
-  #   it "Does it the correct amount each tile" do
-  #     test_tiles = TileBag.new
-  #     tile_list = test_tiles.draw_tiles(7)
-  #     tile_list.length.must_equal(7)
-  # end
+
+  
 end
+
+
+
+#TRYING TO FIGURE OUT IF IT IS SUBTRACTING CORRECT TILES. CURRENTLY UNABLE TO MAKE IT WORK. WILL COME BACK.
+# describe "#draw_tiles" do
+#
+#   it "Does it subtract the correct tiles from tile chosen?" do
+#     test_tiles = TileBag.new
+#     test_tiles.draw_tiles(2).must_equal(3)
+#
+#   end
+# end

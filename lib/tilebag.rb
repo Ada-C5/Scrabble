@@ -20,7 +20,11 @@ class TileBag
     until your_tiles.length == num do
       tiles_picked = @default_tiles.keys.sample
       your_tiles << tiles_picked
+      value = @default_tiles[tiles_picked]
+      new_value = value - 1
+      @default_tiles[tiles_picked] = new_value
     end
+
 
     #subtract tiles from @default_tiles
     # sample = h.keys.sample        example?
