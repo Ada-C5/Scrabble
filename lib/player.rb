@@ -1,5 +1,6 @@
 require_relative './tilebag'
 require_relative './scoring'
+
 class Player
   attr_reader :name, :plays ,:total_score, :tiles
 
