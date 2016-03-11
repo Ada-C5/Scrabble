@@ -1,4 +1,5 @@
 class Scrabble::Scoring
+  attr_reader :LETTERS
   # letters and corresponding values for scoring the words
   LETTERS = {
     1 => ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
