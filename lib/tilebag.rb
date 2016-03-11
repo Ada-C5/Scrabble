@@ -10,7 +10,9 @@ class Scrabble::Tilebag
 	def draw_tiles(num)
 		tiles_drawn = []
 		until tiles_drawn.length == num
-			tiles_drawn << tiles.pop		
+			tiles_drawn << tiles.pop
 		end
+    return tiles_drawn
 	end
+
 end
