@@ -13,6 +13,19 @@ describe TileBag do
       tile_list = test_tiles.draw_tiles(7)
       tile_list.length.must_equal(7)
     end
-  end  
+  end
 
+  # describe "#draw_tiles" do
+  #   it "Does it return the correct amount of tiles left" do
+  #     test_tiles = TileBag.new
+  #     tile_list = test_tiles.draw_tiles(7)
+  #     tile_list.draw_tiles.must_equal(91)
+  # end
+
+  # describe "#draw_tiles" do
+  #   it "Does it the correct amount each tile" do
+  #     test_tiles = TileBag.new
+  #     tile_list = test_tiles.draw_tiles(7)
+  #     tile_list.length.must_equal(7)
+  # end
 end

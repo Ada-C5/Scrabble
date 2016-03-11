@@ -16,6 +16,15 @@ class TileBag
   end
 
   def draw_tiles(num)
+    your_tiles = []
+    until your_tiles.length == num do
+      tiles_picked = @default_tiles.keys.sample
+      your_tiles << tiles_picked
+    end
 
+    #subtract tiles from @default_tiles
+    # sample = h.keys.sample        example?
+    # h.select { |k,v| k == sample }
+    return your_tiles
   end
 end
