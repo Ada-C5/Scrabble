@@ -100,4 +100,15 @@ describe Scrabble::Player do
 
   end
 
+  describe "Scrabble::Player#tiles" do
+
+    it "returns string telling player they can only have 7 tiles if num > 7" do
+      # bag = Scrabble::TileBag.new.draw_tiles(8)
+      justine = Scrabble::Player.new("Justine")
+      justine.play("cat")
+      # justine.draw_tiles(5)
+      justine.tiles.must_equal "You can't have more than 7 tiles!"
+    end
+  end
+
 end

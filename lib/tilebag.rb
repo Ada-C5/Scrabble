@@ -17,8 +17,9 @@ class Scrabble::TileBag
         quantity -= 1
         @tiles[letter] = quantity
       end
-      @tiles
+      # @tiles
     end
+    return sample
   end
 
   def tiles_remaining

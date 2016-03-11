@@ -1,11 +1,13 @@
 class Scrabble::Player
   attr_accessor :name, :array_words
-  #
+  attr_reader :player_tiles
 
   def initialize(name)
     @name = name
     @array_words = []
     @array_of_scores = []
+    # @new_draw = Scrabble::TileBag.new
+    @player_tiles = Scrabble::TileBag.new
   end
 
   def plays
@@ -15,6 +17,7 @@ class Scrabble::Player
 
   def play(word) # takes word from player
     @array_words << word
+    @player_tiles.draw_tiles(word.length)
     Scrabble::Scoring.score(word)
     # Return to a Numeric
   end
@@ -44,6 +47,18 @@ class Scrabble::Player
     total_score
     pairs = @array_of_scores.zip(@array_words)
     pairs.max[0]
+  end
+
+  def tiles
+    # if num <= 7
+      play("cat")
+      @player_tiles.draw_tiles("cat".length)
+    # elsif num >= 8
+    #   return "You can't have more than 7 tiles!"
+    # else
+    #   return "You have enough tiles."
+    # end
+
   end
 
 end
