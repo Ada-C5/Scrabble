@@ -6,12 +6,12 @@ module Scrabble
       @name = name
       @plays = []
       @tile_bag = TileBag.new()
-      @tiles = tile_bag.draw_tiles(Scrabble::MAXIMUM_NUMBER_OF_LETTERS)
+      @tiles = tile_bag.draw_tiles(MAXIMUM_NUMBER_OF_LETTERS)
     end
 
 
     def draw_tiles(tile_bag_arg = tile_bag)
-      tiles_drawn = tile_bag_arg.draw_tiles(Scrabble::MAXIMUM_NUMBER_OF_LETTERS -   tiles.length)
+      tiles_drawn = tile_bag_arg.draw_tiles(MAXIMUM_NUMBER_OF_LETTERS -   tiles.length)
       tiles.concat(tiles_drawn)
     end
 
