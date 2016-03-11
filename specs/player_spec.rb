@@ -62,6 +62,19 @@ describe "Scrabble::Player#highest_scoring_word" do
     april.play("nose")
     april.highest_scoring_word.must_equal "frog"
   end
+
+  it %!should return 'aaaaaad' for array_of_words = ["nose", "aaaaaad", "eeeeeed", "frog", "rrrrrrr", "qqqqqj"]! do
+    fox = Scrabble::Player.new(name: "Fox")
+    array_of_words = ["nose", "aaaaaad", "eeeeeed", "frog", "rrrrrrr", "qqqqqj"]
+    # create an each method that will play the words in the array one by one
+    array_of_words.each do |word_played|
+      fox.play(word_played)
+    end
+
+    fox.highest_scoring_word.must_equal "aaaaaad"
+  end
+
+
 end
 
 describe "Scrabble::Player#highest_word_score" do
@@ -73,19 +86,38 @@ describe "Scrabble::Player#highest_word_score" do
     jody.play("nose")
     jody.highest_word_score.must_equal 8
   end
+
+  it %!should return '58' for array_of_words = ["nose", "aaaaaad", "eeeeeed", "frog", "rrrrrrr", "qqqqqj"]! do
+    fox = Scrabble::Player.new(name: "Fox")
+    array_of_words = ["nose", "aaaaaad", "eeeeeed", "frog", "rrrrrrr", "qqqqqj"]
+    # create an each method that will play the words in the array one by one
+    array_of_words.each do |word_played|
+      fox.play(word_played)
+    end
+
+    fox.highest_word_score.must_equal 58
+  end
+
 end
 
-  # # returns an array of the words played by the player
-  # joe = Scrabble::Player.new(name: "Joe")
-  # it "should return [] played by Joe" do
-  #   # joe = Scrabble::Player.new(name: "Joe")
-  #   joe.plays.must_equal []
-  # end
+describe "Scrabble::Player#won?" do
 
-  # adds input word to the plays array
-  # it "should return ['Japan', 'Eritrea', 'Mexico'] when joe.play('Mexico')" do
-  #   joe.play("Japan")
-  #   joe.play("Eritrea")
-  #   joe.play("Mexico")
-  #   joe.plays.must_equal ["Japan", "Eritrea", "Mexico"]
-  # end
+  it %!should return 'true' for array_of_words = ["nose", "aaaaaad", "eeeeeed", "frog", "rrrrrrr", "qqqqqj"]! do
+    fox = Scrabble::Player.new(name: "Fox")
+    array_of_words = ["nose", "aaaaaad", "eeeeeed", "frog", "rrrrrrr", "qqqqqj"]
+    # create an each method that will play the words in the array one by one
+    array_of_words.each do |word_played|
+      fox.play(word_played)
+    end
+
+    fox.won?.must_equal true
+  end
+
+  it %!should return "false" for the words played "frog" and "nose"! do
+    jody = Scrabble::Player.new(name: "Jody")
+    jody.play("frog")
+    jody.play("nose")
+    jody.won?.must_equal false
+  end
+
+end
