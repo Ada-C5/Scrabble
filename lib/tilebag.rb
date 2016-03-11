@@ -20,17 +20,13 @@ class Tilebag
     def draw_tiles(num)
       #Build new array to consider all available letters to sample from
 
-      #Raise an error if num is larger than 7
+      #Raise an error if num is larger than 7???
+
       array = []
       @tiles_in_bag.each do |key, value|
         array << (key * value).split("")
         array.flatten!
       end
-
-      # If number of tiles requested is larger than number of tiles in bag
-      # num should equal tiles left.
-
-
 
 
       tiles_to_draw = array.sample(num)
@@ -43,6 +39,17 @@ class Tilebag
 
       return tiles_to_draw
 
+    end
+
+
+    def tiles_remaining
+      array = []
+      @tiles_in_bag.each do |key, value|
+        array << (key * value).split("")
+        array.flatten!
+      end
+
+      return array.length
     end
 
 
