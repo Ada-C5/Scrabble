@@ -6,7 +6,6 @@ class Player
   @word_score = 0
   end
 
-
   def plays
     @words
     return @words
