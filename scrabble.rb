@@ -38,4 +38,6 @@ DEFAULT_TILES = ["A", "A", "A", "A", "A", "A", "A", "A", "A",
 	"Y","Y",
 	"Z"]
 
+	MAX_TILES = 7
+
 end
