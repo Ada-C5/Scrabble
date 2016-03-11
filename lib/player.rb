@@ -14,28 +14,22 @@ attr_accessor :total_score
 	end
 
 	def play(word)
+		# requirement: return false if player's score > 100
 		return false if won?
+
+		# Adds the input word to the plays Array
 		self.plays << word
-		self.total_score += Scrabble::Scoring.score(word)
-		Scrabble::Scoring.score(word)
-		# checks if won
-		# Returns false if player has already won
 
 		# add score for word to @score
-		# Adds the input word to the plays Array
+		self.total_score += Scrabble::Scoring.score(word)		
 
 		# Returns the score of the word
+		Scrabble::Scoring.score(word)
 	end
 
-	# def total_score
-	#
-	# end
-
 	def won?
-		# If the player has over 100 points, returns true, otherwise returns false
-		if self.total_score > 100
-			return true
-		end
+		# If the player has over 100 points returns true
+		return true	if self.total_score > 100
 	end
 
 	def highest_scoring_word(array_of_words)
