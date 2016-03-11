@@ -7,5 +7,4 @@ class Scrabble::Tilebag
     @tiles = ["A"]
   end
 
-
 end
