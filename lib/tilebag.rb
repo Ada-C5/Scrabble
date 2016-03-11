@@ -1,4 +1,4 @@
-require_relative '../scrabble'
+# require_relative '../scrabble'
 class Scrabble::Tilebag
   attr_accessor :default_tiles
 
@@ -46,7 +46,7 @@ class Scrabble::Tilebag
   end
 
   def draw_tiles(num)
-    if num < tiles_remaining
+    if num <= tiles_remaining
       our_tiles = display_all_tiles.sample(num)
       tile_removal(our_tiles)
       return our_tiles

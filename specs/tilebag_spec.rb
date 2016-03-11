@@ -15,6 +15,11 @@ describe "TileBag-Draw_Tiles" do
     our_tiles.length.must_equal(3)
     @my_tiles.default_tiles.values.inject(:+).must_equal(94)
   end
+
+  it "should restrict player from removing more then amount of tiles remaining" do
+    tim = Scrabble::Tilebag.new
+    tim.draw_tiles(98).length.must_equal(97)
+  end
 end
 
 describe "TilesRemaining" do
@@ -22,5 +27,12 @@ describe "TilesRemaining" do
   @display_tiles = Scrabble::Tilebag.new
   @display_tiles.draw_tiles(6)
   @display_tiles.tiles_remaining.must_equal(91)
+  end
+end
+
+describe "Display_All_Tiles" do
+  tiles = Scrabble::Tilebag.new
+  it "should display an array of all tiles" do
+    tiles.display_all_tiles.must_be_instance_of(Array)
   end
 end
