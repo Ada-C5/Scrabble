@@ -74,4 +74,18 @@ class Player
 		highest_score = 0
 		highest_score = Scoring.score(highest_scoring_word)
 	end
+
+	tiles = []
+
+	def tiles
+		
+		return player_tiles
+	end
+
+	def draw_tiles(tile_bag)
+		tiles = self.tiles
+		tiles_needed = 7 - tiles.length
+		tiles = Tilebag.draw_tiles(tiles_needed)
+	end
+
 end

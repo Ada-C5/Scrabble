@@ -38,4 +38,5 @@ class Tilebag
 	 	remaining = values.inject(0) { |sum, item| sum + item }
   	return remaining
   end
+
 end
