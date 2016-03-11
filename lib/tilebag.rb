@@ -3,15 +3,15 @@ class Scrabble::TileBag
   attr_reader :tilebag
 
   def initialize
-  @tilebag = [
-    "A", "A", "A", "A", "A", "A", "A", "A", "A", "N", "N", "N", "N", "N", "N",
-    "B", "B", "O", "O", "O", "O", "O", "O", "O", "O", "C", "C", "P", "P", "D",
-    "D", "D", "D", "Q", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E",
-    "E", "R", "R", "R", "R", "R", "R", "F", "F", "S", "S", "S", "S", "G", "G",
-    "G", "T", "T", "T", "T", "T", "T", "H", "H", "U", "U", "U", "U", "I", "I",
-    "I", "I", "I", "I", "I", "I", "I", "V", "V", "J", "W", "W", "K", "X", "L",
-    "L", "L", "L", "Y", "Y", "M", "M", "Z"
-  ]
+    @tilebag = [
+      "A", "A", "A", "A", "A", "A", "A", "A", "A", "N", "N", "N", "N", "N", "N",
+      "B", "B", "O", "O", "O", "O", "O", "O", "O", "O", "C", "C", "P", "P", "D",
+      "D", "D", "D", "Q", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E",
+      "E", "R", "R", "R", "R", "R", "R", "F", "F", "S", "S", "S", "S", "G", "G",
+      "G", "T", "T", "T", "T", "T", "T", "H", "H", "U", "U", "U", "U", "I", "I",
+      "I", "I", "I", "I", "I", "I", "I", "V", "V", "J", "W", "W", "K", "X", "L",
+      "L", "L", "L", "Y", "Y", "M", "M", "Z"
+    ]
   end
 
   def draw_tiles(num)

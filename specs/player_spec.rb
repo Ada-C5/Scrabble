@@ -67,4 +67,17 @@ DELILAH = Scrabble::Player.new("Delilah")
       assert_equal 14, dede.highest_word_score
     end
   end
+
+  describe "Scrabble::Player#draw_tiles" do
+    it "draws a number of tiles from TileBag to make player_tiles have 7 items" do
+      new_tilebag = Scrabble::TileBag.new
+      doris = Scrabble::Player.new("Doris")
+      doris.player_tiles = ["a", "b", "c"]
+      p doris.player_tiles
+      doris.draw_tiles(new_tilebag)
+      p doris.player_tiles
+    end
+  end
+
+  
 end

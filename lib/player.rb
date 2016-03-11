@@ -9,11 +9,14 @@
 #highest_word_score: Returns the highest_scoring_word score
 
 class Scrabble::Player
-  attr_reader :name, :words_played
+  attr_reader :name, :words_played, :player_tiles
+  attr_writer :player_tiles
 
   def initialize(name)
     @name = name
     @words_played = []
+    @player_tiles = []
+    # @tilebag = Scrabble::TileBag.new
   end
 
   def won?
@@ -23,9 +26,10 @@ class Scrabble::Player
   def play(word)
     # adds word to array of words
     @words_played << word
-    p @words_played
     # Returns false if player has already won
     word_score = Scrabble::Scoring.score(word)
+    # @player_tiles.take_while { |letter, i| letter == Scrabble::Scoring.word_letters(word)[i] }
+
     won? ? false : word_score
       # scores word & returns score
   end
@@ -35,7 +39,6 @@ class Scrabble::Player
   end
 
   def highest_scoring_word
-    p words_played
     Scrabble::Scoring.highest_score_from(words_played, Scrabble::RWORD)
   end
 
@@ -43,5 +46,13 @@ class Scrabble::Player
     p words_played
     Scrabble::Scoring.highest_score_from(words_played, Scrabble::RPOINTS)
   end
+
+  def draw_tiles(tile_bag)
+    tile_bag.draw_tiles(7 - player_tiles.length).each do |letter|
+      @player_tiles << letter
+    end
+
+  end
+
 
 end
