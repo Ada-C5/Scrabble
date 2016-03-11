@@ -31,17 +31,27 @@ class TileBag
 
 	def initialize
 		# sets up instaces with collections of default tiles
-		@tiles_in_bag = STARTING_TILE_SET # is this valid?
+		@tiles_in_bag = STARTING_TILE_SET.to_a # is this valid?
+    @tile = []
 	end
 
-	def self.draw_tiles(number_of_tiles)
-		# returns num number of random tiles, removes the tiles from the default set.
-    number_of_tiles.times do
-      return STARTING_TILE_SET.sample
+	def draw_tiles(number_of_tiles = 7)
+    tiles_left_array = []
+    current_tile_array = @tiles_in_bag
+    current_tile_array.each do |letter, value|
+      if value > 0                        #makes new array of only letters that have tiles left
+        tiles_left_array << [letter, value]
+      end
     end
-		# @starting_tiles - number_of_tiles
-		# returns drawn tiles and subtracts from starting tile pool. Maybe use .sample?
-	end
+    number_of_tiles.times do |letter, tiles_left|
+      @tile = tiles_left_array.sample
+    end
+    index = @tiles_in_bag.index(@tile)
+    @tiles_in_bag[index][1] -= 1
+  end
+
+
+
 
 	def self.tiles_remaining
 		# returns the number of tiles remaining in the bag
