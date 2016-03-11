@@ -70,4 +70,16 @@ describe Player do
       assert test_player.won? == true
     end
   end
+
+  describe "#highest_scoring_word" do
+
+    test_player = Player.new(name)
+
+    it "Does it return the highest scoring WORD" do
+      TEST_CASES.each do |word|
+        test_player.play(word)
+      end
+      test_player.highest_scoring_word.must_equal("word")
+    end
+  end
 end
