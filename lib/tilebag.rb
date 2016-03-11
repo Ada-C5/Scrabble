@@ -1,4 +1,4 @@
- require_relative '../scrabble'
+#require_relative '../scrabble'
 class Scrabble::Tilebag
 
 # TILES = {
@@ -66,8 +66,17 @@ attr_accessor :default_tiles
     }
 
   end
+
+  def display_all_tiles
+    array = []
+    @default_tiles.each do |key, value|
+      array << (key * value).split("")
+      return array.flatten
+    end
+  end
+
   def draw_tiles(num)
-    our_tiles = @default_tiles.keys.sample(num)
+    our_tiles = display_all_tiles.sample(num)
       tile_removal(our_tiles)
       return our_tiles
   end
@@ -81,7 +90,8 @@ attr_accessor :default_tiles
     if @default_tiles.keys.include?(letter)
       @default_tiles[letter] -= 1
     end
-    end
+    @default_tiles.delete_if {|key, value| value == 0 }
+  end
   end
 
 end
