@@ -38,17 +38,17 @@ class Scrabble::TileBag
 
   def draw_tiles(num)
 
-    array_of_selected_words =[]
+    array_of_selected_tiles =[]
 
     # picks a random number that will be used as the index value for selecting a tile,
     # and then it adds the tile that has that index to array_of_selected_words, then
     # it will delete the tile at that index
     num.times do
       selected_tile_index = rand(0..default_tiles.length)
-      array_of_selected_words << @default_tiles[selected_tile_index]
+      array_of_selected_tiles << @default_tiles[selected_tile_index]
       @default_tiles.delete_at(selected_tile_index)
     end
-    array_of_selected_words
+    array_of_selected_tiles
   end
 
   def tiles_remaining

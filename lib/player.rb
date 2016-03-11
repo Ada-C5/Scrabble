@@ -2,13 +2,18 @@
 
 class Scrabble::Player
   include Scrabble
+  MAX_TILES_ON_TRAY = 7
   attr_reader :name
 
   def initialize(player_info)
     @name = player_info[:name]
     @plays = []
+    @tiles = [] # these are the tiles that the player has on their little tray
+    @tilebag = Scrabble::TileBag.new
+    draw_tiles(@tilebag)
   end
 
+# thought about putting this in attr_accessor, but that would let the player edit it in IRB???
   def plays
     @plays
   end
@@ -52,6 +57,16 @@ end
 
   def highest_word_score
     highest_score[1]
+  end
+
+# thought about putting this in attr_accessor, but that would let the player edit it in IRB???
+  def tiles
+    @tiles
+  end
+
+  def draw_tiles(tile_bag)
+    num = MAX_TILES_ON_TRAY - tiles.length
+    tile_bag.draw_tiles(num)
   end
 
 end
