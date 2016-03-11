@@ -14,8 +14,11 @@ class Player
   end
 
   def play(word)
-    @word_score = Scoring.score(word)
-    @words << word
+    if self.won? == true
+      return false
+    end
+      @word_score = Scoring.score(word)
+      @words << word
     return @word_score
   end
 
@@ -25,5 +28,12 @@ class Player
     tally += Scoring.score(word)
     end
    return tally
+  end
+
+  def won?
+    if total_score > WIN_CONDITION
+      return true
+    end
+    return false
   end
 end

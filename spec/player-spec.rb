@@ -2,7 +2,8 @@ require_relative './spec_helper'
 require_relative '../lib/player'
 
 TEST_CASES = ["word", "butt", "fart", "red"]
-
+WIN_CASE = ["cazique", "mezquit"]
+WINNING = 100
 
 
 describe Player do
@@ -49,13 +50,24 @@ describe Player do
   describe "#total_score" do
 
     test_player = Player.new(name)
-    total = 0
 
     it "Does it return the total score" do
       TEST_CASES.each do |word|
         test_player.play(word)
       end
       test_player.total_score.must_equal(25)
+    end
+  end
+
+  describe "#won?" do
+
+    test_player = Player.new(name)
+
+    it "Does it return true if the player won?" do
+      WIN_CASE.each do |word|
+        test_player.play(word)
+      end
+      assert test_player.won? == true
     end
   end
 end
