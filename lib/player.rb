@@ -1,4 +1,4 @@
-require_relative "../scrabble"
+# require_relative "../scrabble"
 
 class Scrabble::Player
   WINNING_SCORE = 100
@@ -53,10 +53,15 @@ class Scrabble::Player
     return their_tiles
   end
 
-
-  # def tiles
-    # @tilebag.draw_tiles(7)
-  # end
+  def draw_tiles
+    num = 7 - @their_tiles.length
+    # fills tiles array until it has 7 letters from the given tile bag
+    if num > 0
+    new_tiles = @tilebag.draw_tiles(num)
+    @their_tiles << new_tiles
+    return @their_tiles.flatten!
+    end
+  end
 
 
 end

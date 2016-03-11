@@ -36,3 +36,11 @@ describe "Display_All_Tiles" do
     tiles.display_all_tiles.must_be_instance_of(Array)
   end
 end
+
+# describe "DrawTiles" do
+#   it "should " do
+#     betty = Scrabble::Player.new
+#     betty.@their_tiles = 0git 
+#     betty.draw_tiles(7).length.must_equal(7)
+#   end
+# end
