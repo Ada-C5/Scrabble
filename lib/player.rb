@@ -40,15 +40,15 @@ attr_accessor :name, :words_played
 
 
   def highest_scoring_word
-
+    winner_word = Scoring.highest_score_from(@words_played)
+    return winner_word
   end
 
 
   def highest_word_score
-
+    winner_score = Scoring.score(Scoring.highest_score_from(@words_played))
+    return winner_score
   end
-
-
 
 
 end

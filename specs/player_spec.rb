@@ -92,3 +92,24 @@ end
       mindy.won?.must_equal(true)
     end
   end
+
+  describe "Player#won?" do
+    mindy = Player.new("mindy")
+    mindy.play("cat")
+    mindy.play("kittens")
+
+    it "should give the highest_scoring_word" do
+      mindy.highest_scoring_word.must_equal("kittens")
+    end
+  end
+
+
+  describe "Player#won?" do
+    mindy = Player.new("mindy")
+    mindy.play("cat")
+    mindy.play("kittens")
+
+    it "should give the highest_scoring_word's score" do
+      mindy.highest_word_score.must_equal(61)
+    end
+  end
