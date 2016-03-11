@@ -63,13 +63,39 @@ describe Scrabble::Player do
     end
 
     cristal = Scrabble::Player.new("Cristal")
-    
+
     test_words3 = ["pull", "dog", "cat"]
     it "should return false because Cristal has < 100 points" do
       test_words3.each do |word|
         cristal.play(word)
       end
       cristal.won?.must_equal false
+    end
+
+  end
+
+  describe "Scrabble::Player#highest_scoring_word" do
+    jeremy = Scrabble::Player.new("Jeremy")
+
+    test_words4 = ["program", "dog", "cat"]
+    it "should return highest scoring word - 'program'" do
+      test_words4.each do |word|
+        jeremy.play(word)
+      end
+      jeremy.highest_scoring_word.must_equal "program"
+    end
+
+  end
+
+  describe "Scrabble::Player#highest_word_score" do
+    sophia = Scrabble::Player.new("Sophia")
+
+    test_words5 = ["program", "dog", "cat"]
+    it "should return highest score from highest scoring word - 62('program')'" do
+      test_words5.each do |word|
+        sophia.play(word)
+      end
+      sophia.highest_word_score.must_equal 62
     end
 
   end

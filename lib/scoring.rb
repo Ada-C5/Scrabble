@@ -35,10 +35,6 @@ class Scrabble::Scoring
     # example: [[59, "pull"], [43, "cat"], [59, "yes"], [3, "andrea"], [7, "carlos"]]
     winners = []
 
-    # winners = pairs.max do |score|
-    #   score.max[1]
-    # end
-
     pairs.each do |pair|
       if pair[0] == pairs.max[0]
         winners << pair
