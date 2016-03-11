@@ -1,5 +1,6 @@
 require_relative './spec_helper'
 require_relative '../lib/player'
+require_relative '../lib/tilebag'
 
 describe Player do 
  WORDS_PLAYED = ["GOAT", "PUPPY", "MONKEY", "CAT", "WHALES", "IGUANA"]
@@ -35,46 +36,58 @@ describe Player do
 	end
 
 	# TEST 5
-		it "return false if player plays when score is >= 100" do 
-			chacha = Player.new("ChaCha", HIGH_SCORE_TEST)
-			assert_equal false, chacha.play("word") 
-		end
+	it "return false if player plays when score is >= 100" do 
+		chacha = Player.new("ChaCha", HIGH_SCORE_TEST)
+		assert_equal false, chacha.play("word") 
+	end
 
 	# TEST 6
-	 it "should return true for winning" do
-	 	chacha = Player.new("ChaCha", HIGH_SCORE_TEST)
+	it "should return true for winning" do
+		chacha = Player.new("ChaCha", HIGH_SCORE_TEST)
 	 	assert true, chacha.won? 
 	end
 
 	# TEST 7 
-		it "should return total score of words played so far" do 
-			fran = Player.new("Fran")
-			fran.play("goat")
-			fran.play("puppy")
+	it "should return total score of words played so far" do 
+		fran = Player.new("Fran")
+		fran.play("goat")
+		fran.play("puppy")
 		assert_equal 19, fran.total_score
 	end 
 	# TEST 8 
-		it "should return highest scoring word played" do 
-			fran = Player.new("Fran")
-			fran.play("goat")
-			fran.play("puppy")
+	it "should return highest scoring word played" do 
+		fran = Player.new("Fran")
+		fran.play("goat")
+		fran.play("puppy")
 		assert_equal "PUPPY", fran.highest_scoring_word
 	end 
 	# TEST 9
-		it "should return highest word score" do 
-			fran = Player.new("Fran")
-			fran.play("goat")
-			fran.play("puppy")
+	it "should return highest word score" do 
+		fran = Player.new("Fran")
+		fran.play("goat")
+		fran.play("puppy")
 		assert_equal 14, fran.highest_word_score
 	end 
 	# TEST 10
-		it "returns the score of a word played" do 
-			fran = Player.new("Fran")
-			assert_equal [14], fran.play("puppy")
+	it "returns the score of a word played" do 
+		fran = Player.new("Fran")
+		assert_equal [14], fran.play("puppy")
 	end 
 	# TEST 11
-		it "player class accepts one argument" do 
-			assert_raises(ArgumentError) {fran = Player.new}
+	it "player class accepts one argument" do 
+		assert_raises(ArgumentError) {fran = Player.new}
+	end 
+
+	# TEST 12
+	it "raises an error if too many tiles are drawn" do 
+		fran = Player.new("Fran")
+		assert_raises(ArgumentError) {fran.tiles(10)}
+	end
+
+	# TEST 13
+	it "does not raise an error if the player draws < 7 tiles" do 
+		fran = Player.new("Fran")
+		assert_equal [7], fran.draw_tiles([7])
 	end 
 end 
 
