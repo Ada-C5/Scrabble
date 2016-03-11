@@ -1,4 +1,4 @@
-# require_relative '../scrabble'
+require_relative '../scrabble'
 class Scrabble::Tilebag
   attr_accessor :default_tiles
 

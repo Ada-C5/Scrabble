@@ -1,12 +1,14 @@
-#require_relative "../scrabble"
+require_relative "../scrabble"
 
 class Scrabble::Player
   WINNING_SCORE = 100
   attr_accessor :played_words
-  attr_reader  :name
-  def initialize(name)
+  attr_reader  :name, :their_tiles
+  def initialize(name, tilebag)
     @name = name
     @played_words = []
+    @tilebag = tilebag
+    @their_tiles = @tilebag.draw_tiles(7)
     #@won = won
   end
 
@@ -46,6 +48,15 @@ class Scrabble::Player
     end
       return Scrabble::Scoring.score(highest_scored_word)
   end
+
+  def tiles
+    return their_tiles
+  end
+
+
+  # def tiles
+    # @tilebag.draw_tiles(7)
+  # end
 
 
 end

@@ -1,4 +1,4 @@
-# require_relative "../scrabble"
+ require_relative "../scrabble"
 
 class Scrabble::Scoring
 SEVEN_LETTER_BONUS = 50
