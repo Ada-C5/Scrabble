@@ -29,6 +29,10 @@ class TileBag
 
   }
 
+  def initialize
+    @tile_bag = fill_tile_bag
+  end
+
   def fill_tile_bag
     tile_array = []
 
@@ -38,10 +42,6 @@ class TileBag
       tile_array.push *a
     end
     tile_array
-  end
-
-  def initialize
-    @tile_bag = fill_tile_bag
   end
 
   def draw_tiles(num)
