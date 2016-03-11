@@ -7,9 +7,9 @@ attr_accessor :total_score
 
 
 	# set up with empty plays array and score as instance variable
-	def initialize(name)
+	def initialize(name, score = 0)
 	  @name = name
-	  @total_score = 0
+	  @total_score = score
 	  @plays = []
 	  @won = false
 	end
