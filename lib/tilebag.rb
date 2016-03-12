@@ -37,6 +37,9 @@ class Scrabble::Tilebag
     }
   end
 
+
+#returns an array of all actual tiles, to allow user to pick more than one of the same letter tile
+#we incorporated this into our draw_tiles method because .sample was not letting that happen
   def display_all_tiles
     array = []
     @default_tiles.each do |key, value|
@@ -45,6 +48,9 @@ class Scrabble::Tilebag
     return array.flatten
   end
 
+#check to see if the numbers of tiles player is trying to draw are available,
+# then removes them from tile bag and returns new tiles
+# ex - if player tries to draw 6 and there are only 4, it gives them those 4 tiles
   def draw_tiles(num)
     if num <= tiles_remaining
       our_tiles = display_all_tiles.sample(num)
@@ -58,10 +64,12 @@ class Scrabble::Tilebag
     end
   end
 
+ #added up number of tiles using INJECT!
   def tiles_remaining
     @default_tiles.values.inject(0, :+)
   end
 
+#deletes tiles from tile_bag, when there are no tiles left, it remove that key/value pair from bag
   def tile_removal(array_of_tiles)
     array_of_tiles.each do |letter|
     if @default_tiles.keys.include?(letter)

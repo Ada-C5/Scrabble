@@ -16,11 +16,11 @@ SEVEN_LETTER_BONUS = 50
 }
 
   def self.letter_value(letter)
-      LETTERS.each do |key, value|
-          if key.include? letter
-              return value
-          end
+    LETTERS.each do |key, value|
+      if key.include? letter
+        return value
       end
+    end
   end
 
   def self.score(word)
@@ -32,12 +32,14 @@ SEVEN_LETTER_BONUS = 50
       temp_letter_val = letter_value(letter)
       word_score += temp_letter_val
     end
-    # PLAYED_WORDS << word
-    # WORDSSCORE << word_score
-    # WORD_SCORE_COLLECTION = PLAYED_WORDS.zip(WORDSSCORE)
     return word_score
   end
 
+#return highest score from array_of_tiles
+#in case of tie :
+#      -better to use fewer tiles
+#      -if top scores is between multiple words and one with 7, one using 7 win_words
+#      - multiple words with same score and same length, pick first
   def self.highest_score_from(word_array)
     by_scores = word_array.group_by { |word| self.score(word) }
       win_words = by_scores.max[1]
@@ -54,21 +56,7 @@ SEVEN_LETTER_BONUS = 50
 
 end
 
-  # def self.collect_score_array(word)
-    # WORDS_SCORE << self.score(word)
-    # return WORDS_SCORE
-  # end
-  #
-  # def self.collect_word_array(word)
-    # PLAYED_WORDS << word
-    # return PLAYED_WORDS
-  # end
-
-  # def self.combined_collection
-    # word_score_collection = PLAYED_WORDS.zip(WORDS_SCORE).to_h
-    # return word_score_collection
-  # end
-
+#we were experimenting with several versions of this method.
 #=======================================================================
 # def self.score(word)
 #     value_array = []

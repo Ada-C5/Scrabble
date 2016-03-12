@@ -97,6 +97,13 @@ describe Scrabble::Player do
       puppet = Scrabble::Player.new("puppet", @our_tile_bag)
       puppet.tiles.length.must_equal(7)
     end
-end
+  end
+
+  describe "DrawTiles" do
+    it "should not do anything if bag is full" do
+      betty = Scrabble::Player.new("betty", @our_tile_bag)
+      betty.draw_tiles.must_be_nil
+    end
+  end
 
 end

@@ -7,13 +7,12 @@ class Scrabble::Player
   def initialize(name, tilebag)
     @name = name
     @played_words = []
-    @tilebag = tilebag
-    @their_tiles = @tilebag.draw_tiles(7)
-    #@won = won
+    @tilebag = tilebag #starts up a tilebag when the player begins a game
+    @their_tiles = @tilebag.draw_tiles(7)   #draws 7 tiles for them
   end
 
   def plays
-    return @played_words
+    return @played_words #shows which words they have played
   end
 
   def won?
@@ -52,7 +51,7 @@ class Scrabble::Player
   def tiles
     return their_tiles
   end
-
+ # checks to see how many tiles they need and fills them up if needed and if tiles are left in bag
   def draw_tiles
     num = 7 - @their_tiles.length
     # fills tiles array until it has 7 letters from the given tile bag
