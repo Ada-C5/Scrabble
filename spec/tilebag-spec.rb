@@ -21,9 +21,6 @@ describe TileBag do
       test_tiles.tiles_remaining.must_equal(91)
     end
   end
-
-
-
 end
 
 
