@@ -13,7 +13,7 @@ class Scrabble::Player
     draw_tiles(@tilebag)
   end
 
-# thought about putting this in attr_accessor, but that would let the player edit it in IRB???
+  # thought about putting this in attr_accessor, but that would let the player edit it in IRB???
   def plays
     @plays
   end
@@ -26,14 +26,14 @@ class Scrabble::Player
 
   end
 
-def words_and_matching_scores
-  total_score_hash = {}
+  def words_and_matching_scores
+    total_score_hash = {}
 
-  plays.each do |word|
-    total_score_hash[word] = Scrabble::Scoring.score(word)
+    plays.each do |word|
+      total_score_hash[word] = Scrabble::Scoring.score(word)
+    end
+    total_score_hash
   end
-  total_score_hash
-end
 
   def total_score
     # gets value from the scores_for_each_word method
@@ -59,7 +59,7 @@ end
     highest_score[1]
   end
 
-# thought about putting this in attr_accessor, but that would let the player edit it in IRB???
+  # thought about putting this in attr_accessor, but that would let the player edit it in IRB???
   def tiles
     @tiles
   end

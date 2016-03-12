@@ -128,13 +128,3 @@ describe "Scrabble::Player#tiles" do
     bill.tiles.length.must_equal 7
   end
 end
-
-# describe "Scrabble::Player#draw_tiles(tile_bag)" do
-#   bill = Scrabble::Player.new(name: "Bill")
-#
-#     it "" do
-#
-#     end
-#
-#   end
-# end

@@ -33,86 +33,30 @@ class Scrabble::Scoring
   end
 
   def self.highest_score_from(array_of_words) # array_of_words = ["cats", "fee", "no"]
-    array_of_words.uniq.length == array_of_words.length ? self.find_high_score(array_of_words) : self.tiebreaker(array_of_words)
-  end
 
-  def self.find_high_score(array_of_words)
-    array_of_words.max_by {|word| self.score(word) }
-  end
-
-  def self.tiebreaker(array_of_words)
-    # 7-related conditions:
-    seven_letter_word_array = array_of_words.find_all {|word| word.length == 7}
-    if seven_letter_word_array == nil
-      # -if neither of the highest-scoring words have 7 letters, the one with the least letters wins
-      array_of_words.min_by {|word| word.length}
-    elsif seven_letter_word_array.length == 1
-      # -if only one of the highest-scoring words has 7 letters, that one wins
-      array_of_words.max_by {|word| word.length}
-    elsif seven_letter_word_array.length > 1
-      # -if more than one of the highest-scoring words has 7 letters, the first instance wins
-      array_of_words.find {|word| word.length == 7}
+    array_of_word_values = []
+    array_of_words.each do |word|
+      array_of_word_values << [word, self.score(word), word.length] #  = [["cats", 7, 4], ["fee", 7, 3], ["no", 2, 2]]
     end
+
+    highest_score_array = array_of_word_values[0] # ["cats", 7, 4]
+
+    array_of_word_values.each do |word_array| # ["cats", 7, 4]
+      # compares the score of the words
+      if word_array[1] == highest_score_array[1]  # compare score
+        # compares the length of the words
+        if word_array[2] < highest_score_array[2]
+          highest_score_array[2] == 7 ? highest_score_array : highest_score_array = word_array
+          #highest_score_array = word_array # replace the highest score to the word_array being referenced
+        elsif word_array[2] >= highest_score_array[2]
+          if highest_score_array[2] < 7
+            word_array[2] == 7 ? highest_score_array = word_array : highest_score_array
+          end
+        end
+      elsif word_array[1] > highest_score_array[1]
+        highest_score_array = word_array
+      end
+    end
+    return highest_score_array[0]
   end
 end
-#
-#     highest_score_array = array_of_word_values[0] # ["cats", 7, 4]
-#
-#     array_of_word_values.each do |word_array| # ["cats", 7, 4]
-#       # compares the score of the words
-#       if word_array[1] == highest_score_array[1]  # compare score
-#         # compares the length of the words
-#         if word_array[2] < highest_score_array[2]
-#           highest_score_array[2] == 7 ? highest_score_array : highest_score_array = word_array
-#           #highest_score_array = word_array # replace the highest score to the word_array being referenced
-#         elsif word_array[2] >= highest_score_array[2]
-#           if highest_score_array[2] < 7
-#             word_array[2] == 7 ? highest_score_array = word_array : highest_score_array
-#           end
-#         end
-#       elsif word_array[1] > highest_score_array[1]
-#         highest_score_array = word_array
-#       end
-#     end
-#     return highest_score_array[0]
-#   end
-# end
-
-
-
-
-# highest_word = ""
-#       highest_score = 0
-#
-# array_of_words.max_by  do |word|
-#   new_score = self.score(word)
-#   puts "word: #{word}"
-#   if new_score > highest_score
-#     puts " new score for #{word} is greater than highest_score for #{highest_word}"
-#
-#     highest_score = new_score
-#     highest_word = word
-#   elsif new_score == highest_score
-#     # tie breaker
-#     puts "its a tie"
-#     if highest_word.length == 7
-#       highest_word = word
-#     elsif word.length > highest_word.length
-#       puts " #{word} word.length is greater than #{highest_word} highest_word.length"
-#
-#       highest_word = word if word.length == 7
-#     elsif word.length < highest_word.length
-#       puts " #{word} word.length is less than #{highest_word} highest_word.length"
-#
-#       highest_word = word
-#     end
-#
-#   elsif new_score < highest_score
-#     puts "new score is less tahn highest_score"
-#     highest_word
-#   end
-#   puts "at the end of the loop. before return"
-#   highest_word
-# end
-#
-# puts "highest word = #{highest_word}"
