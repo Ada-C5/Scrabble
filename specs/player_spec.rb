@@ -69,18 +69,17 @@ end
     end
   end
 
-  # describe "Player#tiles" do
-  #   suzanne = Player.new("Suzanne")
-  #   it "should return a collection of letters can play (max 7)" do
-  #     suzanne.tiles.must_equal
-  #   end
-  # end
+  describe "Player#tiles" do
+    suzanne = Player.new("Suzanne")
+    it "should return a collection of letters can play (max 7)" do
+      suzanne.tiles.must_equal.Array
+    end
+  end
 
   describe "Player#draw_tiles(tile_bag)" do
     suzanne = Player.new("Suzanne")
     it "should fill tiles array until it has 7 letters" do
-      suzanne.draw_tiles().must_equal()
+      suzanne.draw_tiles
+      suzanne.tiles.length.must_equal(7)
     end
   end
-
-

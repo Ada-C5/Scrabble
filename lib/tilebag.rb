@@ -26,10 +26,10 @@ class Tilebag
           end
       end
       return letters
-    else 
+    else
     	return "Out of tiles"
     end
-  
+
 
   end
 

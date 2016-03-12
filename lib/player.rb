@@ -36,7 +36,7 @@ class Player
 					words << word
 				end
 			end
-			return Scoring.score(word)	
+			return Scoring.score(word)
 		end
 	end
 
@@ -63,7 +63,7 @@ class Player
 	def highest_scoring_word
 		win_word = ""
 		hash_players.each do |name,array|
-			if @name == name 
+			if @name == name
 				win_word = Scoring.highest_score_from(array)
 			end
 		end
@@ -78,11 +78,11 @@ class Player
 	tiles = []
 
 	def tiles
-		
-		return player_tiles
+		self.draw_tiles
+		return tiles
 	end
 
-	def draw_tiles(tile_bag)
+	def draw_tiles
 		tiles = self.tiles
 		tiles_needed = 7 - tiles.length
 		tiles = Tilebag.draw_tiles(tiles_needed)
