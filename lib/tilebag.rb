@@ -1,7 +1,6 @@
 class TileBag
-
+  attr_reader :total_tiles
   def initialize
-
     @default_tiles = {
       "A" => 9, "B" =>  2, "C" =>  2,
       "D" => 4, "E" => 12, "F" =>  2,
@@ -13,6 +12,7 @@ class TileBag
       "V" => 2, "W" =>  2, "X" =>  1,
       "Y" => 2, "Z" =>  1,
     }
+    @total_tiles = 98
   end
 
   def draw_tiles(num)
@@ -31,4 +31,10 @@ class TileBag
     # h.select { |k,v| k == sample }
     return your_tiles
   end
+
+  def tiles_remaining
+    @total_tiles -= self.draw_tiles(num).length
+    return @total_tiles
+  end
+
 end
