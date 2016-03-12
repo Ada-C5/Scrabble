@@ -1,9 +1,9 @@
 class Player
-attr_accessor :name, :words_played
+attr_accessor :name, :words_played, :tiles
   def initialize (name)
     @name = name
     @words_played = []
-    #@total_score =
+    @tiles = []
   end
 
 
@@ -11,13 +11,31 @@ attr_accessor :name, :words_played
     return @words_played
   end
 
+  # def have_letters?    #WE WERE GOING TO DO THIS BUT DIDNT FINISH YET: NOT IN REQUIREMENTS ^_^
+
+    # word_letters = @word_played.split("")
+    # temp_tiles = @tiles
+
+    # word_letters.each do |letter|     #this checks to be sure we have the letters that are in the word we are trying to play
+      # if temp_tiles.include?(letter)
+        # temp_tiles.delete_at(tiles.index(letter) || tiles.length)
+      # else
+        # return false
+      # end
+    # end
+    # @tiles = temp_tiles
+    # return true
+  # end
+
+
 
   def play(word)
     if won? == true
       return false
     end
+
     @words_played << word
-   return Scoring.score(word)
+    return Scoring.score(word)
   end
 
 
@@ -48,6 +66,12 @@ attr_accessor :name, :words_played
   def highest_word_score
     winner_score = Scoring.score(Scoring.highest_score_from(@words_played))
     return winner_score
+  end
+
+
+  def draw_tiles(tile_bag)
+    x = 7 - @tiles.length
+    @tiles.concat(tile_bag.draw_tiles(x))
   end
 
 
