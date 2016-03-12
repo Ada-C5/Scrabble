@@ -7,7 +7,8 @@ class Scrabble::Player
     @array_words = []
     @array_of_scores = []
     # @new_draw = Scrabble::TileBag.new
-    @player_tiles = Scrabble::TileBag.new
+    @bag_tiles = Scrabble::TileBag.new
+    @player_tiles = @bag_tiles.draw_tiles(7) #[A:, B:, C:, A:, T:, M:, :O]
   end
 
   def plays
@@ -16,8 +17,18 @@ class Scrabble::Player
   end
 
   def play(word) # takes word from player
+    # @player_tiles
     @array_words << word
-    @player_tiles.draw_tiles(word.length)
+    @player_tiles.pop(word.length)
+    # tiles_length = 7 - X
+    #4
+
+    @player_tiles += @bag_tiles.draw_tiles(word.length)
+
+    # @new_tiles = @bag_tiles.draw_tiles(@tiles_length)
+
+    # @tiles_length = 7
+    # @all_tiles = @player_tiles
     Scrabble::Scoring.score(word)
     # Return to a Numeric
   end
@@ -50,15 +61,7 @@ class Scrabble::Player
   end
 
   def tiles
-    # if num <= 7
-      play("cat")
-      @player_tiles.draw_tiles("cat".length)
-    # elsif num >= 8
-    #   return "You can't have more than 7 tiles!"
-    # else
-    #   return "You have enough tiles."
-    # end
-
+    @player_tiles
   end
 
 end

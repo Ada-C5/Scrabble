@@ -6,6 +6,11 @@ describe Scrabble::Player do
     Scrabble::Player.must_be_instance_of Class
   end
 
+  it "Should initilize a player with 7 tiles" do
+    andrea = Scrabble::Player.new("Andrea")
+    andrea.player_tiles.length.must_equal 7
+  end
+
   PLAY_WORDS = ["pull", "yes"]
 
   describe "Scrabble::Player#plays" do
@@ -101,13 +106,18 @@ describe Scrabble::Player do
   end
 
   describe "Scrabble::Player#tiles" do
+    alisya = Scrabble::Player.new("alisya")
+    alisya.play("cat")
+    it "should return an Array" do
+     alisya.tiles.must_be_instance_of Array
+    end
+  end
 
-    it "returns string telling player they can only have 7 tiles if num > 7" do
-      # bag = Scrabble::TileBag.new.draw_tiles(8)
-      justine = Scrabble::Player.new("Justine")
-      justine.play("cat")
-      # justine.draw_tiles(5)
-      justine.tiles.must_equal "You can't have more than 7 tiles!"
+  describe "Scrabble::Player#tiles" do
+    nicole = Scrabble::Player.new("nicole")
+    nicole.play("dogs")
+    it "should return the number of tiles the player can play with" do
+     nicole.tiles.length.must_equal 7
     end
   end
 
