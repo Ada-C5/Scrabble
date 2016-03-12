@@ -4,37 +4,52 @@ SimpleCov.start
 require_relative 'spec_helper'
 
 describe Scrabble::Player do
-DORIS = Scrabble::Player.new("Doris")
-DEDE = Scrabble::Player.new("Dede")
-DELILAH = Scrabble::Player.new("Delilah")
+# call Dede! It's time for Scrabble!
+def dede
+  dede = Scrabble::Player.new("Dede")
+end
 
   it "exists" do
     Scrabble::Player.wont_be_nil
   end
 
   it "should require a name parameter" do
-    assert_equal "Doris", DORIS.name
+    dede = Scrabble::Player.new("Dede")
+    assert_equal "Dede", dede.name
   end
 
   describe "Scrabble::Player#won?" do
     it "returns true for a winning score of 100 or more and false for any lower score" do
-      DELILAH.play("kitteh")
-      DELILAH.play("cat")
-      DELILAH.play("ZZZZZZZ")
-      assert_equal true, DELILAH.won?
+      dede = Scrabble::Player.new("Dede")
+      dede.play("kitteh")
+      dede.play("cat")
+      dede.play("ZZZZZZZ")
+      assert_equal true, dede.won?
     end
   end
 
 
   describe "Scrabble::Player#play(word)" do
     it "should push the played word into the words_played array" do
-      DORIS.play("dumpling")
-      assert DORIS.words_played.include?("dumpling")
+      dede = Scrabble::Player.new("Dede")
+      dede.play("dumpling")
+      assert dede.words_played.include?("dumpling")
     end
 
     # need to test this method for when won? is true
     it "returns the correct score for a played word" do
-      assert_equal 14, DORIS.play("dumpling")
+      dede = Scrabble::Player.new("Dede")
+      assert_equal 14, dede.play("dumpling")
+    end
+
+    it "removes the letters in a played word from player_tiles" do
+      dede = Scrabble::Player.new("Dede")
+      new_tilebag = Scrabble::TileBag.new
+      dede.draw_tiles(new_tilebag)
+      print "HERE #{dede.player_tiles} END"
+      sample_tiles = dede.player_tiles[0..2]
+      dede.play(sample_tiles.join)
+      p dede.player_tiles
     end
   end
 
@@ -79,5 +94,5 @@ DELILAH = Scrabble::Player.new("Delilah")
     end
   end
 
-  
+
 end

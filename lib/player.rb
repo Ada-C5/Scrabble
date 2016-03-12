@@ -28,10 +28,18 @@ class Scrabble::Player
     @words_played << word
     # Returns false if player has already won
     word_score = Scrabble::Scoring.score(word)
-    # @player_tiles.take_while { |letter, i| letter == Scrabble::Scoring.word_letters(word)[i] }
-
+    remove_played_letters(word)
     won? ? false : word_score
       # scores word & returns score
+  end
+
+  def remove_played_letters(word)
+    # removes played letters from player_tiles
+    word_letters = Scrabble::Scoring.word_letters(word)
+    word_letters.length.times do
+      @player_tiles.delete(word_letters.find { |letter| letter})
+      word_letters.shift
+    end
   end
 
   def total_score
