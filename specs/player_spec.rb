@@ -85,9 +85,9 @@ describe Player do
 	end
 
 	# TEST 13
-	it "does not raise an error if the player draws < 7 tiles" do 
+	it "returns a number of tiles when drawn" do 
 		fran = Player.new("Fran")
-		assert_equal [7], fran.draw_tiles([7])
+		refute_equal nil, fran.draw_tiles(7)
 	end 
 end 
 
