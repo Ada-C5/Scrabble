@@ -9,6 +9,10 @@ class Scoring
     "q" => 10, "z" => 10
   }
 
+  def self.check_if_letters(word)
+    !word.match(/[^A-Za-z]/)
+  end
+
   def self.score(word)
     arr = word.downcase.split(//)
     arr.length == 7 ? tally = 50 : tally = 0
